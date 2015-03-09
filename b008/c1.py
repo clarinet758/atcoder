@@ -8,25 +8,26 @@ import math
 import itertools
 #start = time.clock()
 n=int(raw_input())
-ans=0
 l=[]
 for i in xrange(n):
     l.append(int(raw_input()))
-chk=list(itertools.permutations(l))
-chk=set(chk)
-chk=list(chk)
-for i in range(len(chk)):
-    t=[1 for x in range(len(chk[i]))]
-    for j in range(0,len(chk[i])-1):
-        for k in range(j+1,len(chk[i])):
-            if chk[i][k]%chk[i][j]==0:
-                if t[k]==0:
-                    t[k]=1
-                else:
-                    t[k]=0
-    ans+=t.count(1)
-print 1.0*ans/len(chk)
-        
 
+def sol(x,p):
+    x=list(x)
+    for i in xrange(p-1):
+        for j in xrange(i+1,p):
+            if x[j]%x[i]==0:
+                x[j]*=-1
+    return len([i for i in x if i>0])
+ans=k=0
+chk=list(itertools.permutations(l))
+for i in range(len(chk)):
+    if i>0 and chk[i-1]==chk[i]:
+        ans+=k
+    else:
+        k=sol(chk[i],n)
+        ans+=k
+print ans*1.0/len(chk)
+    
 #end = time.clock()
 #print end - start
