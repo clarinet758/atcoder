@@ -22,8 +22,8 @@ l=map(int,raw_input().split())
 n=int(raw_input())
 for i in range(n):
     x,y=map(int,raw_input().split())
-    chk=(sol(l[0],l[1],x,y)+sol(x,y,l[2],l[3]))/l[4]
-    if l[5]>chk:
+    chk=(sol(l[0],l[1],x,y)+sol(x,y,l[2],l[3]))
+    if chk<=l[4]*l[5]*1.0:
         print 'YES'
         exit()
 print 'NO'
