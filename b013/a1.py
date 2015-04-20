@@ -11,7 +11,6 @@ import itertools
 #10**9+7
 mod=1000000007
 #start = time.clock()
-n=(raw_input())
-print ord(n)-64
+print 'SABCDE'.index(raw_input())
 #end = time.clock()
 #print end - start

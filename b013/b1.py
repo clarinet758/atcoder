@@ -13,7 +13,6 @@ mod=1000000007
 #start = time.clock()
 n=int(raw_input())
 x=int(raw_input())
-c=abs(n-x)
-print c if c<6 else 10-c
+print min(abs(n-x),min(n,x)-max(n,x)+10)
 #end = time.clock()
 #print end - start
