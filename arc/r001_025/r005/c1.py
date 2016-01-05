@@ -6,57 +6,54 @@ import io
 import re
 import math
 import itertools
-#start = time.clock()
+import collections
+#sys.stdin=file('input.txt')
+#sys.stdout=file('output.txt','w')
+#10**9+7
+mod=1000000007
+#mod=1777777777
+pi=3.141592653589
+xy=[(1,0),(-1,0),(0,1),(0,-1)]
+bs=[(-1,-1),(-1,1),(1,1),(1,-1)]
+def gcd(a,b): return a if b==0 else gcd(b,a%b)
+def lcm(a,b): return a*b/gcd(a,b)
+def euclid_dis(x1,y1,x2,y2): return ((x1-x2)**2+(y1-y2)**2)**0.5
+def choco(xa,ya,xb,yb,xc,yc,xd,yd): return 1 if abs((yb-ya)*(yd-yc)+(xb-xa)*(xd-xc))<1.e-10 else 0
+
+#n=int(raw_input())
+h,w=map(int,raw_input().split())
+#l=map(int,raw_input().split())
+l,Q=[],[[],[],[]]
+D=[[9]*w for _ in range(h)]
+
+for i in range(h):
+    t=list(raw_input())
+    if 's' in t:
+        Q[0].append((i,t.index('s')))
+        D[i][t.index('s')]=0
+        t[t.index('s')]=0
+    if 'g' in t:
+        gy=i
+        gx=t.index('g')
+    l.append(t)
+
+for q in Q:
+    while len(q):
+        y,x=q.pop()
+        for iy,ix in xy:
+            iy+=y
+            ix+=x
+            if 0<=iy<h and 0<=ix<w:
+                if l[iy][ix]=='#':
+                    d=D[y][x]+1
+                else:
+                    d=D[y][x]
+                if d<=2 and d<D[iy][ix]:
+                    D[iy][ix]=d
+                    Q[d].append((iy,ix))
 
 
-##外周全てに#を3つずつ付け足すために迷路はhw両方向に6ずつ大きくなる
-##今回は許容される壁破壊、#への立ち入りが2回なので外周に踏み込んだら
-##戻ってこれないことが保証される
-
-h,w=[int(x)+6 for x in raw_input().split()] #迷路の大きさ行・列
-##外周外周外周外周
-##      塀
-##3回以上許容されると外周外を歩いて戻ってきてしまう
-##ことが可能なので何か強制終了条件で管理かな？
-#cw=[list(raw_input()) for _ in range(h)]
-cw=['#'*w]*3+['###'+raw_input()+'###' for _ in range(h-6)]+['#'*w]*3 #迷路
-t=[[9]*w for i in range(h)] #その座標にいる時に壁破壊が何回かカウンター
-d=[[],[],[]] #壁の破壊回数i回の地点
+print 'YES' if D[gy][gx]<=2 else 'NO'
 ans=chk=0
-##問題から入力でスタート、ゴールの座標が与えられないので自分で探す
-##まぁ与えられてても3ずつずれるのでその分は要修正ですけど
-for i in range(h):
-    if chk==2:
-        break
-    for j in range(w):
-        if cw[i][j]=='s':
-            sh,sw=i,j
-            chk+=1
-        elif cw[i][j]=='g':
-            gh,gw=i,j
-            chk+=1
-        if chk==2:
-            break
-##発見したスタート地点の座標を0にして、探索qリストに座標を入れる
-t[sh][sw]=0
-#d[0]+=[(sh,sw)]
-d[0]+=[(sw,sh)]
-
-for i in d:
-    while len(i)>0:
-        x,y=i.pop()
-        for dx,dy in [(1,0),(-1,0),(0,1),(0,-1)]:
-            mx,my=x+dx,y+dy #移動先の座標が決まる
-##移動先が'#'なら1加算、そうでなければ同じカウントのまま
-            dt=t[y][x]+1 if cw[my][mx]=='#' else t[y][x]
-            if dt<=2 and dt<t[my][mx]:
-                t[my][mx]=dt
-                d[dt]+=[(mx,my)]
-print cw
-print t
-for i in range(h):
-    for j in range(w):
-        if cw[i][j]=='g':
-            print 'YES' if t[y][x]<=2 else 'NO'
 #end = time.clock()
 #print end - start
