@@ -21,39 +21,34 @@ def euclid_dis(x1,y1,x2,y2): return ((x1-x2)**2+(y1-y2)**2)**0.5
 def choco(xa,ya,xb,yb,xc,yc,xd,yd): return 1 if abs((yb-ya)*(yd-yc)+(xb-xa)*(xd-xc))<1.e-10 else 0
 
 #n=int(raw_input())
-h,w=map(int,raw_input().split())
 #l=map(int,raw_input().split())
-l,Q=[],[[],[],[]]
-D=[[9]*w for _ in range(h)]
-
+h,w=map(int,raw_input().split())
+Q=[[],[],[]]
+ido=[[9]*w for _ in range(h)]
+l=[]
 for i in range(h):
-    t=list(raw_input())
+    t=raw_input()
     if 's' in t:
         Q[0].append((i,t.index('s')))
-        D[i][t.index('s')]=0
-        t[t.index('s')]=0
-    if 'g' in t:
-        gy=i
-        gx=t.index('g')
+        ido[i][t.index('s')]=0
     l.append(t)
+
 
 for q in Q:
     while len(q):
         y,x=q.pop()
-        for iy,ix in xy:
-            iy+=y
-            ix+=x
-            if 0<=iy<h and 0<=ix<w:
-                if l[iy][ix]=='#':
-                    d=D[y][x]+1
-                else:
-                    d=D[y][x]
-                if d<=2 and d<D[iy][ix]:
-                    D[iy][ix]=d
-                    Q[d].append((iy,ix))
-
-
-print 'YES' if D[gy][gx]<=2 else 'NO'
+        for a,b in xy:
+            if 0<=y+a<h and 0<=x+b<w:
+                if l[y+a][x+b]=='g':
+                    print 'YES'
+                    exit()
+                elif l[y+a][x+b]=='.' and ido[y+a][x+b]==9:
+                    ido[y+a][x+b]=ido[y][x]
+                    Q[ido[y][x]].append((y+a,x+b))
+                elif l[y+a][x+b]=='#' and ido[y][x]<2 and ido[y+a][x+b]==9:
+                    ido[y+a][x+b]=ido[y][x]+1
+                    Q[ido[y][x]+1].append((y+a,x+b))
+print 'NO'
 ans=chk=0
 #end = time.clock()
 #print end - start
