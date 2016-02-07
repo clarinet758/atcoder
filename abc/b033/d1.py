@@ -24,18 +24,27 @@ def choco(xa,ya,xb,yb,xc,yc,xd,yd): return 1 if abs((yb-ya)*(yd-yc)+(xb-xa)*(xd-
 ans=[0]*3
 n=int(raw_input())
 l=[]
+boat=[[0]*n for _ in range(n)]
 for i in range(n):
     a,b=map(int,raw_input().split())
     l.append((a,b))
 for i in range(n-2):
     for j in range(i+1,n-1):
-        for k in range(j+1,n):
+        if boat[i][j]==0:
             a=euclid_dis2(l[i][0],l[i][1],l[j][0],l[j][1])
-            b=euclid_dis2(l[i][0],l[i][1],l[k][0],l[k][1])
-            c=euclid_dis2(l[k][0],l[k][1],l[j][0],l[j][1])
+        else:
+            a=boat[i][j]
+        for k in range(j+1,n):
+            if boat[i][k]==0:
+                b=euclid_dis2(l[i][0],l[i][1],l[k][0],l[k][1])
+            else:
+                b=boat[i][k]
+            if boat[k][j]==0:
+                c=euclid_dis2(l[k][0],l[k][1],l[j][0],l[j][1])
+            else:
+                c=boat[k][j]
             tmp=[a,b,c]
             tmp.sort()
-            #print tmp,tmp[0]**2,tmp[1]**2,tmp[2]**2
             A=tmp[0]
             B=tmp[1]
             C=tmp[2]
