@@ -34,6 +34,8 @@ wh=wh1[::-1]
 dp=[IS]*n
 for i in l:
     dp[bisect.bisect_left(dp,wh[i][1])]=wh[i][1]
+print len(set(dp))-1 if IS in dp else len(dp)
+exit()
 for i in l:
     if dp[i]==IS:
         i-=1
