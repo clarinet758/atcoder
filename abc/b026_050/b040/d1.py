@@ -22,36 +22,36 @@ def lcm(a,b): return a*b/gcd(a,b)
 def euclid_dis(x1,y1,x2,y2): return ((x1-x2)**2+(y1-y2)**2)**0.5
 def choco(xa,ya,xb,yb,xc,yc,xd,yd): return 1 if abs((yb-ya)*(yd-yc)+(xb-xa)*(xd-xc))<1.e-10 else 0
 
-#kensu は正確な挙動をしていない？
-class UnionFind:
-    def __init__(self, size): #class内で使ってるリストなど
+class UnionFind: #uf=UnionFind(n) で初期化？実行する。nは全体の頂点数
+    def __init__(self, size):
         self.rank=[0]*size #高さ管理
-        self.kensu=[1]*size
-        self.par=range(size)
-        self.g_num=size #グループ数管理
+        self.kensu=[1]*size #件数
+        self.par=range(size) #グループの根 初期値は全て自身
+        self.g_num=size #グループ数 初期値は頂点数
 
     def find(self, x): #圧縮
         if x==self.par[x]:
             return x
-        self.par[x]=self.find(self.par[x])
+        self.kensu[x]+=1
+        self.par[x]=self.find(self.par[x]) #圧縮
         return self.par[x]
 
-    def same(self, x, y): #同じグループか判定
+    def same(self, x, y): #x,yが同じグループか判定
         return self.find(x)==self.find(y)
 
     def unite(self, x, y):
-        x,y=self.find(x),self.find(y)
+        x,y=self.find(x),self.find(y) #findで圧縮発生することあり
         if x==y: #既に同じグループで閉路になる辺
             return
 
         self.g_num-=1 #違うグループ頂点を結ぶ辺なのでグループ数を1減らす
         if self.rank[x]>self.rank[y]:
-            self.kensu[x]+=self.kensu[self.par[y]]
             self.par[y]=x
+            self.kensu[x]+=1
 
         else:
-            self.kensu[y]+=self.kensu[self.par[x]] #add
             self.par[x]=y
+            self.kensu[y]+=1
             if self.rank[x]==self.rank[y]:
                 self.rank[y]+=1
 
@@ -68,28 +68,27 @@ n,m=map(int,raw_input().split())
 
 uf=UnionFind(n+1)
 """
-n=m=9
+n=m=8
 uf=UnionFind(n+1)
 
-uf.unite(1,3)
+uf.unite(1,2)
 print 1,uf.group_num(),uf.chk_par()
 print 'ken',uf.chk_kensu()
-uf.unite(3,2)
+uf.unite(7,4)
 print 2,uf.group_num(),uf.chk_par()
 print 'ken',uf.chk_kensu()
-uf.unite(4,5)
+uf.unite(3,4)
 print 3,uf.group_num(),uf.chk_par()
 print 'ken',uf.chk_kensu()
-uf.unite(6,8)
+uf.unite(3,2)
 print 4,uf.group_num(),uf.chk_par()
 print 'ken',uf.chk_kensu()
-uf.unite(6,2)
-print 5,uf.group_num(),uf.chk_par()
-print 'ken',uf.chk_kensu()
-uf.unite(6,3)
-print 6,uf.group_num(),uf.chk_par()
-print 'ken',uf.chk_kensu()
 
+for i in range(8):
+    uf.find(i)
+tmpo=uf.chk_par()
+print tmpo
+print 'ato',tmpo.count(tmpo[1])
 exit()
 """
 #n=int(raw_input())
@@ -106,14 +105,11 @@ for i in range(Q):
     q.append((-y,a,i))
 q.sort()
 tmp=0
-for i in q:
-#住人情報が出てくる (年　頂点　入力の順)
+for i in q: #住人情報が出てくる (年　頂点　入力の順)
     t=tmp
-    for j in range(t,m):
-        #辺つなぎ (年　頂点　頂点)
+    for j in range(t,m): #辺つなぎ (年　頂点　頂点)
         print i[0],"まで道路の人を調査",l[j][1],"の道路を試す"
         if l[j][0]<i[0]:
-            #print "douro",l[j][0],'  hito',i[0]
             uf.unite(l[j][1],l[j][2])
             tmp+=1
         else:
