@@ -28,7 +28,6 @@ def dfs(pos,used,nokori):
         return 1 if nokori==0 else 0
     ret=0
     for i in range(N):
-        print used
         if used[i]:
             continue
         used[i]=1

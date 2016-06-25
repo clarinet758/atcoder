@@ -27,7 +27,8 @@ n=int(raw_input())
 if n==1:
     print 0
     exit()
-for i in range(1,n):
+
+for i in range(int(n**0.5),0,-1):
     tmp=n/i
     ans=min(ans,(n-i*tmp)+abs(i-tmp))
 print ans
