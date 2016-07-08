@@ -24,23 +24,30 @@ def choco(xa,ya,xb,yb,xc,yc,xd,yd): return 1 if abs((yb-ya)*(yd-yc)+(xb-xa)*(xd-
 
 #n=int(raw_input())
 n,m=map(int,raw_input().split())
-if n==16 and m==1:
-    print 10461394944000
-    exit()
-l=range(1,n+1)
-memo=list(itertools.permutations(l))
-q=[]
+l=[]
+t=1<<n
 for i in range(m):
     x,y=map(int,raw_input().split())
-    q.append((x,y))
-ans=chk=0
-for i in memo:
-    f=1
-    for x,y in q:
-        if i.index(x)>i.index(y):
-            f=0
-            break
-    if f: ans+=1
-print ans
+    l.append((x-1,y-1))
+valid=[0]*t
+dp=[0]*t
+def con(a,b):
+    return (a&(1<<b))!=0
+
+for i in range(t):
+    valid[i]=1
+    for j in range(m):
+        if con(i,l[j][1]) and con(i,l[j][0])==0:
+                valid[i]=0
+
+dp[0]=1
+for i in range(1,t):
+    if valid[i]:
+        for j in range(n):
+            if con(i,j) and valid[i^(1<<j)]:
+                dp[i]+=dp[i^(1<<j)]
+
+print dp[-1]
+
 #end = time.clock()
 #print end - start
