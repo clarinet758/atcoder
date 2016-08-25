@@ -8,8 +8,10 @@ using namespace std;
 
 
 int main(){
-    int a;
-    scanf("%d",&a);
-    printf(a%2?"Red\n":"Blue\n");
+    int mod=1000000007;
+    int n,m;
+    scanf("%d",&n);
+    printf(n%2==1?"Red":"Blue");
+    printf("\n");
     return 0;
 }
