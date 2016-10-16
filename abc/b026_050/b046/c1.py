@@ -31,19 +31,9 @@ t=a=1
 
 for i in range(n):
     x,y=map(int,raw_input().split())
-    if t<=x and a<=y:
-        t=x
-        a=y
-    else:
-        tmp1=(2*t-1)/x
-        tmp2=(2*a-1)/y
-        tmp1,tmp2=min(tmp1,tmp2),max(tmp1,tmp2)
-        if x*tmp1>=t and y*tmp1>=a:
-            t=x*tmp1
-            a=y*tmp1
-        else:
-            t=x*tmp2
-            a=y*tmp2
+    n=max((t+x-1)/x,(a+y-1)/y)
+    t=n*x
+    a=n*y
 print t+a
 exit()
 l=map(int,raw_input().split())
