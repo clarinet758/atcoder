@@ -9,22 +9,12 @@ import itertools
 #10**9+7
 mod=1000000007
 #start = time.clock()
-n=raw_input()
+n=int(raw_input())
+a=[0,0,1,0,1,2,3,0,1,0,1]
 l=map(int,raw_input().split())
 ans=chk=0
-
-def hana(h):
-    d=[2,4,5,6,8,10]
-    k=0
-    if h in d:
-        while h in d:
-            h-=1
-            k+=1
-    return k
-
-ans=0
 for i in l:
-    ans+=hana(i)
+    ans+=a[i]
 print ans
 #end = time.clock()
 #print end - start

@@ -25,8 +25,5 @@ def choco(xa,ya,xb,yb,xc,yc,xd,yd): return 1 if abs((yb-ya)*(yd-yc)+(xb-xa)*(xd-
 
 print int(raw_input())*2
 exit()
-n,k=map(int,raw_input().split())
-l=map(int,raw_input().split())
-ans=chk=0
 #end = time.clock()
 #print end - start

@@ -7,11 +7,7 @@ import re
 import math
 import itertools
 #start = time.clock()
-print 'a' if raw_input()!='a' else '-1'
-n=int(raw_input())
-print 'a' if n!='a' else '-1'
-n,k=map(int,raw_input().split())
-l=[int(x) for x in raw_input().split()]
 ans=chk=0
+print -1 if raw_input()=='a' else 'a'
 #end = time.clock()
 #print end - start

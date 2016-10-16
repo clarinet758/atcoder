@@ -10,10 +10,9 @@ import itertools
 mod=1000000007
 #start = time.clock()
 n=int(raw_input())
-a=set()
-while n:
-    n-=1
-    a.add(input())
+a=set([])
+for i in range(n):
+    a.add(int(raw_input()))
 a=list(a)
 a.sort()
 print a[-2]
