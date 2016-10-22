@@ -11,12 +11,11 @@ import itertools
 #10**9+7
 mod=1000000007
 #start = time.clock()
-ans=''
 s=raw_input()
-ans+=s[0].upper()
-for i in range(1,len(s)):
-    ans+=s[i].lower()
+ans=''
+for a,i in enumerate(s):
+    if a==0:
+        ans+=i.upper()
+    else:
+        ans+=i.lower()
 print ans
-ans=chk=0
-#end = time.clock()
-#print end - start

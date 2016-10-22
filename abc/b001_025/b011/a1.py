@@ -11,8 +11,10 @@ import itertools
 #10**9+7
 mod=1000000007
 #start = time.clock()
-print int(raw_input())%12+1
-
+n=int(raw_input())
+print n+1 if n<12 else 1
+n,k=map(int,raw_input().split())
+l=[int(x) for x in raw_input().split()]
 ans=chk=0
 #end = time.clock()
 #print end - start

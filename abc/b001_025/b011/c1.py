@@ -12,29 +12,28 @@ import itertools
 mod=1000000007
 #start = time.clock()
 n=int(raw_input())
-ng=[]
-e=[3,2,1]
-ans=['NO','YES']
+#n,k=map(int,raw_input().split())
+#l=[int(x) for x in raw_input().split()]
+l=[]
 for i in range(3):
-    ng.append(int(raw_input()))
-
-def sim(a,dame,hiku):
-    g=100
-    while g:
-        g-=1
-        for i in hiku:
-            if a-i not in dame:
-                a-=i
-                break
-            elif i==1:
-                return 0
-        if a<=0:
-            return 1
-    return 0
-
-print ans[sim(n,ng,e)]
-
-
+    l.append(int(raw_input()))
+if n in l:
+    print 'NO'
+    exit()
+t=100
+while t:
+    t-=1
+    if n-3 not in l and n-3>=0:
+        n-=3
+    elif n-2 not in l and n-2>=0:
+        n-=2
+    elif n-1 not in l and n-1>=0:
+        n-=1
+    else:
+        break
+    if n==0:
+        break
+print 'YES' if n==0 else 'NO'
 
 #end = time.clock()
 #print end - start
