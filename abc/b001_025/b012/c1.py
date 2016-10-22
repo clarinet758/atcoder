@@ -12,10 +12,11 @@ import itertools
 mod=1000000007
 #start = time.clock()
 n=int(raw_input())
-ans=0
-chk=2025-n
+n=2025-n
 for i in range(1,10):
     for j in range(1,10):
-        if i*j==chk:
-            print ' x '.join(map(str,(i,j)))
+        if i*j==n:
+            print "{0} x {1}".format(i,j)
+
+#end = time.clock()
 #print end - start

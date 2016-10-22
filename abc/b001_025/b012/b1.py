@@ -11,13 +11,9 @@ import itertools
 #10**9+7
 mod=1000000007
 #start = time.clock()
+#n,m=map(int,raw_input().split())
 n=int(raw_input())
-ans=[]
-ans.append(n/3600)
-ans.append((n%3600)/60)
-ans.append(n%60)
-for i in range(3):
-    ans[i]="{0:0>2}".format(ans[i])
-print ':'.join(map(str,ans))
+print "{0:02d}:{1:02d}:{2:02d}".format(n/3600,n%3600/60,n%60)
 
-
+#end = time.clock()
+#print end - start

@@ -11,6 +11,11 @@ import itertools
 #10**9+7
 mod=1000000007
 #start = time.clock()
-print 'SABCDE'.index(raw_input())
+print ord(raw_input())-64
+exit()
+n=int(raw_input())
+n,k=map(int,raw_input().split())
+l=[int(x) for x in raw_input().split()]
+ans=chk=0
 #end = time.clock()
 #print end - start
