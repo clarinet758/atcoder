@@ -11,13 +11,6 @@ import itertools
 #10**9+7
 mod=1000000007
 #start = time.clock()
-a=input()
-b=input()
-if a-b==0:
-    print 0
-elif a>b:
-    print b-(a%b)
-else:
-    print b-a
-#end = time.clock()
-#print end - start
+a=int(raw_input())
+b=int(raw_input())
+print b-a%b if a%b else 0

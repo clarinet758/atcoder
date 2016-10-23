@@ -12,15 +12,14 @@ import itertools
 mod=1000000007
 #start = time.clock()
 n=int(raw_input())
-l=[0 for i in xrange(1000002)]
-for i in xrange(n):
+ans=chk=0
+
+l=[0]*1000002
+for i in range(n):
     a,b=map(int,raw_input().split())
     l[a]+=1
     l[b+1]-=1
-ans=chk=0
 for i in l:
     chk+=i
     ans=max(ans,chk)
 print ans
-#end = time.clock()
-#print end - start
