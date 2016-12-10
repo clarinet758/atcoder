@@ -57,63 +57,41 @@ class UnionFind:
     def group_num(self):
         return self.grp
     def ra(self):
-        return self.rank
-
-class UnionFind2:
-    def __init__(self, size):
-        self.rank=[0]*size
-        self.par =range(size)
-        self.grp =size
-
-    def find(self, x):
-        if x==self.par[x]: return x
-
-        self.par[x]=self.find(self.par[x])
-        return self.par[x]
-
-    def same(self, x, y): #2つの頂点が同じグループであるかを判定する
-        return self.find(x)==self.find(y)
-
-    def unite(self, x, y): #辺で接続されている2つの頂点を投げて統合する
-        x,y=self.find(x),self.find(y)
-        if x==y:
-            return
-
-        self.grp-=1
-        if self.rank[x]<self.rank[y]:
-            self.par[x]=y
-        else:
-            self.par[y]=x
-            if self.rank[x]==self.rank[y]:
-                self.rank[x]+=1
-
-    def group_num(self):
-        return self.grp
-
+        return self.par
 
 n,k,l=map(int,raw_input().split())
 uf=UnionFind(n)
-uf2=UnionFind2(n)
-q1,q2=[],[]
-ans=[0]*n
+uf2=UnionFind(n)
+ans=[1]*n
+
 for i in range(k):
     a,b=map(int,raw_input().split())
     uf.unite(a-1,b-1)
-    q1.append((a-1,b-1))
-    ans[a-1]=1
-    ans[b-1]=1
 
 for i in range(l):
     a,b=map(int,raw_input().split())
     uf2.unite(a-1,b-1)
-    if ans[a-1]==0: ans[a-1]=1
-    if ans[b-1]==0: ans[b-1]=1
-    if uf.same(a-1,b-1):
-        ans[a-1]=2
-        ans[b-1]=2
 
-for i in q1:
-    if uf2.same(i[0],i[1]):
-        ans[i[0]]=2
-        ans[i[1]]=2
-print ' '.join(map(str,ans))
+q1=uf.ra()
+q2=uf2.ra()
+d={}
+for i in range(n):
+    while 1:
+        if q1[i]!=q1[q1[i]]:
+            q1[i]=q1[q1[i]]
+        else:
+            break
+    while 1:
+        if q2[i]!=q2[q2[i]]:
+            q2[i]=q2[q2[i]]
+        else:
+            break
+
+for i in range(n):
+    if (q1[i],q2[i]) in d:
+        d[(q1[i],q2[i])]+=1
+    else:
+        d[(q1[i],q2[i])]=1
+for i in range(n):
+    print d[(q1[i],q2[i])],
+
