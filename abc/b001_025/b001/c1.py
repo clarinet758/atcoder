@@ -1,250 +1,46 @@
-/**
- * コンパイル： g++ -std=c++11 Main.cpp
- */
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <random>
-using namespace std;
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+import time
+import sys
+import io
+import re
+import math
+#start = time.clock()
+m = map(float, raw_input().split())
+k = float(m[1])/60.0
+#k=round(k,1)
+h = int(m[0])/10.0
+h=round(h,2)
+if h>=348.75 or h<11.25: i = 'N'
+elif h<33.75: i = 'NNE'
+elif h<56.25: i = 'NE'
+elif h<78.75: i='ENE'
+elif h<101.25: i='E'
+elif h<123.75: i='ESE'
+elif h<146.25: i='SE'
+elif h<168.75: i='SSE'
+elif h<191.25: i='S'
+elif h<213.75: i='SSW'
+elif h<236.25: i='SW'
+elif h<258.75: i='WSW'
+elif h<281.25: i='W'
+elif h<303.75: i='WNW'
+elif h<326.25: i='NW'
+elif h<348.75: i='NNW'
+ 
+if k<=0.24: z=0
+elif k<=1.54: z=1
+elif k<=3.34: z=2
+elif k<=5.44: z=3
+elif k<=7.94: z=4
+elif k<=10.74: z=5
+elif k<=13.84: z=6
+elif k<=17.14: z=7
+elif k<=20.74: z=8
+elif k<=24.44: z=9
+elif k<=28.44: z=10
+elif k<=32.64: z=11
+else: z=12
+if z>0: print i,z
+else: print 'C',z
 
-/** ブロックが置かれていない場所の値 */
-static const int EMPTY_BLOCK = 0;
-
-/** お邪魔ブロックの値 */
-int OBSTACLE_BLOCK = -1;
-
-mt19937 MT(8410325);
-
-/**
- * from以上、to未満の乱数を返します。
- */
-int randInt(int from, int to) {
-  uniform_int_distribution<int> rand(from, to - 1);
-  return rand(MT);
-}
-
-class Field {
-public:
-  int W, H;
-  vector<vector<int>> blocks;
-
-  Field() {}
-  Field(int W, int H):
-    W(W),
-    H(H),
-    blocks(vector<vector<int>>(H, vector<int>(W, 0))) {}
-
-  /**
-   * フィールド1つ分を入力します。
-   */
-  void input() {
-    blocks.clear();
-    for (int i = 0; i < H; i++) {
-      vector<int> row;
-      for (int j = 0; j < W; j++) {
-        int block;
-        cin >> block;
-        row.push_back(block);
-      }
-      blocks.push_back(row);
-    }
-    string endStr;
-    cin >> endStr;
-  }
-
-  /**
-   * フィールドの状態を標準エラー出力します。
-   */
-  void show() {
-    for (int i = 0; i < H; i++) {
-      for (int j = 0; j < W; j++) {
-        cerr << blocks[i][j] << " ";
-      }
-      cerr << endl;
-    }
-    cerr << "====" << endl;
-    cerr.flush();
-  }
-};
-
-class Pack {
-public:
-  int T;
-  vector<vector<int>> blocks;
-  int rotateCnt;
-
-  Pack(int T, vector<vector<int>> blocks):
-    T(T),
-    blocks(blocks),
-    rotateCnt(0) {}
-
-  /**
-   * T*Tのサイズのパックを1つ入力します。Packを生成するときは必ず呼び出してください。
-   */
-  static Pack inputFirst(int T) {
-    vector<vector<int>> blocks;
-    for (int i = 0; i < T; i++) {
-      vector<int> row;
-      for (int j = 0; j < T; j++) {
-        int block;
-        cin >> block;
-        row.push_back(block);
-      }
-      blocks.push_back(row);
-    }
-    string endStr;
-    cin >> endStr;
-    return Pack(T, blocks);
-  }
-
-  /**
-   * お邪魔ブロックでパックを埋めます。回転後の状態で呼び出さないでください。
-   */
-  int fillWithObstacle(int obstacleCnt) {
-    int fillCnt = 0;
-    for (int i = 0; i < T; i++) {
-      for (int j = 0; j < T; j++) {
-        if (fillCnt < obstacleCnt && blocks[i][j] == EMPTY_BLOCK) {
-          blocks[i][j] = OBSTACLE_BLOCK;
-          fillCnt++;
-        }
-        if (fillCnt >= obstacleCnt) {
-          return fillCnt;
-        }
-      }
-    }
-    return fillCnt;
-  }
-
-  /**
-   * このパックを90*rot度、回転させます。
-   */
-  void rotate(int rot) {
-    rotateCnt += rot;
-    rotateCnt %= 4;
-
-    for (int r = 0; r < rot; r++) {
-      vector<vector<int>> tmp = blocks;
-      for (int i = 0; i < T; i++) {
-        for (int j = 0; j < T; j++) {
-          blocks[j][T - 1 - i] = tmp[i][j];
-        }
-      }
-    }
-  }
-
-  /**
-   * このパックの両端を削れるだけ削った、本来の両端のインデックスをpairで返します。
-   * firstが左端、secondが右端のインデックス。
-   */
-  pair<int,int> getSides() {
-    int minSide = T;
-    int maxSide = 0;
-    for (int i = 0; i < T; i++) {
-      for (int j = 0; j < T; j++) {
-        if (blocks[i][j] != EMPTY_BLOCK) {
-          minSide = min(minSide, j);
-          maxSide = max(maxSide, j);
-        }
-      }
-    }
-    return pair<int,int>(minSide, maxSide);
-  }
-
-  /**
-   * このパックの状態を標準エラー出力します
-   */
-  void show() {
-    for (int i = 0; i < T; i++) {
-      for (int j = 0; j < T; j++) {
-        cerr << blocks[i][j] << " ";
-      }
-      cerr << endl;
-    }
-    cerr.flush();
-  }
-};
-
-class State {
-public:
-  int W, H, T, S, N;
-  int turn;
-  int remTime;
-  vector<Pack> packs;
-  Field myField;
-  Field enemyField;
-  int myObstacle;
-  int enemyObstacle;
-
-  State() {}
-
-  /**
-   * Stateを入力します。Stateを生成するときは必ず呼び出してください。
-   */
-  static State inputFirst() {
-    State st;
-    cin >> st.W >> st.H >> st.T >> st.S >> st.N;
-    st.packs.clear();
-    for (int i = 0; i < st.N; i++) {
-      Pack pack = Pack::inputFirst(st.T);
-      st.packs.push_back(pack);
-    }
-    st.myField = Field(st.W, st.H);
-    st.enemyField = Field(st.W, st.H);
-    return st;
-  }
-
-  /**
-   * 1ターン分の入力を行います。
-   */
-  bool inputTurn() {
-    if (!(cin >> turn >> remTime)) return false;
-    cin >> myObstacle;
-    myField.input();
-    cin >> enemyObstacle;
-    enemyField.input();
-    return true;
-  }
-
-  /**
-   * 現在のターンのパックをどこに落とすか決定して、標準出力します。
-   * 落とす位置の決め方
-   * - 回転角度はランダムで決める
-   * - 落下位置はランダムで決める
-   * - ただし、落下位置は、左端・右端に詰められる場合は、それも考慮する(-2, -1, 8, 9にも落とせる場合は落とす)
-   */
-  void executeTurn() {
-    int rot = randInt(0, 4);
-
-    myObstacle -= packs[turn].fillWithObstacle(myObstacle);
-    packs[turn].rotate(rot);
-
-    pair<int,int> sides = packs[turn].getSides();
-    int packWidth = sides.second - sides.first + 1;
-    int pos = randInt(0, W - packWidth + 1) - sides.first;
-
-    cout << pos << " " << packs[turn].rotateCnt << endl;
-    cout.flush();
-  }
-};
-
-int main() {
-  cout << "SampleAI.cpp" << endl;
-  cout.flush();
-
-  State state = State::inputFirst();
-
-  OBSTACLE_BLOCK = state.S + 1;
-
-  for (int i = 0; i < state.N; i++) {
-    bool inputSuccess = state.inputTurn();
-
-    if (!inputSuccess) {
-      cerr << "input Failed" << endl;
-      cerr.flush();
-      break;
-    }
-
-    state.executeTurn();
-  }
-}
