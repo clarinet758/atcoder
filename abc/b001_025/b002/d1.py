@@ -2,27 +2,23 @@
 # -*- coding: UTF-8 -*-
 
 n,m=map(int,raw_input().split())
-d=[[0]*n for i in range(n)]
-ans=chk=1
+d={i:[i] for i in range(1,n+1)}
 for i in range(m):
-    x,y=map(int,raw_input().split())
-    d[x-1][y-1]=1
-    d[y-1][x-1]=1
+    u,v=map(int,raw_input().split())
+    d[u].append(v)
+    d[v].append(u)
+ans=1
 for i in range(1<<n):
-    w=[]
+    tmp=[]
     for j in range(n):
-        if (i>>j&1):
-            w.append(j)
-    chk=1
-    f=0
-    for x in w:
-        for y in w:
-            if x!=y and d[x][y]==0:
-                f=1
-                break
-        if f:
+        if i&1:
+            tmp.append(j+1)
+        i=i>>1
+    f=1
+    for j in tmp:
+        if len(set(tmp)&set(d[j]))!=len(tmp):
+            f=0
             break
-    if f==0:
-        ans=max(ans,len(w))
-
+    if f==1:
+        ans=max(ans,len(tmp))
 print ans
