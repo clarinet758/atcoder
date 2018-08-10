@@ -1,6 +1,7 @@
-#!/usr/bin/python3
-
-a=input()
-b=input()
-c=input()
-print(a[0]+b[1]+c[2])
+#!/usr/bin/env python3
+# -*- coding: UTF-8 -*-
+ans=""
+for i in range(3):
+    s=input()
+    ans+=s[i]
+print(ans)
