@@ -25,7 +25,7 @@ int main(){
     int a,b,chk;
     scanf("%d %d",&a,&b);
     chk=b-a-1;
-    chk=(chk+1)*(chk/2)+(chk%2? 1:0);
+    chk=(chk+1)*(chk/2)+(chk%2? chk/2+1:0);
     printf("%d\n",chk-a);
 
     return 0;
