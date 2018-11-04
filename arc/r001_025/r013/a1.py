@@ -1,0 +1,6 @@
+p,q,r=map(int,input().split())
+n,m,l=map(int,input().split())
+ans=max((p//n)*(q//m),(q//n)*(p//m))*(r//l)
+ans=max(ans,(max((p//n)*(r//m),(r//n)*(p//m))*(q//l)))
+ans=max(ans,(max((q//n)*(r//m),(r//n)*(q//m))*(p//l)))
+print(ans)
