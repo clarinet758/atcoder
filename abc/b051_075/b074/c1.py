@@ -14,13 +14,13 @@ for i in range(16):
         for k in range(1501):
             w=(i*a)+(j*b)
             s=(k*c)
+            o=(w//100)*e
             if w==0:
                 pass
-            elif w+s>f:
+            elif w+s>f or s>o:
                 break
             else:
-                o=(w//100)*e
-                s+=((min(f-w-s,o-s)//d)*d)
+                s+=(min(f-w-s,o-s)//d)*d
                 if len(ans)==0:
                     ans=[s/(w+s),w+s,s]
                 elif s/(w+s)>ans[0]:
