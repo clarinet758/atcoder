@@ -25,13 +25,6 @@ ans=min(lx,rx)
 o=[ll,[0,k-ll][ll<k]]
 p=[rr,[0,k-rr][rr<k]]
 
-"""
--30 -10 10 20 50
-print(o)
-print(p)
-[2, 1]
-[3, 0]
-"""
 
 for i in range(1,k):
     if o[1]==0: lx*=2
@@ -50,33 +43,3 @@ for i in range(1,k):
         ans=min(ans,rx)
 print(ans)
 
-#    if rr>=k-(ll-i): ans=min(ans,(sum(l[:-i])*2)+sum(r[:k-(ll-i)]))
-#    if ll>=k-(rr-i): ans=min(ans,(sum(r[:-i])*2)+sum(l[:k-(rr-i)]))
-
-
-"""
-print(l)
-print(r)
-exit()
-    if ll-i>0 and i<=rr and min(i,rr)+(ll-i)>=k:
-        rx=rx-(r[-i]*2)+l[i-1]
-        ans=min(ans,rx)
-    print(rr,i,"#",len(l[:-i]),i,k)
-    if k-1==i: ans=min(ans,sum(l))
-    elif i+rr+1>=k: ans=min(ans,sum(l[:i+1])*2+sum(r[:k-i-1]))
-    if k-1==i: ans=min(ans,sum(r))
-    elif i+ll+1>=k: ans=min(ans,sum(r[:i+1])*2+sum(l[:k-i-1]))
-
-exit()
-for i in range(ll):
-    if k-1==i: ans=min(ans,sum(l))
-    elif i+rr+1>=k: ans=min(ans,sum(l[:i+1])*2+sum(r[:k-i-1]))
-
-for i in range(rr):
-    if k-1==i: ans=min(ans,sum(r))
-    elif i+ll+1>=k: ans=min(ans,sum(r[:i+1])*2+sum(l[:k-i-1]))
-print(ans)
-    #if i+rr+1>=n and i+1<n:
-   # print(l[:i+1],r[:k-i-1])
-    #print(r[:i+1],l[:k-i-1])
-"""
