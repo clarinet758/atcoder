@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 import time
 import sys
@@ -21,8 +21,13 @@ def euclid_dis(x1,y1,x2,y2): return ((x1-x2)**2+(y1-y2)**2)**0.5
 def choco(xa,ya,xb,yb,xc,yc,xd,yd): return 1 if abs((yb-ya)*(yd-yc)+(xb-xa)*(xd-xc))<1.e-10 else 0
 
 n=int(raw_input())
-n,k=map(int,raw_input().split())
-l=map(int,raw_input().split())
-ans=chk=0
-#end = time.clock()
-#print end - start
+a=[]
+for i in range(n):
+    a.append(int(input()))
+l=list(set([i for i in a]))
+l.sort()
+d={}
+for i,j in enumerate(l):
+    d[j]=i
+for i in a:
+    print(d[i])
