@@ -35,5 +35,6 @@ for i in range(100):
                         c[i+d][j+e]=c[d][e]+1
     if c[y[0]][y[1]]:p=k
     else: q=k
+    if q-p<2: break
 
 print(p)
