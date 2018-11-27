@@ -26,6 +26,7 @@ int main(){
         if (from!=1) {
             d[from-1][to-1]=cost;
             d[to-1][from-1]=cost;
+/// dがfrom,to入れ替えで配列に入れる必要があるの変なので要確認
         } else {
             b[to-1]=cost;
             q.push_front(to-1);
