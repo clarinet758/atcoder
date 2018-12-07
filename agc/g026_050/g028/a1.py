@@ -18,6 +18,6 @@ for i in range(max(n,m)):
         f=-1
     if i<m and p not in d:
         d[p]=t[i]
-    elif i<n and p in d and d[p]!=t[i]:
+    elif i<m and p in d and d[p]!=t[i]:
         f=-1
 print(f)
