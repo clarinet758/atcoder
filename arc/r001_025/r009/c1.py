@@ -1,32 +1,25 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
-
+#bubunnnnn
 mod=1777777777
-def sol(pos, use, nokori, n):
-    #残った人数の確認
-    if pos==n:
-        if nokori==0: return 1
+def eof(e): print(e);exit()
+
+def dfs(p,z):
+    if p==n:
+        if z==0: return 1
         else: return 0
-
     ret=0
-    #pos番目の人が誰の手紙を受け取ったか調べる
     for i in range(n):
-        if use[i]: continue
-        #手紙の使用フラグ
-        use[i]=1
-
-        #残りの間違える個数を更新
-        tmp=nokori
-        if i!=pos:
-            tmp-=1
-        ret+=sol(pos+1, use, tmp, n)
-        use[i]=0
+        if u[i]: continue
+        u[i]=1
+        t=z
+        if (i!=p): t-=1
+        ret+=dfs(p+1,t)
+        u[i]=0
     return ret
 
+n,k=map(int,input().split())
+u=[0]*n
+if n>8: eof(0)
+print(dfs(0,k))
 
-
-n,k=map(int,raw_input().split())
-use=[0]*n
-
-if n>100: print 0
-else: print sol(0, use, k, n)
