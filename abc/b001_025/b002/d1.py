@@ -1,24 +1,21 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
-
-n,m=map(int,raw_input().split())
-d={i:[i] for i in range(1,n+1)}
-for i in range(m):
-    u,v=map(int,raw_input().split())
-    d[u].append(v)
-    d[v].append(u)
+def eof(t): print(t); exit()
 ans=1
+n,m=map(int,input().split())
+l=[[] for i in range(n)]
+for i in range(m):
+    x,y=map(int,input().split())
+    l[x-1].append(y-1)
+    l[y-1].append(x-1)
 for i in range(1<<n):
-    tmp=[]
-    for j in range(n):
-        if i&1:
-            tmp.append(j+1)
-        i=i>>1
+    chk=0
     f=1
-    for j in tmp:
-        if len(set(tmp)&set(d[j]))!=len(tmp):
-            f=0
-            break
-    if f==1:
-        ans=max(ans,len(tmp))
-print ans
+    for j in range(n):
+        if (i>>j&1)==0: continue
+        chk+=1
+        for k in range(j+1,n):
+            if (i>>k&1)==0: continue
+            if k not in l[j]: f=0
+    if (f): ans=max(ans,chk)
+print(ans)
