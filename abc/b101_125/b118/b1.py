@@ -2,9 +2,9 @@
 # -*- coding: UTF-8 -*-
 
 n,m=map(int,input().split())
-l=set([i+1 for i in range(m)])
 for i in range(n):
     k=[int(j) for j in input().split()]
     t=set([k[j+1] for j in range(k[0])])
-    l=l&t
+    if i==0: l={j for j in t}
+    else: l=l&t
 print(len(l))
