@@ -1,6 +1,6 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 
-l=map(int,raw_input().split())
-l.sort()
-print 'YES' if l[0]==l[1]==5 and l[2]==7 else 'NO'
+a=[int(i) for i in input().split()]
+a.sort()
+print("YES" if a[0]==a[1]==5 and a[2]==7 else "NO")
