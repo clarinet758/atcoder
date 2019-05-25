@@ -2,43 +2,35 @@
 # -*- coding: UTF-8 -*-
 
 import heapq
-def sol():
-    n,m=map(int,input().split())
-    a=[int(i) for i in input().split()]
-    d={}
-    w=[]
-    q=[]
-    for i in a:
-        if i in d:
-            d[i]+=1
-        else:
-            d[i]=1
-            w.append(i)
-    for i in w: heapq.heappush(q, i)
-    for i in range(m):
-        b,c=map(int,input().split())
-        while b:
-            if c>q[0]:
-                x=min(b,d[q[0]])
-                if c in d:
-                    d[c]+=x
-                    b-=x
-                    d[q[0]]-=x
-                    if d[q[0]]==0:
-                        heapq.heappop(q)
-                else:
-                    d[c]=x
-                    b-=x
-                    d[q[0]]-=x
-                    heapq.heappush(q,c)
-                    if d[q[0]]==0:
-                        heapq.heappop(q)
-            else:
-                break
-    ans=chk=0
-    for i in d:
-        ans+=i*d[i]
-    print(ans)
+n,m=map(int,input().split())
+a=[int(i) for i in input().split()]
+d={}
+l,q=[],[]
+for i in a:
+    if i in d: d[i]+=1
+    else: d[i]=1
 
-if __name__=="__main__":
-    sol()
+for i in d: heapq.heappush(q, i)
+
+for i in range(m):
+    b,c=map(int,input().split())
+    l.append((c,b))
+l.sort(reverse=True)
+
+for c,b in l:
+    while b:
+        if len(q)==0 or c<=q[0]: break
+        x=min(b,d[q[0]])
+        if c in d:
+            d[c]+=x
+        else:
+            d[c]=x
+        b-=x
+        d[q[0]]-=x
+        if d[q[0]]==0:
+            heapq.heappop(q)
+ans=0        
+for i in d:
+    ans+=i*d[i]
+print(ans)
+
