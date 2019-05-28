@@ -1,2 +1,5 @@
+#!/usr/bin/env python3
+# -*- coding: UTF-8 -*-
+
 n=int(input())
-print(n*(n+1)//2)
+print((1+n)*n//2)
