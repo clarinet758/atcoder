@@ -34,6 +34,7 @@ def sol():
                 if e[i]>3 and e[j]>3 and e[k]>3: ans+=1
                 if e[i]>1 and e[j]>3 and e[k]>3: ans+=1
     print(ans)
+    print(e)
 
     #pdf解説のサンプルはlambda
     #def num(m):
