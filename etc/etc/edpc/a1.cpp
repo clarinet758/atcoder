@@ -1,16 +1,18 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-// 1 3 5 1 8
 int main(){
-    int n;
+    int n,mod=1000000007;
     scanf("%d",&n);
-    int h[n],dp[n];
-    for (int i=0;i<n;i++) scanf("%d",&h[i]);
-    for (int i=1;i<n;i++) dp[i]=-1;
-    dp[0]=0;
-    dp[1]=abs(h[1]-h[0]);
-    for (int i=2;i<n;i++) dp[i]=min(abs(h[i]-h[i-1])+dp[i-1],abs(h[i]-h[i-2])+dp[i-2]);
-    printf("%d\n",dp[n-1]);
+    vector <int> h(n);
+    for (auto&e:h) scanf("%d",&e);
+    int dp[n+1];
+    for (int i=0;i<n+1;i++) dp[i]=mod;
+    dp[1]=0;
+    for (int i=1;i<n;i++) {
+        dp[i+1]=min(dp[i+1],dp[i]+abs(h[i]-h[i-1]));
+        if (i+2<=n) dp[i+2]=min(dp[i+2],dp[i]+abs(h[i+1]-h[i-1]));
+    }
+    printf("%d\n",dp[n]);
     return 0;
 }
