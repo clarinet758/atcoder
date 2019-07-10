@@ -14,7 +14,7 @@
 #include<time.h>
 #include<bitset>
 using namespace std;
-///?????????????
+
 int p[110000];
 int q[110000];
 int A[110000];
@@ -84,13 +84,13 @@ int main(){
         for (int i=0;i<ev.size();i++){
             int ind=ev[ev.size()-1-i].second;
             int T=C[ind];
-            while(at>0&&T<=tmp[at].first){
+            while(at>=0&&T<=tmp[at].first){ //=
                 if(k==0)add(upper_bound(z,z+a,q[tmp[at].second])-z,1);
                 else add(upper_bound(z2,z2+a,p[tmp[at].second])-z2,1);
                 at--;
             }
             if(k==0){
-                ans[ind]+=a-1-at; //bu
+                ans[ind]+=a-1-at;
                 ans[ind]-=sum(0,lower_bound(z,z+a,B[ind])-z);
             }else{
                 ans[ind]-=sum(0,lower_bound(z2,z2+a,A[ind])-z2);
