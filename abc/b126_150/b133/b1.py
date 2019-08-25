@@ -6,11 +6,13 @@ w=[]
 for i in range(n):
     l=[int(i) for i in input().split()]
     w.append(l)
-ans=chk=0
+ans=0
+chk=set([int(i)**2 for i in range(0,401,1)])
 for i in range(n-1):
     for j in range(i+1,n):
-        x=0
+        cnt=0
         for k in range(d):
-            x+=(w[i][k]-w[j][k])**2
-        ans+=[0,1][x==int(pow(x,0.5))**2]
+            cnt+=(w[i][k]-w[j][k])**2
+        if cnt in chk:
+            ans+=1 
 print(ans)
