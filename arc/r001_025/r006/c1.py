@@ -1,24 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 
-def sol():
-    import sys
-    input=sys.stdin.readline
-    mod=10**9+7
-    n=int(input())
-    d=[int(input())]
-    for i in range(n-1):
-        w=int(input())
-        t=[mod]*2
-        for j in range(len(d)):
-            if d[j]>=w and t[0]>d[j]:
-                t[0]=w
-                t[1]=j
-        if t[0]!=mod:
-            d[t[1]]=t[0]
-        else:
-            d.append(w)
-    print(len(d))
-
-if __name__=="__main__":
-    sol()
+n=int(input())
+l=[int(input()) for i in range(n)]
+ans=[]
+ans.append(l[0])
+for i in range(1,n):
+    f=1
+    for j in  range(len(ans)):
+        if l[i]<=ans[j]:
+            ans[j]=l[i]
+            f=0
+            break
+    if f:
+        ans.append(l[i])
+    ans.sort()
+print(len(ans))

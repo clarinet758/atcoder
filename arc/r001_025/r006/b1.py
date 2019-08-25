@@ -2,19 +2,12 @@
 # -*- coding: UTF-8 -*-
 
 n,l=map(int,input().split())
-w=[]
-for i in range(l):
-    w.append(input())
-o=input()
-g=o.index("o")
-x=len(w[0])-1
-for i in range(-1,-l-1,-1):
-    if g==0 and x!=0 and w[i][g+1]=="-":
-            g+=2
-    elif 0<g<x and w[i][g+1]=="-":
-            g+=2
-    elif 0<g<x and w[i][g-1]=="-":
-            g-=2
-    elif g==x and x!=1 and w[i][g-1]=="-":
-            g-=2
-print(g//2+1)
+w=[input() for i in range(l)]
+t=input()
+ans=t.index("o")
+for i in range(l-1,-1,-1):
+    if ans-2>-1 and w[i][ans-1]=="-":
+        ans-=2
+    elif ans+2<n*2-1 and w[i][ans+1]=="-":
+        ans+=2
+print(ans//2+1)
