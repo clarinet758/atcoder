@@ -1,15 +1,14 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 
-m=int(raw_input())
-ans=chk=0
+m=int(input())
 if m<100:
-    print '00'
+    print("00");
 elif m<=5000:
-    print '0'+str(m/100) if m<1000 else str(m/100)
+    print("{0:02}".format(m//100))
 elif m<=30000:
-    print m/1000+50
+    print(m//1000+50)
 elif m<=70000:
-    print ((m/1000)-30)/5+80
+    print((m//1000-30)//5+80)
 else:
-    print 89	
+    print(89)
