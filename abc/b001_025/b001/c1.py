@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 
-news=["NNW","NW","WNW","W","WSW","SW","SSW","S","SSE","SE","ESE","E","ENE","NE","NNE","N"][::-1]
+news=['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW']
 g,s=map(int,input().split())
 r=news[((g*10+1125)%36000)//2250]
 s=s*10//6
-
+ 
 if s<=24:
     w=0
 elif s<=154:
@@ -32,6 +32,6 @@ elif s<=3264:
     w=11
 else:
     w=12
-
+ 
 if w==0: r="C"
 print(r,w)
