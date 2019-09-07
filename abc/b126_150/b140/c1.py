@@ -1,0 +1,20 @@
+#!/usr/bin/env python3
+# -*- coding: UTF-8 -*-
+
+
+n=int(input())
+b=[int(i) for i in input().split()]
+a=[0]*n
+a[0]=b[0]
+a[-1]=b[-1]
+for i in range(1,n-1):
+    a[i]=min(b[i],b[i-1])
+print(sum(a))
+
+"""
+
+
+0 153 10 10 23
+
+0  0  10 10 10 23
+"""
