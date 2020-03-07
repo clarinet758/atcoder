@@ -1,37 +1,22 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
-def e(): exit()
+
 n="0"+input()
 x=len(n)
 k=int(input())
 l=[int(i) for i in n]
-
-## dp1:top   dp2:under
-dp1=[[0]*(k+2) for i in range(x)]
-dp2=[[0]*(k+2) for i in range(x)]
-
-dp1[0][0]=1
-dp1[0][1]=0
-dp2[0][0]=0
-dp2[0][1]=0
-
-cnt=0
+dp=[[[0]*5,[0]*5] for i in range(x)]
+dp[0][0][0]=1
+r=0
+#dp 0=n, 1=under
 for i in range(1,x):
-    if l[i]>0:
-        cnt+=1
-    if cnt<=k:
-        dp1[i][cnt]=1
-for i in dp1:
-    print(i)
-e()
-for i in range(1,x):
-    for j in range(k+1):
-        if j==0:
-            dp2[i][0]=1
-        else:
-            dp2[i][j]=(dp2[i-1][j-1]*9)+(dp2[i-1][j])+(dp1[i-1][j-1]*max(0,l[i]-1))+([dp1[i-1][j],0][l[i]==0])
-print(dp1[-1][-2]+dp2[-1][-2])
-"""
-            #if l[i]==0: dp2[i][j]=(dp2[i-1][j-1]*9)+(dp2[i-1][j])+(dp1[i-1][j-1]*max(0,l[i]-1))
-            #else: dp2[i][j]=(dp2[i-1][j-1]*9)+(dp2[i-1][j])+(dp1[i-1][j-1]*max(0,l[i]-1))+(dp1[i-1][j])
-"""
+    for j in range(2):
+        dp[i][1][0]=1
+        for p in range(1,k+1):
+            if j==0 and l[i]==0:
+                dp[i][0][p]=dp[i-1][0][p]
+            elif j==0 and l[i]!=0 and dp[i-1][0][p-1]:
+                dp[i][0][p]=1
+            if j==1:
+                dp[i][1][p]=dp[i-1][1][p]+(dp[i-1][1][p-1]*9)+(dp[i][0][p]*max(0,l[i]-1))+([0,1][l[i]!=0 and dp[i-1][0][p]])
+print(dp[-1][0][k]+dp[-1][1][k])

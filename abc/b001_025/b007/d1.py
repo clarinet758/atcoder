@@ -1,23 +1,47 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 
-def sol(f):
-    s="0"+str(f)
-    l=[int(i) for i in s]
-    dp1=[0]*len(s)
-    dp2=[0]*len(s)
-    for i,j in enumerate(l):
-        if j not in [4,9]:
-            dp1[i]=1
+
+def cnt(x):
+    sq=[4,9]
+    l=[int(i) for i in "0"+str(x)]
+    # [0]=n  [1]<n
+    dp=[[[0]*2,[0]*2] for _ in "xx"]
+    dp[0][0][0]=1
+    for i in range(1,len(l)):
+        j=l[i]
+        if dp[i%2-1][0][1] or j in sq:
+            dp[i%2][0][1]=1
         else:
-            break
-    for i,j in enumerate(l):
-        if i==0: continue
-        x=y=0
-        if dp1[i]==1 or dp1[i-1]+dp1[i]==1:
-            y=l[i]-(l[i]>4)
-        dp2[i]=(dp2[i-1]*8)+(x*8)+y
-    return f-(dp1[-1]+dp2[-1]-1)
-            
+            dp[i%2][0][0]=1
+
+        if dp[i%2-1][0][0]:
+            for k in range(j):
+                if k==4: dp[i%2][1][1]+=1
+                else: dp[i%2][1][0]+=1
+        else:
+            dp[i%2][1][1]+=j
+
+        if dp[i%2-1][1][1]:
+            dp[i%2][1][1]+=dp[i%2-1][1][1]*10
+
+        if dp[i%2-1][1][0]:
+            dp[i%2][1][0]+=dp[i%2-1][1][0]*8
+            dp[i%2][1][1]+=dp[i%2-1][1][0]*2
+                    
+
+        for k in range(4):
+            aa,bb=k//2,k%2
+            dp[i%2-1][aa][bb]=0
+    r=0
+    for k in range(4):
+        aa,bb=k//2,k%2
+        r+=dp[aa][bb][-1]
+    
+    #for k in dp:
+    #    print(k)
+    return r
+
 a,b=map(int,input().split())
-print(sol(b)-sol(a-1))
+a-=1
+print(cnt(b)-cnt(a))
