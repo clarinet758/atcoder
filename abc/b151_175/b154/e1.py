@@ -7,8 +7,7 @@ l=[int(i) for i in "0"+str(n)]
 # [0]=n [1]<n
 dp=[[[0]*5,[0]*5] for i in "ww"]
 dp[0][0][0]=1
-for i,j in enumerate(str(n)):
-    i+=1
+for i,j in enumerate(str(n),start=1):
     for p in range(k+1):
         if dp[i%2-1][0][p]:
             dp[i%2][0][p+[0,1][l[i]>0]]=1
