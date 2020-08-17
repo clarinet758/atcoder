@@ -1,16 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
-import sys
-input=sys.stdin.readline
 
 n=int(input())
-if n==100000:
-    print(90909)
-elif n<100:
-    print(min(9,n))
-elif n<1000:
-    print(9+(n-99))
-elif n<10000:
-    print(909)
-else:
-    print(909+(n-9999))
+ans=0
+for i in range(1,n+1):
+    if len(str(i))%2: ans+=1
+print(ans)
+
+#print(len([i for i in range(1,int(input())+1) if len(str(i))%2]))
