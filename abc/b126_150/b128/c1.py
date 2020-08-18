@@ -1,31 +1,20 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 
-#n=int(input())
-def sol():
-    n,m=map(int,input().split())
-    k=[]
-    for i in range(m):
-        l=[int(i) for i in input().split()]
-        k.append([l[j]-1 for j in range(1,l[0]+1)])
-    p=[int(i) for i in input().split()]
-    ans=0
-    #for i in range(2**10):
-    for i in range(2**n):
-        s=bin(i)[2:]
-        s="0"*(n-len(s))+s
-        s=s[::-1]
-        for a,j in enumerate(k):
-            chk=f=0
-            for x in j:
-                if s[x]=="1":
-                    chk+=1
-            if chk%2!=p[a]:
-                f=1
-                break
-        if f==0:
-            ans+=1
-    print(ans)
-
-if __name__=="__main__":
-    sol()
+n,m=map(int,input().split())
+k=[[int(i) for i in input().split()] for j in range(m)]
+p=[int(i) for i in input().split()]
+ans=chk=0
+for i in range(2**n):
+    l=[0]*n
+    for j in range(n):
+        if i&1: l[j]=1
+        i=i>>1
+    y=0
+    for j in range(m):
+        x=0
+        for a in range(k[j][0]):
+            if l[k[j][a+1]-1]==1: x+=1
+        if x%2==p[j]%2: y+=1
+    if y==m: ans+=1
+print(ans)
