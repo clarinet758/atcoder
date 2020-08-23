@@ -6,3 +6,6 @@ https://atcoder.jp/contests/mujin-pc-2018/tasks/mujin_pc_2018_a
 
 後で 
 https://atcoder.jp/contests/dwacon2018-prelims/tasks/dwacon2018_prelims_a
+
+
+20200823 test
