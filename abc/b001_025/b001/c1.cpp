@@ -1,39 +1,26 @@
 #include<bits/stdc++.h>
-#include<vector>
-#include<list>
-#include<stack>
-#include<queue>
-#include<algorithm>
 using namespace std;
 
-
+vector<string> news={"N","NNE","NE","ENE","E","ESE","SE","SSE","S","SSW","SW","WSW","W","WNW","NW","NNW","C"};
 int main(){
-    int mod=1000000007;
-    int Deg,Dis;
-    scanf("%d %d",&Deg,&Dis);
-    char dir[][4] = {"N","NNE","NE","ENE","E","ESE","SE","SSE","S","SSW","SW","WSW","W","WNW","NW","NNW","C"};
-    Deg=Deg*10+1125;
-    if (Deg>=36000) Deg-=36000;
-    
-    if (Dis<15) Deg=16;
-    else Deg=Deg/2250;
-    
-    int w;
-    if (Dis<15) w=0;
-    else if (Dis<93) w=1;
-    else if (Dis<201) w=2;
-    else if (Dis<327) w=3;
-    else if (Dis<477) w=4;
-    else if (Dis<645) w=5;
-    else if (Dis<831) w=6;
-    else if (Dis<1029) w=7;
-    else if (Dis<1245) w=8;
-    else if (Dis<1467) w=9;
-    else if (Dis<1707) w=10;
-    else if (Dis<1959) w=11;
-    else w=12;
-
-    printf("%s %d\n",dir[Deg],w);
-
+    int g,s,t;
+    scanf("%d %d",&g,&s);
+    g=(g*10+1125)%36000;
+    s=(s*10)/6;
+    if (s<25) t=0;
+    else if (s<155) t=1;
+    else if (s<335) t=2;
+    else if (s<545) t=3;
+    else if (s<795) t=4;
+    else if (s<1075) t=5;
+    else if (s<1385) t=6;
+    else if (s<1715) t=7;
+    else if (s<2075) t=8;
+    else if (s<2445) t=9;
+    else if (s<2845) t=10;
+    else if (s<3265) t=11;
+    else t=12;
+    if (t==0) g=37125;
+    cout << news[g/2250] << " " << t << endl;
     return 0;
 }
