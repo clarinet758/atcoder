@@ -1,19 +1,17 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-#define rep(i,n)  for(int i=0;i<n;++i)
-
 int main(){
-    int ans=0,chk=0;
-    char s[15];
+    int cnt=0,ans=0;
+    char s[25];
     scanf("%s",s);
-    rep (i,10) {
-        if (s[i]=='A' || s[i]=='C' || s[i]=='G' || s[i]=='T') {
-            chk++;
-        } else {
-            chk=0;
-        }
-        ans=max(ans,chk);
+    for (long i=0;i<strlen(s);i++) {
+        if (s[i]=='A') cnt++;
+        else if (s[i]=='C') cnt++;
+        else if (s[i]=='G') cnt++;
+        else if (s[i]=='T') cnt++;
+        else cnt=0;
+        ans=max(ans,cnt);
     }
     printf("%d\n",ans);
     return 0;
