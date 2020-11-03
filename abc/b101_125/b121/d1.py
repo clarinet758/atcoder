@@ -1,33 +1,28 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 
-p=[0]*42
-q=[0]*42
-x=1
 a,b=map(int,input().split())
-if a==b:
-    print(a)
-    exit()
-
-a-=1
-for i in range(42):
-    if b//x<1: break
-    if x==1:
-        q[0]=((b+1)//2)%2
-    else:
-        q[i]=[0,((b+1)%x)%2][(b//x)%2]
-    x*=2
-x=1        
-for i in range(42):
-    if a//x<1: break
-    if x==1:
-        p[0]=((a+1)//2)%2
-    else:
-        p[i]=[0,((a+1)%x)%2][(a//x)%2]
-    x*=2
-x=1
+w=[0]*50
+p,q=[0]*50,[0]*50
 ans=0
-for i in range(42):
-    ans+=(p[i]^q[i])*x
-    x*=2
+t=1
+
+for i in range(50):
+    x=(b+1)//(t*2)
+    q[i]=t*x
+    if (b+1)%(t*2)>t: q[i]+=(b+1)%(t*2)-t
+    t*=2
+    if t>b: break
+
+t=1
+for i in range(50):
+    x=a//(t*2)
+    p[i]=t*x
+    if a%(t*2)>t: p[i]+=a%(t*2)-t
+    t*=2
+    if t>a-1: break
+t=1
+for i in range(50):
+    ans+=abs(p[i]-q[i])%2*t
+    t*=2
 print(ans)
