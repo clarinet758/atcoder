@@ -1,65 +1,49 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-#define PI 3.1415926535897932
+#define rep(i,n)  for(int i=0;i<n;++i)
+#define sc2(a,b)  scanf("%d %d",&a,&b)
 
-//typedef long long ll;
-
-
-int lcm(int a,int b) { return a*b/__gcd(a,b); }
-//ll lcm(ll a,ll b) { return a*b/__gcd(a,b); }
-class UnionFind {
-public:
-    vector<int> parent;
-    UnionFind(int n) {
-        parent=vector<int>(n,-1);
+struct UnionFind {
+    vector<int> data;
+    UnionFind(int size) : data(size, -1) {}
+    bool unite(int x, int y) {
+        x=root(x), y=root(y);
+        if (x!=y) {
+            if (data[y]<data[x])  swap(x, y); 
+            data[x]+=data[y], data[y]=x;
+        }
+        return x!=y;
     }
 
-    int root(int a) {
-        if (parent[a]<0) return a;
-        return parent[a] = root(parent[a]);
-    }
+    bool find(int x, int y)  { return root(x)==root(y); }
 
-    int size(int a) {
-        return -parent[root(a)];
-    }
+    int root(int x)  { return data[x]<0 ? x : data[x]=root(data[x]); }
 
-    bool connect(int a, int b) {
-        a=root(a);
-        b=root(b);
-        if (a==b) return false;
-        if (size(a)<size(b)) swap(a,b);
-        parent[a]+=parent[b];
-        parent[b]=a;
-        return true;
-    }
+    int size(int x)  { return -data[root(x)]; }
 };
 
-
-
-
-
+long long ans[100005];
 
 int main(){
-    int mod=1000000007;
-    int n,m;
-    scanf("%d %d",&n,&m);
-    vector<int> a(m), b(m);
+    long long  n,m;
+    scanf("%lld %lld",&n,&m);
+    vector <pair<int,int>> w(m);
+    UnionFind uf(n);
     for (int i=0;i<m;i++) {
-        scanf("%d %d",&a[i],&b[i]);
-        a[i]--;
-        b[i]--;
+        int a,b;
+        sc2(a,b);
+        w[i].first=a-1;
+        w[i].second=b-1;
     }
-
-    vector<long long> ans(m);
-    ans[m-1] = (long long)n*(n-1)/2;
-    UnionFind uni(n);
-    for(int i=m-1;i>=1;i--) {
+    ans[m-1]=n*(n-1)/2;
+    for(int i=m-1;i>0;i--) {
         ans[i-1]=ans[i];
-        if (uni.root(a[i]) != uni.root(b[i])) {
-            ans[i-1]-=(long long)uni.size(a[i])*uni.size(b[i]);
-            uni.connect(a[i],b[i]);
+        if (uf.find(w[i].first,w[i].second)==false) {
+            ans[i-1]-=(long long)uf.size(w[i].first)*uf.size(w[i].second);
+            uf.unite(w[i].first,w[i].second);
         }
     }
-    for (int i=0;i<m;i++) printf("%lld\n",ans[i]);
+    rep(i,m) printf("%lld\n",ans[i]);
+    return 0;
 }
