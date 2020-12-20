@@ -1,20 +1,11 @@
 #include<bits/stdc++.h>
-#include<vector>
-#include<list>
-#include<stack>
-#include<queue>
-#include<algorithm>
 using namespace std;
 
+#define sc1(a)  scanf("%d",&a)
 
 int main(){
-    int mod=1000000007;
     int n;
-    scanf("%d",&n);
-    if (n%2==0) {
-        printf("Blue\n");
-    } else {
-        printf("Red\n");
-    }
+    sc1(n);
+    printf("%s\n",n%2==0?"Blue":"Red");
     return 0;
 }

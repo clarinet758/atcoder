@@ -1,33 +1,22 @@
 #include<bits/stdc++.h>
-#include<vector>
-#include<list>
-#include<stack>
-#include<queue>
-#include<algorithm>
 using namespace std;
 
+#define rep(i,n)  for(int i=0;i<n;++i)
+#define sc1(a)  scanf("%d",&a)
+#define sc2(a,b)  scanf("%d %d",&a,&b)
 
 int main(){
-    int mod=1000000007;
-    int n,m,t;
-    scanf("%d %d",&n,&m);
-    int cd[n+1];
-    for (int i=0;i<n+1;i++) {
-        cd[i]=i;
+    int n,m;
+    sc2(n,m);
+    int cd[n+5];
+    rep(i,n+4) cd[i]=i;
+    rep (i,m) {
+        int p;
+        sc1(p);
+        cd[n+1]=cd[0];
+        cd[0]=p;
+        rep(j,n) if (cd[j+1]==p) cd[j+1]=cd[n+1];
     }
-    for (int i=0;i<m;i++) {
-        scanf("%d",&t);
-        int tmp=cd[0];
-        for (int j=1;j<n+1;j++) {
-            if (cd[j]==t) {
-                cd[0]=cd[j];
-                cd[j]=tmp;
-            }
-        }
-    }
-
-    for (int i=1;i<n+1;i++) {
-        printf("%d\n",cd[i]);
-    }
+    rep(i,n) printf("%d\n",cd[i+1]);
     return 0;
 }
