@@ -1,20 +1,15 @@
 #include<bits/stdc++.h>
-#include<vector>
-#include<list>
-#include<stack>
-#include<queue>
-#include<algorithm>
 using namespace std;
 
+#define rep(i,n)  for(int i=0;i<n;++i)
+#define sc3(a,b,c)  scanf("%d %d %d",&a,&b,&c)
 
 int main(){
     int a,b,c;
-    scanf("%d %d %d",&a,&b,&c);
-    for(int i=1;i<128;i++){
-        if(i%3==a && i%5==b && i%7==c){
-            printf("%d\n",i);
-        }
+    sc3(a,b,c);
+    rep (i,127) {
+        int x=i+1;
+        if(x%3==a && x%5==b && x%7==c) printf("%d\n",x);
     }
-
     return 0;
 }
