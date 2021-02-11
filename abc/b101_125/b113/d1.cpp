@@ -1,32 +1,28 @@
 #include<bits/stdc++.h>
 using namespace std;
-/// from  https://atcoder.jp/contests/abc113/submissions/3540482
+
+#define rep(i,n)  for(int i=0;i<n;++i)
+#define sc3(a,b,c)  scanf("%d %d %d",&a,&b,&c)
 
 int main(){
-    const int mod=1000000007;
+    int mod=1000000007;
     int h,w,k;
-    scanf("%d %d %d",&h,&w,&k);
-    vector<vector<int>> dp(h+1,vector<int>(w,0));
-    dp[0][0]=1;
-    for (int i=0;i<h;i++) {
-        for (int j=0;j<w;j++) {
-            for (int kk=0;kk<1<<(w-1);kk++) {
-                bool ok=true;
-                for (int l=0;l<w-2;l++) {
-                    if (((kk>>l)&1) && ((kk>>(l+1))&1)) ok=false;
-                }
-                if (ok) {
-                    if (j>=1 && ((kk>>(j-1))&1)) {
-                        dp[i+1][j-1]+=dp[i][j];
-                        dp[i+1][j-1]%=mod;
-                    } else if (j<=w-2 && ((kk>>j)&1)) {
-                        dp[i+1][j+1]+=dp[i][j];
-                        dp[i+1][j+1]%=mod;
-                    } else {
-                        dp[i+1][j]+=dp[i][j];
-                        dp[i+1][j]%=mod;
-                    }
-                }
+    sc3(h,w,k);
+    vector<vector<int> > dp(h+1, vector<int> (w,0)); dp[0][0]=1;
+    rep(i,h) rep(j,w) for (int p=0;p < 1<<(w-1);p++)  {
+        bool ok=1;
+        rep(l,w-2) if (((p>>l) & 1) && ((p>>(l+1)) &1)) ok=0;
+        if (ok) {
+            if (j>=1 && ((p >> (j-1))&1)) {
+                dp[i+1][j-1]+=dp[i][j];
+                dp[i+1][j-1]%=mod;
+            } else if (j<=w-2 && ((p>>j)&1)) {
+                dp[i+1][j+1]+=dp[i][j];
+                dp[i+1][j+1]%=mod;
+            } else {
+                dp[i+1][j]+=dp[i][j];
+                dp[i+1][j]%=mod;
+
             }
         }
     }
