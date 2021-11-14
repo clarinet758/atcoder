@@ -1,16 +1,21 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+ 
 int main() {
-    int x,a,b;
-    scanf("%d %d %d",&x,&a,&b);
-    x++;
-    printf("%d\n",x);
-    x*=(a+b);
-    printf("%d\n",x);
-    x*=x;
-    printf("%d\n",x);
-    x--;
-    printf("%d\n",x);
-    return 0;
-} 
+  int x, a, b;
+  cin >> x >> a >> b;
+ 
+  // 1.の出力
+  x++;
+  cout << x << endl;
+ 
+  // 2.の出力
+  x *= (a+b);
+  cout << x << endl;
+  // 3.の出力
+  x *= x;
+  cout << x << endl;
+  // 4.の出力
+  x--;
+  cout << x << endl;
+}
