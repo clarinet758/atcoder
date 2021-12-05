@@ -5,21 +5,18 @@ using namespace std;
 #define sc1(a)  scanf("%d",&a)
 #define sc3(a,b,c)  scanf("%d %d %d",&a,&b,&c)
 
-int a,b[105];
-
+int b[25],a[25];
 int main(){
-    int mod=1000000007;
-    int n,m,c,t=0,ans=0;
+    int n,m,c,ans=0;
     sc3(n,m,c);
     rep(i,m) sc1(b[i]);
     rep(i,n) {
-        t=0;
+        int x=c;
         rep(j,m) {
-            sc1(a);
-            t+=a*b[j];
+            sc1(a[j]);
+            x+=a[j]*b[j];
         }
-        ans+=(t+c)>0;
-        
+        ans+=(x>0);
     }
     printf("%d\n",ans);
     return 0;

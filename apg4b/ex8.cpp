@@ -2,20 +2,22 @@
 using namespace std;
  
 int main() {
-  int p;
-  char text[1001];
-  int price;
-  scanf("%d",&p);
-  if (p==1) {
-      scanf("%d",&price);
+  int p, price;
+  cin >> p;
+ 
+  // パターン1
+  if (p == 1) {
+    cin >> price;
   }
-  if (p==2) {
-      scanf("%s",text);
-      scanf("%d",&price);
-      printf("%s!\n",text); 
+ 
+  // パターン2
+  if (p == 2) {
+    string text;
+    cin >> text >> price;
+    cout << text << "!" << endl;
   }
-  int n;
-  scanf("%d",&n);
-  printf("%d\n",price*n); 
-  return 0;
+ 
+  int N;
+  cin >> N;
+  cout << price * N << endl;
 }

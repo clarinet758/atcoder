@@ -1,17 +1,23 @@
-#include<bits/stdc++.h>
-
+#include <bits/stdc++.h>
 using namespace std;
-
-int main(){
-    int n,s,ans=0;
-    scanf("%d %d",&n,&s);
-    vector<int> a(n);
-    vector<int> b(n);
-    for (auto&e:a) scanf("%d",&e);
-    for (auto&e:b) scanf("%d",&e);
-    for (int i=0;i<n;i++) for (int j=0;j<n;j++){
-        if (a[i]+b[j]==s) ans++;
-    }
-    printf("%d\n",ans);
-    return 0;
+ 
+int main() {
+  int N, S;
+  cin >> N >> S;
+  vector<int> A(N), P(N);
+  for (int i = 0; i < N; i++) {
+    cin >> A.at(i);
+  }
+  for (int i = 0; i < N; i++) {
+    cin >> P.at(i);
+  }
+ 
+  // リンゴ・パイナップルをそれぞれ1つずつ購入するとき合計S円になるような買い方が何通りあるか
+  int ans=0;
+  for (int i=0;i<N;i++){
+      for (int j=0;j<N;j++){
+          if (A.at(i)+P.at(j)==S) ans++;
+      }
+  }
+  cout << ans << endl;
 }

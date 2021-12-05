@@ -2,9 +2,11 @@
 using namespace std;
  
 int main() {
+  // 一年の秒数
   int seconds = 365 * 24 * 60 * 60;
-  printf("%d\n",seconds); 
-  printf("%d\n",seconds*2); 
-  printf("%d\n",seconds*5); 
-  printf("%d\n",seconds*10); 
+ 
+  cout << seconds << endl;
+  cout << seconds*2<< endl;
+  cout << seconds*5 << endl;
+  cout << seconds*10 << endl;
 }
