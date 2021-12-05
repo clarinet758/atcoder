@@ -1,14 +1,14 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+#define rep(i,n)  for(int i=0;i<n;++i)
 #define sc1(a)  scanf("%d",&a)
 
 int main(){
-    int mod=1000000007;
-    int n,ans;
+    int n;
     sc1(n);
-    for (int i=1;i<10;i++)  for (int j=i;j<10;j++) {
-        if (i*j==n) {
+    rep(i,9) rep(j,9) {
+        if ((i+1)*(j+1)==n) {
             printf("Yes\n");
             return 0;
         }
