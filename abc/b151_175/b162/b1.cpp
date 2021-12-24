@@ -6,13 +6,13 @@ using namespace std;
 
 int main(){
     int n;
+    long long ans=0ll;
     sc1(n);
-    rep(i,9) rep(j,9) {
-        if ((i+1)*(j+1)==n) {
-            printf("Yes\n");
-            return 0;
-        }
+    rep(i,n+1) {
+        if(i%3==0) true;
+        else if(i%5==0) true;
+        else ans+=i;
     }
-    printf("No\n");
+    printf("%lld\n",ans);
     return 0;
 }

@@ -5,14 +5,14 @@ using namespace std;
 #define sc1(a)  scanf("%d",&a)
 
 int main(){
-    int n;
+    int n,m,a;
     sc1(n);
-    rep(i,9) rep(j,9) {
-        if ((i+1)*(j+1)==n) {
-            printf("Yes\n");
-            return 0;
-        }
+    vector <int> w(n);
+    rep(i,n-1) {
+        sc1(a);
+        w.at(a-1)++;
     }
-    printf("No\n");
+    rep(i,n-1) printf("%d\n",w.at(i));
+    printf("0\n");
     return 0;
 }
