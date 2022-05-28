@@ -1,13 +1,13 @@
 #object file
+#.gitiore .vscodeを除外しないのはわざとですw
 .DS_Store
 *.o
 *.ali
 *.txt
 *.txt~
 *.out
+*.exe
 temp.*
 *~
 *.swp
 def.*
-*.txt
-*.out
