@@ -12,9 +12,9 @@ int main() {
     cout << A - B << endl;
   } else if (op == "*") {
     cout << A * B << endl;
-  } else if (op == "/" && B !=0 ) {
+  } else if (op == "/" && B != 0) {
     cout << A / B << endl;
-  } else if ((op=="/" && B == 0) || op == "?" || op == "=" || op=="!"){
+  } else if (op == "?" || op == "=" || op == "!" || op == "/" && B == 0) {
     cout << "error" << endl;
   }
 }
