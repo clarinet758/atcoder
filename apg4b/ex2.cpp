@@ -2,6 +2,6 @@
 using namespace std;
  
 int main() {
-  cout << "いつも2525" << endl;
+  cout << "いつも" << 2525 << endl;
   cout << "AtCoderくん" << endl;
 }
