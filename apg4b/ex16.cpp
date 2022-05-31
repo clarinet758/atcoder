@@ -8,11 +8,12 @@ int main() {
   }
  
   // dataの中で隣り合う等しい要素が存在するなら"YES"を出力し、そうでなければ"NO"を出力する
-  for (int i = 0; i < 4; i++) {
-      if (data.at(i)==data.at(i+1)) {
-          cout << "YES" << endl;
-          return 0;
-      }
+  // ここにプログラムを追記
+  int chk = -1,ans = 0;
+  for (int i = 0; i < 5; i++)  {
+    if (chk == data.at(i))  ans = 1; 
+    chk = data.at(i);
   }
-  cout << "NO" << endl;
+
+  cout << (ans?"YES":"NO") << endl;
 }
