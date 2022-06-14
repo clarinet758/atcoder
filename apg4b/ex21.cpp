@@ -76,7 +76,7 @@ int main() {
   a5 = f5(N, M); //n*m
  
   cout << "f0: " << a0 << endl;
-  cout << "f1: " << a1 << end;
+  cout << "f1: " << a1 << endl;
   cout << "f2: " << a2 << endl;
   cout << "f3: " << a3 << endl;
   cout << "f4: " << a4 << endl;
