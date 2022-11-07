@@ -1,22 +1,22 @@
 #include <bits/stdc++.h>
 using namespace std;
- 
+
 int main() {
-  int A, B, x=0;
+  int A, B;
   cin >> A >> B;
- 
+
   // ここにプログラムを追記
-  cout << "A:";
-  while (x<A) {
+  cout << "A:" ; 
+  while (A>0) {
     cout << "]";
-    x++;
+    A--;
   }
-  cout << endl;
-  x=0;
-  cout << "B:";
-  while (x<B) {
+  puts("");
+
+  cout << "B:" ; 
+  while (B>0) {
     cout << "]";
-    x++;
+    B--;
   }
-  cout << endl;
+  puts("");
 }

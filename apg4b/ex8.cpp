@@ -3,10 +3,9 @@ using namespace std;
 
 int main() {
   int p;
-  string text;
-  int price, N;
   cin >> p;
 
+  int price;
   // パターン1
   if (p == 1) {
     cin >> price;
@@ -14,9 +13,13 @@ int main() {
 
   // パターン2
   if (p == 2) {
+    string text;
     cin >> text >> price;
     cout << text << "!" << endl;
   }
+
+  int N;
   cin >> N;
+
   cout << price * N << endl;
 }
