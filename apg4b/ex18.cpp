@@ -2,14 +2,6 @@
 using namespace std;
 
 int main() {
-  
- // vector<vector<vector<int>>> w(3, vector<vector<int>>(2,vector<int>(3)));
- // for (int i=0;i<3;i++) for (int j=0;j<2;j++) for (int k=0;k<3;k++) cin >> w.at(i).at(j).at(k);
-//  for (int i=0;i<3;i++) for (int j=0;j<2;j++) for (int k=0;k<3;k++) cout<<w.at(i).at(j).at(k);
-//  puts("");
-
-
-//  return 0;
   int N, M;
   cin >> N >> M;
   vector<int> A(M), B(M);
@@ -19,21 +11,15 @@ int main() {
 
   // ここにプログラムを追記
   // (ここで"試合結果の表"の2次元配列を宣言)
-  vector <vector <int>> w(N, vector <int> (N,0));
-  for (int i=0; i<M; i++) {
-    w.at(A.at(i)-1).at(B.at(i)-1) = 1;
-    w.at(B.at(i)-1).at(A.at(i)-1) = 2;
+  vector <vector <char>> data(N,vector<char>(N,'-'));
+  for (int i = 0;i < M;i++) { 
+    data.at(A.at(i)-1).at(B.at(i)-1) = 'o';
+    data.at(B.at(i)-1).at(A.at(i)-1) = 'x';
   }
-  for (int i = 0; i < N; i++) for (int j = 0; j < N; j++) {
-    if (j+1 < N) {
-      if (w.at(i).at(j) == 0) cout << "- ";
-      if (w.at(i).at(j) == 1) cout << "o ";
-      if (w.at(i).at(j) == 2) cout << "x ";
-    } else {
-      if (w.at(i).at(j) == 0) cout << "-" << endl;
-      if (w.at(i).at(j) == 1) cout << "o" << endl;
-      if (w.at(i).at(j) == 2) cout << "x" << endl;
-      
+  for (int i = 0;i < N;i++) {
+    for (int j = 0;j < N;j++){
+      cout<< data.at(i).at(j);
+      cout<< ((j<N-1)?" ":"\n");
     }
   }
 }
