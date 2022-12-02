@@ -1,41 +1,22 @@
 #include<bits/stdc++.h>
-
 using namespace std;
 
-#define PI 3.1415926535897932
-
-//typedef long long ll;
-
-
-int lcm(int a,int b) { return a*b/__gcd(a,b); }
-//ll lcm(ll a,ll b) { return a*b/__gcd(a,b); }
-
-/**
- * vector<int>ar(3);
- * for(auto&e:ar){
- *     scanf("%d",&e);
- * }
- * sort(ar.begin(),ar.end())
- * int sum=accumulate(ar.begin(),ar.end(),0);
- **/
-
+#define rep(i,n)  for(int i=0;i<n;++i)
 
 int main(){
-    int mod=1000000007;
-    int a,n,m,ans=mod;
-    scanf("%d",&n);
-    for (int i=0;i<n;i++) {
-        scanf("%d",&a);
+    int n,m=0,ans=1000000;
+    cin >> n;
+    rep(i,n) {
+        int x;
+        cin >> x;
         m=0;
         for(;;) {
-            if (a%2) break;
+            if(x%2) break;
             m++;
-            a/=2;
+            x/=2;
         }
         ans=min(ans,m);
     }
-    printf("%d\n",ans);
-
+    cout << ans << endl;
     return 0;
 }
-
