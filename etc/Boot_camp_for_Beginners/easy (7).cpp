@@ -29,18 +29,26 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 int main(){
     int mod=1000000007;
-    int n,y,chk,a=0,b=0,c=0;
-    sc2(n,y);
-    c=y/1000;
-    //cout << c << endl;
-    rep(i,c) rep(j,c){
-        chk=c-(i*10)-(j*5)+i+j;
-        if (chk==n && chk-i-j>=0) {
-            printf("%d %d %d\n",i,j,chk-i-j);
-            return 0;
-        }
-        if (chk<0) break;
+    int n,b;
+    bool ans=0;
+    vector<vector<int>> a(3,vector<int>(3));
+    rep(i,9) sc1(a.at(i/3).at(i%3));
+    sc1(n);
+    rep(i,n){
+        sc1(b);
+        rep(j,9) if(a.at(j/3).at(j%3)==b) a.at(j/3).at(j%3)=0;
     }
-    printf("-1 -1 -1\n");
+    ans=max(ans,(a.at(0).at(0)==a.at(0).at(1) && a.at(0).at(1)==a.at(0).at(2) && a.at(0).at(2)==0));
+    ans=max(ans,(a.at(1).at(0)==a.at(1).at(1) && a.at(1).at(1)==a.at(1).at(2) && a.at(1).at(2)==0));
+    ans=max(ans,(a.at(2).at(0)==a.at(2).at(1) && a.at(2).at(1)==a.at(2).at(2) && a.at(2).at(2)==0));
+
+    ans=max(ans,(a.at(0).at(0)==a.at(1).at(0) && a.at(1).at(0)==a.at(2).at(0) && a.at(0).at(0)==0));
+    ans=max(ans,(a.at(0).at(1)==a.at(1).at(1) && a.at(1).at(1)==a.at(2).at(1) && a.at(0).at(1)==0));
+    ans=max(ans,(a.at(0).at(2)==a.at(1).at(2) && a.at(1).at(2)==a.at(2).at(2) && a.at(0).at(2)==0));
+
+    ans=max(ans,(a.at(0).at(0)==a.at(1).at(1) && a.at(1).at(1)==a.at(2).at(2) && a.at(2).at(2)==0));
+    ans=max(ans,(a.at(0).at(2)==a.at(1).at(1) && a.at(1).at(1)==a.at(2).at(0) && a.at(2).at(0)==0));
+    printf("%s",ans?"Yes\n":"No\n");
+
     return 0;
 }
