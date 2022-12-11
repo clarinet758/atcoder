@@ -1,15 +1,18 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+#define ll int64_t
 #define rep(i,n)  for(int i=0;i<n;++i)
 #define per(i,n)  for(int i=n-1;i>=0;--i)
-#define sc1(a)  scanf("%d",&a)
-#define sc2(a,b)  scanf("%d %d",&a,&b)
-#define sc3(a,b,c)  scanf("%d %d %d",&a,&b,&c)
-#define sl1(a)  scanf("%lld",&a)
-#define sl2(a,b)  scanf("%lld %lld",&a,&b)
-#define sl3(a,b,c)  scanf("%lld %lld %lld",&a,&b,&c)
+#define ii1(a)  scanf("%d",&a)
+#define ii2(a,b)  scanf("%d %d",&a,&b)
+#define ii3(a,b,c)  scanf("%d %d %d",&a,&b,&c)
+#define ll1(a)  scanf("%lld",&a)
+#define ll2(a,b)  scanf("%lld %lld",&a,&b)
+#define ll3(a,b,c)  scanf("%lld %lld %lld",&a,&b,&c)
 #define PI 3.1415926535897932
+
+void ww(int n,vector<int> &a) { rep(i,n) ii1(a.at(i)); }
 
 //
 int souwa(int a) {return (1+a)*a/2;}
@@ -29,18 +32,19 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 int main(){
     int mod=1000000007;
-    int n,y,chk,a=0,b=0,c=0;
-    sc2(n,y);
-    c=y/1000;
-    //cout << c << endl;
-    rep(i,c) rep(j,c){
-        chk=c-(i*10)-(j*5)+i+j;
-        if (chk==n && chk-i-j>=0) {
-            printf("%d %d %d\n",i,j,chk-i-j);
-            return 0;
+    int n,h,m=0,cnt=0,ans=0;
+    //scanf("%d %d",&n,&m);
+    ii1(n);
+    rep(i,n) {
+        ii1(h);
+        if (m>=h) {
+            cnt++;
+            ans=max(ans,cnt);
+        } else {
+            cnt=0;
         }
-        if (chk<0) break;
+        m=h;
     }
-    printf("-1 -1 -1\n");
+    printf("%d\n",ans);
     return 0;
 }

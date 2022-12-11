@@ -29,18 +29,21 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 int main(){
     int mod=1000000007;
-    int n,y,chk,a=0,b=0,c=0;
-    sc2(n,y);
-    c=y/1000;
-    //cout << c << endl;
-    rep(i,c) rep(j,c){
-        chk=c-(i*10)-(j*5)+i+j;
-        if (chk==n && chk-i-j>=0) {
-            printf("%d %d %d\n",i,j,chk-i-j);
-            return 0;
-        }
-        if (chk<0) break;
+    int n,m,ans;
+    sc1(n);
+    if(n==1) {
+        cout << 1 << endl;
+        return 0;
     }
-    printf("-1 -1 -1\n");
+    vector <int> w(10,0);
+    w.at(1)=2;
+    for(int i=2;i<10;i++) w.at(i)=w.at(i-1)*2;
+    for(int i=9;i>=0;i--){
+        if(w.at(i)<=n) {
+            cout << w.at(i) << endl;
+            break;
+        }
+    }
+
     return 0;
 }

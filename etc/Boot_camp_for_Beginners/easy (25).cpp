@@ -29,18 +29,26 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 int main(){
     int mod=1000000007;
-    int n,y,chk,a=0,b=0,c=0;
-    sc2(n,y);
-    c=y/1000;
-    //cout << c << endl;
-    rep(i,c) rep(j,c){
-        chk=c-(i*10)-(j*5)+i+j;
-        if (chk==n && chk-i-j>=0) {
-            printf("%d %d %d\n",i,j,chk-i-j);
-            return 0;
+    int n,m,ans=0,cnt=1;
+    sc1(n);
+    vector <int> p(n);
+    vector <int> q(n);
+    vector <int> w(n);
+    rep(i,n) sc1(p.at(i));
+    rep(i,n) sc1(q.at(i));
+    rep(i,n) w.at(i)=i+1;
+    do{
+        bool fx=1;
+        bool fy=1;
+        rep(i,n) {
+            if (w.at(i)!=p.at(i)) fx=0;
+            if (w.at(i)!=q.at(i)) fy=0;
+
         }
-        if (chk<0) break;
-    }
-    printf("-1 -1 -1\n");
+        if(fx) ans-=cnt;
+        if(fy) ans+=cnt;
+        cnt++;
+    } while (next_permutation(w.begin(),w.end()));
+    cout << abs(ans) << endl;
     return 0;
 }
