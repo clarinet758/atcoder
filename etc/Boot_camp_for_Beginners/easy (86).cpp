@@ -31,27 +31,25 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 // 何か貼るときはココから下に
 
 int main(){
-    int mod=1000000007;
-    ll n,m,ans=1e12+5;
+    ll k,n,m;
+    int ans=0;
+    string s;
+    cin >> s;
+    ll1(k);
     bool f=1;
-    //scanf("%d %d",&n,&m);
-    ll1(n);
-    vector <ll> p(1,2ll);
-    for (ll i=3ll;i<1000005ll;i++) {
-        for (int j=0;j<p.size();j++) {
-            if (i%p.at(j)==0ll) break;
-            if (p.at(j)*p.at(j)>i) {
-                p.push_back(i);
-                break;
-            }
+    m=((k<s.size()*1ll)?k:s.size()*1ll);
+    //cout << m << endl;
+    for(ll i=0ll;i<m;i++) {
+        if(s.at(i)!='1')  {
+            f=0;
+            ans=s.at(i)-'0';
+            break;
         }
     }
-    for (ll i=1ll;i*i<=n;i++) {
-        if (n%i==0) {
-            ans=min(ans,(i-1)+((n/i)-1));
-        }
-    }
-    cout << ans << endl;
+    if (f)  cout << 1 << endl;
+    else  cout <<  ans << endl;
+     
+
 
     return 0;
 }

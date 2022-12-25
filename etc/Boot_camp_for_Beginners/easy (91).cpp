@@ -31,27 +31,31 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 // 何か貼るときはココから下に
 
 int main(){
-    int mod=1000000007;
-    ll n,m,ans=1e12+5;
-    bool f=1;
-    //scanf("%d %d",&n,&m);
-    ll1(n);
-    vector <ll> p(1,2ll);
-    for (ll i=3ll;i<1000005ll;i++) {
-        for (int j=0;j<p.size();j++) {
-            if (i%p.at(j)==0ll) break;
-            if (p.at(j)*p.at(j)>i) {
-                p.push_back(i);
-                break;
-            }
+    int n,m,cnt=0;
+    double ans=0;
+    ii1(n);
+    vector<vector<int>> w(n,vector<int>(2));
+    rep(i,n) cin >> w.at(i).at(0) >> w.at(i).at(1);
+    vector<int> k(n);
+    rep(i,n) k.at(i)=i;
+    do {// do内部で作られた順列に対して必要な処理を行う
+        // cout << w.at(0) << w.at(1) << w.at(2) << endl;
+        //cout << k.at(0) << " " << k.at(1) << " " << k.at(2) << endl;
+        cnt++;
+        rep(i,n-1) {
+            int x=w.at(k.at(i)).at(0)-w.at(k.at(i+1)).at(0);
+            int y=w.at(k.at(i)).at(1)-w.at(k.at(i+1)).at(1);
+            ans+=pow(x*x+y*y,0.5);
         }
-    }
-    for (ll i=1ll;i*i<=n;i++) {
-        if (n%i==0) {
-            ans=min(ans,(i-1)+((n/i)-1));
-        }
-    }
-    cout << ans << endl;
+    } while (next_permutation(k.begin(),k.end()));  //ex. vector <int> w= {1,2,3}; **/
+    //cout << ans/(n*(n-1)) << endl;
+    // cout << ans << endl;
+    printf("%.10lf\n",ans/cnt);
 
+
+
+    //per (i,n) {
+    //    printf("%d\n",i);
+    //}
     return 0;
 }

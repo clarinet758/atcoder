@@ -17,7 +17,7 @@ void ww(int n,vector<int> &a) { rep(i,n) ii1(a.at(i)); }
 //
 int souwa(int a) {return (1+a)*a/2;}
 int lcm(int a,int b) { return a*b/__gcd(a,b); }
-//long long lcm(ll a,ll b) { return a*b/__gcd(a,b); }
+ll lcm(ll a,ll b) { return a*b/__gcd(a,b); }
 
 //
 bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end()); return t.at(0)+t.at(1)>t.at(2);};
@@ -32,26 +32,23 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 int main(){
     int mod=1000000007;
-    ll n,m,ans=1e12+5;
-    bool f=1;
+    int n;
+    ll x=0ll,y=0ll,a,b=1ll;
     //scanf("%d %d",&n,&m);
-    ll1(n);
-    vector <ll> p(1,2ll);
-    for (ll i=3ll;i<1000005ll;i++) {
-        for (int j=0;j<p.size();j++) {
-            if (i%p.at(j)==0ll) break;
-            if (p.at(j)*p.at(j)>i) {
-                p.push_back(i);
-                break;
-            }
-        }
+    ii1(n);
+    vector<int> w(n);
+    rep(i,n) {
+        cin >> a;
+        w.at(i)=a;
+        b=lcm(a,b);
     }
-    for (ll i=1ll;i*i<=n;i++) {
-        if (n%i==0) {
-            ans=min(ans,(i-1)+((n/i)-1));
-        }
+    //cout << b << endl;
+    rep(i,n){
+        x+=(b+1)%w.at(i);
+        y+=(b-1)%w.at(i);
     }
-    cout << ans << endl;
+    //cout << max(x,y) << endl;
+    cout << accumulate(w.begin(),w.end(),0)-n << endl;
 
     return 0;
 }

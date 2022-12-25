@@ -32,26 +32,38 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 int main(){
     int mod=1000000007;
-    ll n,m,ans=1e12+5;
-    bool f=1;
+    int a,b,c,n,m,ans=0;
     //scanf("%d %d",&n,&m);
-    ll1(n);
-    vector <ll> p(1,2ll);
-    for (ll i=3ll;i<1000005ll;i++) {
-        for (int j=0;j<p.size();j++) {
-            if (i%p.at(j)==0ll) break;
-            if (p.at(j)*p.at(j)>i) {
-                p.push_back(i);
-                break;
-            }
+    ii3(a,b,c);
+    if (a%2==b%2 && b%2==c%2){
+        int x=max(a,max(b,c));
+        ans=abs(x-a)/2+abs(x-b)/2+abs(x-c)/2;
+
+    } else if(a%2==b%2){
+        ans+=abs(a-b)/2;
+        //cout << ans << endl;
+        if (c>max(a,b)) {
+            ans+=c-max(a,b);
+        } else {
+            ans+=(max(a,b)-c)/2+2;
         }
-    }
-    for (ll i=1ll;i*i<=n;i++) {
-        if (n%i==0) {
-            ans=min(ans,(i-1)+((n/i)-1));
+    } else if(a%2==c%2){
+        ans+=abs(a-c)/2;
+        if (b>max(a,c)) {
+            ans+=b-max(a,c);
+        } else {
+            ans+=(max(a,c)-b)/2+2;
+        }
+    } else{
+        ans+=abs(b-c)/2;
+        if (a>max(b,c)) {
+            ans+=a-max(b,c);
+        } else {
+            ans+=(max(b,c)-a)/2+2;
         }
     }
     cout << ans << endl;
 
+    
     return 0;
 }

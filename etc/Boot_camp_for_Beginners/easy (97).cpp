@@ -32,26 +32,27 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 int main(){
     int mod=1000000007;
-    ll n,m,ans=1e12+5;
-    bool f=1;
+    int n,m;
+    ll ans=0ll;
     //scanf("%d %d",&n,&m);
-    ll1(n);
-    vector <ll> p(1,2ll);
-    for (ll i=3ll;i<1000005ll;i++) {
-        for (int j=0;j<p.size();j++) {
-            if (i%p.at(j)==0ll) break;
-            if (p.at(j)*p.at(j)>i) {
-                p.push_back(i);
-                break;
-            }
-        }
+    ii2(n,m);
+    //vector<vector<int>> w(n,vector<int>(2)) ;
+    vector<vector<ll>> w(n,vector<ll>(2)) ;
+    rep(i,n) {
+        cin >> w.at(i).at(0) >> w.at(i).at(1);
     }
-    for (ll i=1ll;i*i<=n;i++) {
-        if (n%i==0) {
-            ans=min(ans,(i-1)+((n/i)-1));
+    sort(w.begin(),w.end());
+    //cout << w.at(0).at(0) << " " << w.at(1).at(0) << endl;
+    rep(i,n) {
+        if (m>=w.at(i).at(1)) {
+            ans+=w.at(i).at(0)*w.at(i).at(1);
+            m-=w.at(i).at(1);
+        } else {
+            ans+=w.at(i).at(0)*m;
+            m=0;
         }
+        if (m==0) break;
     }
     cout << ans << endl;
-
     return 0;
 }

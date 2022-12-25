@@ -31,27 +31,34 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 // 何か貼るときはココから下に
 
 int main(){
-    int mod=1000000007;
-    ll n,m,ans=1e12+5;
-    bool f=1;
+    int n,m;
+    ll ans=0ll;
     //scanf("%d %d",&n,&m);
-    ll1(n);
-    vector <ll> p(1,2ll);
-    for (ll i=3ll;i<1000005ll;i++) {
-        for (int j=0;j<p.size();j++) {
-            if (i%p.at(j)==0ll) break;
-            if (p.at(j)*p.at(j)>i) {
-                p.push_back(i);
-                break;
-            }
+    ii1(n);
+    vector<int> a(n+1);
+    vector<int> b(n);
+    //ww(n,a);
+    //ww(n,b);
+    rep(i,n+1) cin >> a.at(i);
+    rep(i,n) cin >> b.at(i);
+    //cout << a.at(0) << a.at(1) << a.at(2) << endl;
+    //cout << b.at(0) << b.at(1) << endl;
+    rep(i,n){
+        if (a.at(i)<b.at(i)){
+            //cout << "yo" << endl;
+            ans+=a.at(i);
+            b.at(i)-=a.at(i);
+            a.at(i)=0;
+            ans+=min(b.at(i),a.at(i+1));
+            a.at(i+1)=max(0,a.at(i+1)-b.at(i));
+        } else {
+            ans+=b.at(i);
         }
     }
-    for (ll i=1ll;i*i<=n;i++) {
-        if (n%i==0) {
-            ans=min(ans,(i-1)+((n/i)-1));
-        }
-    }
+    //cout << a.at(0) << a.at(1) << a.at(2) << endl;
+    //cout << b.at(0) << b.at(1) << endl;
     cout << ans << endl;
+
 
     return 0;
 }
