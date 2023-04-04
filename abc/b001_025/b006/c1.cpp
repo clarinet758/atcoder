@@ -36,17 +36,16 @@ int main(){
     int mod=1000000007;
     int n,m,x,y,cnt=0,ans=0;
     string s,t;
-    cin >> n;
-    //cin >> m;
-    //vector<int> a(n);
-    //rep(i,n) cin >> a.at(i);
-    //sort(a.begin(),a.end());
-    //scanf("%d %d",&n,&m);
+    cin >> n >> m;
+    if (m>n*4 || m<n*2) printf("-1 -1 -1\n");
+    else if (m>=n*3) {
+        //cout << 0 << " " << m/3-(m-3*n) << " " << m-3*n << endl;
+        cout << 0 << " " << n-(m-n*3) << " " << m-3*n << endl;
+    } else {
+        cout << 3*n-m << " " << n-(3*n-m) << " " << 0 << endl;
+        
+    }
 
-    if (n<100) print("00");
-    else if (n<=5000) printf("%02d\n",n/100);
-    else if (n<=30000) print(n/1000+50);
-    else if (n<=70000) print((n/1000-30)/5+80);
-    else print(89);
+
     return 0;
 }

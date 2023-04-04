@@ -37,16 +37,12 @@ int main(){
     int n,m,x,y,cnt=0,ans=0;
     string s,t;
     cin >> n;
-    //cin >> m;
-    //vector<int> a(n);
-    //rep(i,n) cin >> a.at(i);
-    //sort(a.begin(),a.end());
-    //scanf("%d %d",&n,&m);
+    vector<int> w(1000010,0);
+    w.at(3)=1;
+    for (int i=4;i<n+3;i++) {
+        w.at(i)=(w.at(i-1)+w.at(i-2)+w.at(i-3))%10007;
+    }
 
-    if (n<100) print("00");
-    else if (n<=5000) printf("%02d\n",n/100);
-    else if (n<=30000) print(n/1000+50);
-    else if (n<=70000) print((n/1000-30)/5+80);
-    else print(89);
+    print(w.at(n));
     return 0;
 }

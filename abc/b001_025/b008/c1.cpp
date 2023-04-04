@@ -33,20 +33,42 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 // 何か貼るときはココから下に
 
 int main(){
-    int mod=1000000007;
-    int n,m,x,y,cnt=0,ans=0;
-    string s,t;
+    int n,m=0,x=0,y=0,cnt=0;
     cin >> n;
-    //cin >> m;
-    //vector<int> a(n);
-    //rep(i,n) cin >> a.at(i);
+    if (n>8) {
+        cout << 0 << endl;
+        return 0;
+    }
+    vector<int> a(n);
+    vector<int> b(n);
+    rep(i,n) cin >> a.at(i);
+    rep(i,n) b.at(i)=i;
+    vector<vector<int>> h;
+    do {
+        //for (int q=0;q<h.size();q++) {
+            //m=1;
+            //for(int qq=0;qq<n;qq++) {
+            //    if(h.at(q).at(qq)!=a.at(qq)) m=0;
+            //}
+            //if(m) break;
+        //}
+        //if(m) continue;
+        //else h.push_back(a);
+        cnt++;
+        //cout << a.at(0) << a.at(1)  << endl;
+        for(int i=1;i<n;i++) {
+            y=0;
+            for(int j=i-1;j>=0;j--) if(a.at(b.at(i))%a.at(b.at(j))==0) y++;
+            if(y%2==0) x++;
+        }
+    } while (next_permutation(b.begin(),b.end()));
+    x+=cnt;
+
     //sort(a.begin(),a.end());
     //scanf("%d %d",&n,&m);
+    //cout << h.size() << endl;
+    //cout << cnt << endl;
+    printf("%.10lf\n",1.0*x/cnt);
 
-    if (n<100) print("00");
-    else if (n<=5000) printf("%02d\n",n/100);
-    else if (n<=30000) print(n/1000+50);
-    else if (n<=70000) print((n/1000-30)/5+80);
-    else print(89);
     return 0;
 }

@@ -38,15 +38,7 @@ int main(){
     string s,t;
     cin >> n;
     //cin >> m;
-    //vector<int> a(n);
-    //rep(i,n) cin >> a.at(i);
-    //sort(a.begin(),a.end());
-    //scanf("%d %d",&n,&m);
 
-    if (n<100) print("00");
-    else if (n<=5000) printf("%02d\n",n/100);
-    else if (n<=30000) print(n/1000+50);
-    else if (n<=70000) print((n/1000-30)/5+80);
-    else print(89);
+    print((n+1)/2);
     return 0;
 }

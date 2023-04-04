@@ -34,19 +34,28 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 int main(){
     int mod=1000000007;
-    int n,m,x,y,cnt=0,ans=0;
+    int n,q,p,x,y,cnt=0,ans=0;
     string s,t;
     cin >> n;
-    //cin >> m;
-    //vector<int> a(n);
-    //rep(i,n) cin >> a.at(i);
-    //sort(a.begin(),a.end());
-    //scanf("%d %d",&n,&m);
+    vector<vector<int>> d(n,vector<int>(n));
+    rep(i,n) rep(j,n) cin >> d.at(i).at(j);
+    vector<vector<int>> w(n+1, vector<int>(n+1,0));
 
-    if (n<100) print("00");
-    else if (n<=5000) printf("%02d\n",n/100);
-    else if (n<=30000) print(n/1000+50);
-    else if (n<=70000) print((n/1000-30)/5+80);
-    else print(89);
+    rep(i,n) rep(j,n) w.at(i+1).at(j+1)=w.at(i).at(j+1)+w.at(i+1).at(j)+d.at(i).at(j)-w.at(i).at(j);
+    //rep(i,n) rep(j,n) cout << w.at(i+1).at(j+1) << endl;
+    vector<int> m(2501,0);
+    rep(i,n) rep(j,n) rep(k,n-i) rep(l,n-j) {
+        x=w.at(i+k+1).at(j+l+1)+w.at(i).at(j)-w.at(i+k+1).at(j)-w.at(i).at(j+l+1);
+        m.at((k+1)*(l+1))=max(m.at((k+1)*(l+1)),x);
+    }
+    rep(i,2500) m.at(i)=max(m.at(i),m.at(i-1));
+
+    cin >> q;
+    rep(i,q) {
+        cin >> p;
+        cout << m.at(p) << endl;
+    }
+
+    //print(y/x);
     return 0;
 }
