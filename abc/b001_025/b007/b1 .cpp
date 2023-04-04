@@ -36,9 +36,8 @@ int main(){
     int mod=1000000007;
     int n,m,x,y,cnt=0,ans=0;
     string s,t;
-    cin >> n >> m;
-    //cin >> m;
-
-    print(m-n+1);
+    cin >> s;
+    if (s.size()==1 && s.at(0)=='a') print("-1");
+    else print("a");
     return 0;
 }

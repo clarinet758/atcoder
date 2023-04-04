@@ -36,9 +36,9 @@ int main(){
     int mod=1000000007;
     int n,m,x,y,cnt=0,ans=0;
     string s,t;
-    cin >> n >> m;
+    cin >> n;
     //cin >> m;
 
-    print(m-n+1);
+    print((n+1)/2);
     return 0;
 }

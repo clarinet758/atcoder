@@ -36,9 +36,17 @@ int main(){
     int mod=1000000007;
     int n,m,x,y,cnt=0,ans=0;
     string s,t;
-    cin >> n >> m;
-    //cin >> m;
+    cin >> n;
+    map<string,int> w;
+    rep(i,n){
+        cin >> s;
+        w[s]++;
+        if(w[s]>ans){
+            ans=w[s];
+            t=s;
+        }
+    }
 
-    print(m-n+1);
+    print(t);
     return 0;
 }

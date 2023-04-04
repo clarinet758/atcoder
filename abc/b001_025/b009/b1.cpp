@@ -36,9 +36,20 @@ int main(){
     int mod=1000000007;
     int n,m,x,y,cnt=0,ans=0;
     string s,t;
-    cin >> n >> m;
+    cin >> n;
     //cin >> m;
+    rep(i,n) {
+        cin >> x;
+        if(x<cnt) {
+            ans=max(ans,x);
+        } else if (x>cnt) {
+            ans=cnt;
+            cnt=x;
+        }
+    }
+    //sort(a.begin(),a.end());
+    //scanf("%d %d",&n,&m);
 
-    print(m-n+1);
+    print(ans);
     return 0;
 }
