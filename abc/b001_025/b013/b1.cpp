@@ -35,12 +35,8 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 int main(){
     int mod=1000000007;
     int n,m,x,y,cnt=0,ans=0;
-    string s,t;
-    cin >> n;
-    n=2025-n;
-    for(int i=1;i<10;i++) for(int j=1;j<10;j++) {
-        if (i*j==n) cout << i << " x " << j << endl;
+    cin >> n >> m;
+    cout << min(abs(n-m),min((10+n)-m,(10+m)-n)) << endl;
 
-    }
     return 0;
 }

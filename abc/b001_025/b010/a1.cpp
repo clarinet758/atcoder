@@ -36,11 +36,8 @@ int main(){
     int mod=1000000007;
     int n,m,x,y,cnt=0,ans=0;
     string s,t;
-    cin >> n;
-    n=2025-n;
-    for(int i=1;i<10;i++) for(int j=1;j<10;j++) {
-        if (i*j==n) cout << i << " x " << j << endl;
-
-    }
+    cin >> s;
+    //cin >> m;
+    cout << s << "pp" << endl;
     return 0;
 }

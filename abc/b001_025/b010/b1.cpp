@@ -37,10 +37,20 @@ int main(){
     int n,m,x,y,cnt=0,ans=0;
     string s,t;
     cin >> n;
-    n=2025-n;
-    for(int i=1;i<10;i++) for(int j=1;j<10;j++) {
-        if (i*j==n) cout << i << " x " << j << endl;
-
+    //cin >> m;
+    //vector<int> a(n);
+    rep(i,n) {
+        cin >> x;
+        for(;;) {
+            if(x%2==0 || x%3==2) {
+                x--;
+                ans++;
+            } else {
+                break;
+            }
+        }
     }
+
+    print(ans);
     return 0;
 }

@@ -36,11 +36,28 @@ int main(){
     int mod=1000000007;
     int n,m,x,y,cnt=0,ans=0;
     string s,t;
-    cin >> n;
-    n=2025-n;
-    for(int i=1;i<10;i++) for(int j=1;j<10;j++) {
-        if (i*j==n) cout << i << " x " << j << endl;
-
+    cin >> s;
+    for (int i=0;i<s.size();i++){
+        if(i==0) {
+            if(s.at(i)-0>96) {
+                printf("%c",(s.at(i)-32));
+            } else {
+                cout  << s.at(i);
+            }
+        }else{
+            if(s.at(i)-0>96) {
+                cout  << s.at(i);
+            } else {
+                printf("%c",(s.at(i)+32));
+            }
+        }
     }
+    puts("");
+    //cin >> m;
+    //sort(a.begin(),a.end());
+    //scanf("%d %d",&n,&m);
+    //cout << 'a'-0 << endl;
+    //cout << 'A'-0 << endl;
+    //print(ans);
     return 0;
 }

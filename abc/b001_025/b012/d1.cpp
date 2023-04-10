@@ -32,15 +32,39 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 // 何か貼るときはココから下に
 
-int main(){
-    int mod=1000000007;
-    int n,m,x,y,cnt=0,ans=0;
-    string s,t;
-    cin >> n;
-    n=2025-n;
-    for(int i=1;i<10;i++) for(int j=1;j<10;j++) {
-        if (i*j==n) cout << i << " x " << j << endl;
+vector<vector<int>> w;
+void wf(int n){
+    rep(i,n) rep(j,n) rep(k,n){
+        w.at(j).at(k)=min(w.at(j).at(k),w.at(j).at(i)+w.at(i).at(k));
 
     }
+}
+
+
+
+int main(){
+    int mod=1000000007;
+    int n,m,a,b,t,x,cnt=0,ans=0;
+    cin >> n >> m;
+    w=vector<vector<int>> (n+1,vector<int>(n+1,mod));
+    rep(i,n) w.at(i).at(i)=0;
+    rep(i,m) {
+        cin >> a >> b >> t;
+        w.at(a).at(b)=t;
+        w.at(b).at(a)=t;
+    }
+    cnt=mod;
+    wf(n+1);
+    //cout << w.at(1).at(1) << w.at(1).at(2) << w.at(1).at(3) << endl;
+    //cout << w.at(2).at(1) << w.at(2).at(2) << w.at(2).at(3) << endl;
+    //cout << w.at(3).at(1) << w.at(3).at(2) << w.at(3).at(3) << endl;
+    rep(i,n) {
+        sort(w.at(i+1).begin(),w.at(i+1).end());
+        x=w.at(i+1).at(n-1);
+        if(x<cnt) {
+            cnt=x;
+        }
+    }
+    print(cnt);
     return 0;
 }

@@ -33,14 +33,16 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 // 何か貼るときはココから下に
 
 int main(){
-    int mod=1000000007;
-    int n,m,x,y,cnt=0,ans=0;
-    string s,t;
-    cin >> n;
-    n=2025-n;
-    for(int i=1;i<10;i++) for(int j=1;j<10;j++) {
-        if (i*j==n) cout << i << " x " << j << endl;
-
+    ll n,h,a,b,c,d,e,p,x,y,cnt=0,ans=0ll,ans2;
+    cin >> n >> h;
+    cin >> a >> b >> c >> d >> e;
+    ans=(n+1)*a;
+    rep(i,n+1) {
+        cnt=(((n-i)*e-h-b*i)/(d+e))+1;
+        if ((h+i*b)>(n-i)*e) cnt=0;
+        ans=min(ans,i*a+c*cnt);
     }
+
+    print(ans);
     return 0;
 }
