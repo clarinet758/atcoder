@@ -37,10 +37,18 @@ int main(){
     int n,m,x,y,cnt=0,ans=0;
     string s,t;
     cin >> n;
-    n=2025-n;
-    for(int i=1;i<10;i++) for(int j=1;j<10;j++) {
-        if (i*j==n) cout << i << " x " << j << endl;
-
+    //cin >> m;
+    vector<int> w(1000003,0);
+    rep(i,n) {
+        cin >> x >> y;
+        w.at(x)++;
+        w.at(y+1)--;
     }
+    rep(i,1000001) {
+        cnt+=w.at(i);
+        ans=max(ans,cnt);
+    }
+
+    print(ans);
     return 0;
 }

@@ -34,13 +34,19 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 int main(){
     int mod=1000000007;
-    int n,m,x,y,cnt=0,ans=0;
-    string s,t;
+    int n,x,y,sx,sy,gx,gy,t,v,ans=0;
+    double cnt=0.0;
+    cin >> sx >> sy >> gx >> gy >> t >> v;
     cin >> n;
-    n=2025-n;
-    for(int i=1;i<10;i++) for(int j=1;j<10;j++) {
-        if (i*j==n) cout << i << " x " << j << endl;
-
+    rep(i,n) {
+        cin >> x >> y;
+        cnt=pow(((sx-x)*(sx-x)+(sy-y)*(sy-y)),0.5)+pow(((gx-x)*(gx-x)+(gy-y)*(gy-y)),0.5);
+        if (cnt<=1.0*t*v) ans=1;
     }
+    //sort(a.begin(),a.end());
+    //scanf("%d %d",&n,&m);
+
+    if (ans) cout << "YES" << endl;
+    else cout << "NO" << endl;
     return 0;
 }
