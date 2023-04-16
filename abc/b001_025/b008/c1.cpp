@@ -44,7 +44,8 @@ int main(){
             if(i!=j && c.at(i)%c.at(j)==0) cnt++;
         }
         if (cnt%2) ans+=0.5;
-        else ans+=(1.0*(cnt+2))/(1.0*(cnt*2+2));
+        //else ans+=(1.0*(cnt+2))/(1.0*(cnt*2+2));
+        else ans+=((cnt/2+1)*1.0)/(1.0*cnt+1.0);
     }
 
     printf("%.10lf\n",ans);
