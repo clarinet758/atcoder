@@ -34,41 +34,20 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 int main(){
     int n,m=0,x=0,y=0,cnt=0;
+    double ans=0.0;
     cin >> n;
-    if (n>8) {
-        cout << 0 << endl;
-        return 0;
-    }
-    vector<int> a(n);
-    vector<int> b(n);
-    rep(i,n) cin >> a.at(i);
-    rep(i,n) b.at(i)=i;
-    vector<vector<int>> h;
-    do {
-        //for (int q=0;q<h.size();q++) {
-            //m=1;
-            //for(int qq=0;qq<n;qq++) {
-            //    if(h.at(q).at(qq)!=a.at(qq)) m=0;
-            //}
-            //if(m) break;
-        //}
-        //if(m) continue;
-        //else h.push_back(a);
-        cnt++;
-        //cout << a.at(0) << a.at(1)  << endl;
-        for(int i=1;i<n;i++) {
-            y=0;
-            for(int j=i-1;j>=0;j--) if(a.at(b.at(i))%a.at(b.at(j))==0) y++;
-            if(y%2==0) x++;
+    vector<int> c(n);
+    rep(i,n) cin >> c.at(i);
+    rep(i,n) {
+        cnt=0;
+        rep(j,n) {
+            if(i!=j && c.at(i)%c.at(j)==0) cnt++;
         }
-    } while (next_permutation(b.begin(),b.end()));
-    x+=cnt;
+        if (cnt%2) ans+=0.5;
+        else ans+=(1.0*(cnt+2))/(1.0*(cnt*2+2));
+    }
 
-    //sort(a.begin(),a.end());
-    //scanf("%d %d",&n,&m);
-    //cout << h.size() << endl;
-    //cout << cnt << endl;
-    printf("%.10lf\n",1.0*x/cnt);
+    printf("%.10lf\n",ans);
 
     return 0;
 }
