@@ -35,11 +35,14 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 int main(){
     int mod=1000000007;
     int n,m,x,y,cnt=0,ans=0;
-    string s,t;
     cin >> n;
     //cin >> m;
-    vector<int> a(n);
-    rep(i,n) cin >> a.at(i);
+    vector<bool> a(1e5+3,0);
+    rep(i,n) {
+        cin >> x;
+        ans+=a.at(x);
+        a.at(x)=1;
+    }
     //sort(a.begin(),a.end());
     //scanf("%d %d",&n,&m);
 

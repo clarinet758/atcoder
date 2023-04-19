@@ -34,15 +34,20 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 int main(){
     int mod=1000000007;
-    int n,m,x,y,cnt=0,ans=0;
+    int n,m,x,y,k,p,cnt=0,ans=1;
     string s,t;
     cin >> n;
-    //cin >> m;
-    vector<int> a(n);
-    rep(i,n) cin >> a.at(i);
-    //sort(a.begin(),a.end());
-    //scanf("%d %d",&n,&m);
+    cin >> x >> y;
+    cin >> k;
+    vector<bool> w(105,0);
+    w.at(x)=1;
+    w.at(y)=1;
+    rep(i,k) {
+        cin >> p;
+        if(w.at(p)) ans=0;
+        w.at(p)=1;
+    }
+    cout << ((ans)?"YES":"NO") << endl;
 
-    print(ans);
     return 0;
 }

@@ -34,12 +34,15 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 int main(){
     int mod=1000000007;
-    int n,m,x,y,cnt=0,ans=0;
-    string s,t;
-    cin >> n;
-    //cin >> m;
-    vector<int> a(n);
-    rep(i,n) cin >> a.at(i);
+    int n,s,t,w,a,m,x,y,cnt=0,ans=0;
+    cin >> n >> s >> t;
+    cin >> w;
+    if(s<=w && w<=t) ans++;
+    rep(i,n-1) {
+        cin >> a;
+        w+=a;
+        if(s<=w && w<=t) ans++;
+    }
     //sort(a.begin(),a.end());
     //scanf("%d %d",&n,&m);
 
