@@ -34,30 +34,29 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 int main(){
     int mod=1000000007;
-    int r,c,k,n,m,x,y,cnt=0,ans=0;
-    cin >> r >> c >> k >> n;
-    if (n>50 || r>50 || c>50) {print(-1); return 0;}
-    map<int,int> wr;
-    map<int,int> wc;
-    map<int,int> rr;
-    map<int,int> cc;
-    //vector<vector<bool>> ww(1e5+2,vector<bool>(1e5+2,0));
+    int n,m,x,y,cnt=0,ans=0;
+    string s,t;
+    cin >> n;
+    //cin >> m;
     vector<int> a(n);
-    //vector<vector<int>> w(r+3,vector<int>(c+3,0));
-    rep(i,n) {
-        cin >> y >> x;
-        rr[y]++;
-        cc[x]++;
-        //ww.at(y).at(x)=1;
+    map<int, vector<int>> w;
+    rep(i,n-1) {
+        cin >> a.at(i);
+        w[a.at(i)].push_back(i+2);
     }
-    for(int i=1;i<=r;i++) wr[rr[i]]++; 
-    for(int i=1;i<=c;i++) wr[cc[i]]++; 
-    rep(i,k+1){
-        int t=wr[i];
-        cout << t << endl;
-    }
+    //cout << w[1].at(0) << endl;
 
-    print(1e5+5);
-    //print(ans);
+    vector<int> k(n+1,0);
+    for(int i=n;i>0;i--){
+        if(w.count(i)==0){
+            k.at(i)=1;
+        } else {
+            vector<int> r;
+            rep(j,w[i].size()) r.push_back(k.at(w[i].at(j))); 
+            sort(r.begin(),r.end());
+            k.at(i)=r.at(0)+r.back()+1;
+        }
+    }
+    print(k.at(1));
     return 0;
 }

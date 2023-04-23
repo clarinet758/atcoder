@@ -34,30 +34,33 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 int main(){
     int mod=1000000007;
-    int r,c,k,n,m,x,y,cnt=0,ans=0;
-    cin >> r >> c >> k >> n;
-    if (n>50 || r>50 || c>50) {print(-1); return 0;}
-    map<int,int> wr;
-    map<int,int> wc;
-    map<int,int> rr;
-    map<int,int> cc;
-    //vector<vector<bool>> ww(1e5+2,vector<bool>(1e5+2,0));
-    vector<int> a(n);
-    //vector<vector<int>> w(r+3,vector<int>(c+3,0));
-    rep(i,n) {
-        cin >> y >> x;
-        rr[y]++;
-        cc[x]++;
-        //ww.at(y).at(x)=1;
-    }
-    for(int i=1;i<=r;i++) wr[rr[i]]++; 
-    for(int i=1;i<=c;i++) wr[cc[i]]++; 
-    rep(i,k+1){
-        int t=wr[i];
-        cout << t << endl;
+    int n,d,k,m,x,y,cnt=0,ans=0;
+    cin >> n >> d >> k;
+    vector<pair<int,int>> p(d,{0,0});
+
+    rep(i,d)  cin >> p.at(i).first >> p.at(i).second;
+    //cout << p.at(2).first <<endl;
+    //return 0;
+    rep(i,k) {
+        cin >> x >> y;
+        rep(j,d) {
+            if(p.at(j).first<=x && x<=p.at(j).second) {
+                if(p.at(j).first<=y && y<=p.at(j).second) {
+                    cout << j+1 << endl;
+                    break;
+                } else if (x<y) {
+                    x=p.at(j).second;
+                } else {
+                    x=p.at(j).first;
+                }
+            }
+        }
     }
 
-    print(1e5+5);
+
+    //sort(a.begin(),a.end());
+    //scanf("%d %d",&n,&m);
+
     //print(ans);
     return 0;
 }

@@ -34,30 +34,18 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 int main(){
     int mod=1000000007;
-    int r,c,k,n,m,x,y,cnt=0,ans=0;
-    cin >> r >> c >> k >> n;
-    if (n>50 || r>50 || c>50) {print(-1); return 0;}
-    map<int,int> wr;
-    map<int,int> wc;
-    map<int,int> rr;
-    map<int,int> cc;
-    //vector<vector<bool>> ww(1e5+2,vector<bool>(1e5+2,0));
-    vector<int> a(n);
-    //vector<vector<int>> w(r+3,vector<int>(c+3,0));
-    rep(i,n) {
-        cin >> y >> x;
-        rr[y]++;
-        cc[x]++;
-        //ww.at(y).at(x)=1;
+    int n,m,x,y,cnt=0,ans=0;
+    string s;
+    cin >> s >> n;
+    vector<string> w;
+    rep(i,5) rep(j,5) {
+        string t="";
+        t+=s.at(i);
+        t+=s.at(j);
+        w.push_back(t);
     }
-    for(int i=1;i<=r;i++) wr[rr[i]]++; 
-    for(int i=1;i<=c;i++) wr[cc[i]]++; 
-    rep(i,k+1){
-        int t=wr[i];
-        cout << t << endl;
-    }
+    sort(w.begin(),w.end());
 
-    print(1e5+5);
-    //print(ans);
+    print(w.at(n-1));
     return 0;
 }
