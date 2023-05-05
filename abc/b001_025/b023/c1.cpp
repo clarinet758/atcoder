@@ -33,22 +33,31 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 // 何か貼るときはココから下に
 
 int main(){
-    int n,m=0,x=0,y=0,cnt=0;
-    double ans=0.0;
-    cin >> n;
-    vector<int> c(n);
-    rep(i,n) cin >> c.at(i);
+    int mod=1000000007;
+    int r,c,k,n,m,x,y,cnt=0,ans=0;
+    cin >> r >> c >> k >> n;
+    if (n>50 || r>50 || c>50) {print(-1); return 0;}
+    map<int,int> wr;
+    map<int,int> wc;
+    map<int,int> rr;
+    map<int,int> cc;
+    //vector<vector<bool>> ww(1e5+2,vector<bool>(1e5+2,0));
+    vector<int> a(n);
+    //vector<vector<int>> w(r+3,vector<int>(c+3,0));
     rep(i,n) {
-        cnt=0;
-        rep(j,n) {
-            if(i!=j && c.at(i)%c.at(j)==0) cnt++;
-        }
-        if (cnt%2) ans+=0.5;
-        //else ans+=(1.0*(cnt+2))/(1.0*(cnt*2+2));
-        else ans+=((cnt/2+1)*1.0)/(1.0*cnt+1.0);
+        cin >> y >> x;
+        rr[y]++;
+        cc[x]++;
+        //ww.at(y).at(x)=1;
+    }
+    for(int i=1;i<=r;i++) wr[rr[i]]++; 
+    for(int i=1;i<=c;i++) wr[cc[i]]++; 
+    rep(i,k+1){
+        int t=wr[i];
+        cout << t << endl;
     }
 
-    printf("%.10lf\n",ans);
-
+    print(1e5+5);
+    //print(ans);
     return 0;
 }

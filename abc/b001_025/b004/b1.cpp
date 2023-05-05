@@ -33,30 +33,19 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 // 何か貼るときはココから下に
 
 int main(){
-    char w[4];
-    string a="",b="",c="",d="";
-    rep(i,7) {
-        scanf("%c",&w[0]);
-        a=w[0]+a;
-    }
-    rep(i,7) {
-        scanf("%c",&w[0]);
-        b=w[0]+b;
-    }
-    rep(i,7) {
-        scanf("%c",&w[0]);
-        c=w[0]+c;
-    }
-    rep(i,7) {
-        scanf("%c",&w[0]);
-        d=w[0]+d;
-    }
-
-    cout << c << endl;
-    cout << c << endl;
-    cout << b << endl;
-    cout << a << endl;
-    //scanf("%c %c %c %c",a[0],a[1],a[2],a[3]);
+    string a,b,c,d;
+    getline(cin,a);
+    getline(cin,b);
+    getline(cin,c);
+    getline(cin,d);
+    for (int i=6;i>=0;i--) cout << d.at(i);
+    puts("");
+    for (int i=6;i>=0;i--) cout << c.at(i);
+    puts("");
+    for (int i=6;i>=0;i--) cout << b.at(i);
+    puts("");
+    for (int i=6;i>=0;i--) cout << a.at(i);
+    puts("");
 
     return 0;
 }

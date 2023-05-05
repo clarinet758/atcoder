@@ -33,22 +33,34 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 // 何か貼るときはココから下に
 
 int main(){
-    int n,m=0,x=0,y=0,cnt=0;
-    double ans=0.0;
-    cin >> n;
-    vector<int> c(n);
-    rep(i,n) cin >> c.at(i);
-    rep(i,n) {
-        cnt=0;
-        rep(j,n) {
-            if(i!=j && c.at(i)%c.at(j)==0) cnt++;
+    int mod=1000000007;
+    int n,d,k,m,x,y,cnt=0,ans=0;
+    cin >> n >> d >> k;
+    vector<pair<int,int>> p(d,{0,0});
+
+    rep(i,d)  cin >> p.at(i).first >> p.at(i).second;
+    //cout << p.at(2).first <<endl;
+    //return 0;
+    rep(i,k) {
+        cin >> x >> y;
+        rep(j,d) {
+            if(p.at(j).first<=x && x<=p.at(j).second) {
+                if(p.at(j).first<=y && y<=p.at(j).second) {
+                    cout << j+1 << endl;
+                    break;
+                } else if (x<y) {
+                    x=p.at(j).second;
+                } else {
+                    x=p.at(j).first;
+                }
+            }
         }
-        if (cnt%2) ans+=0.5;
-        //else ans+=(1.0*(cnt+2))/(1.0*(cnt*2+2));
-        else ans+=((cnt/2+1)*1.0)/(1.0*cnt+1.0);
     }
 
-    printf("%.10lf\n",ans);
 
+    //sort(a.begin(),a.end());
+    //scanf("%d %d",&n,&m);
+
+    //print(ans);
     return 0;
 }

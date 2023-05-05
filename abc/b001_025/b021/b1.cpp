@@ -33,22 +33,21 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 // 何か貼るときはココから下に
 
 int main(){
-    int n,m=0,x=0,y=0,cnt=0;
-    double ans=0.0;
+    int mod=1000000007;
+    int n,m,x,y,k,p,cnt=0,ans=1;
+    string s,t;
     cin >> n;
-    vector<int> c(n);
-    rep(i,n) cin >> c.at(i);
-    rep(i,n) {
-        cnt=0;
-        rep(j,n) {
-            if(i!=j && c.at(i)%c.at(j)==0) cnt++;
-        }
-        if (cnt%2) ans+=0.5;
-        //else ans+=(1.0*(cnt+2))/(1.0*(cnt*2+2));
-        else ans+=((cnt/2+1)*1.0)/(1.0*cnt+1.0);
+    cin >> x >> y;
+    cin >> k;
+    vector<bool> w(105,0);
+    w.at(x)=1;
+    w.at(y)=1;
+    rep(i,k) {
+        cin >> p;
+        if(w.at(p)) ans=0;
+        w.at(p)=1;
     }
-
-    printf("%.10lf\n",ans);
+    cout << ((ans)?"YES":"NO") << endl;
 
     return 0;
 }
