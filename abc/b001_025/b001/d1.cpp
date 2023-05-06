@@ -35,7 +35,6 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 int main(){
     int mod=1000000007;
     int n,m,x,y,cnt=0,ans=0;
-    string s,t;
     cin >> n;
     vector<vector<int>> a(25,vector<int>(61));
     rep(i,25) rep(j,61) a.at(i).at(j)=0;
@@ -47,7 +46,6 @@ int main(){
         else if(y%10>0) y=y-y%10+5;
         if (y%100==60) y+=40;
         a.at(y/100).at(y%100)--;
-        //cout << x << endl;
     }
     rep(i,25) rep(j,60) {
         if(a.at(i).at(j)>0 && cnt==0) {

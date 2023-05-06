@@ -73,11 +73,6 @@ int main(){
 
     if(m==0) s="C ";
     cout << s << m << endl;
-    //vector<int> a(n);
-    //rep(i,n) cin >> a.at(i);
-    //sort(a.begin(),a.end());
-    //scanf("%d %d",&n,&m);
 
-    //print(ans);
     return 0;
 }

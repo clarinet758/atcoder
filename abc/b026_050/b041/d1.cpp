@@ -10,11 +10,16 @@ using namespace std;
 #define sl2(a,b)  scanf("%lld %lld",&a,&b)
 #define sl3(a,b,c)  scanf("%lld %lld %lld",&a,&b,&c)
 #define PI 3.1415926535897932
-//int64_t はatcoderメリット不明のため long long
-#define ll long long
-//#define ll int64_t
 #define print(a) cout << a << endl
+#define pp puts("")
 
+#define Yes printf("Yes\n")
+#define No printf("No\n")
+void yneso(int a) {if(a) Yes; else No;}
+
+//int64_t はatcoderメリット不明のため long long
+typedef long long ll;
+//#define ll int64_t
 
 //
 int souwa(int a) {return (1+a)*a/2;}
@@ -22,9 +27,12 @@ int lcm(int a,int b) { return a*b/__gcd(a,b); }
 //l l lcm(ll a,ll b) { return a*b/__gcd(a,b); }
 
 //
+double tilt(int x1,int y1,int x2,int y2) {return (1.0*y2-1.0*y1)/(1.0*x2-1.0*x1);}
+double tri(int xa,int ya,int xb,int yb,int xc,int yc) {return (1.0*xa-1.0*xc)*(1.0*yb-1.0*yc)-(1.0*xb-1.0*xc)*(1.0*ya-1.0*yc);}
 bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end()); return t.at(0)+t.at(1)>t.at(2);};
 
 /** sort(ar.begin(),ar.end())
+ * vector<vector<int>> a(5,vector<int>)
     int sum=accumulate(ar.begin(),ar.end(),0); 
     do {// do内部で作られた順列に対して必要な処理を行う
         // cout << w.at(0) << w.at(1) << w.at(2) << endl;
@@ -33,14 +41,23 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 // 何か貼るときはココから下に
 
 int main(){
-    int mod=1000000007;
-    int n,m,x,y,cnt=0,ans=0;
-    cin >> n;
+    int mod=1e9+7;
+    int n,m,k,x,y,z,cnt=0;
+    ll ans=0ll;
+    cin >> n >> m;
+    if(n>8) {print(8); return 0;}
+    vector<pair<int,int>> a(m);
+    rep(i,m) cin >> a.at(i).first >> a.at(i).second;
+    vector<int> w(n);
+    rep(i,n) w.at(i)=i+1;
+    do{
+        int f=1;
+        map<int,int> p;
+        rep(i,n) p[w.at(i)]=i;
+        rep(i,m)  if(p[a.at(i).first] > p[a.at(i).second]) f=0; 
+        ans+=f;
+    } while (next_permutation(w.begin(),w.end()));
 
-    if (n<100) print("00");
-    else if (n<=5000) printf("%02d\n",n/100);
-    else if (n<=30000) print(n/1000+50);
-    else if (n<=70000) print((n/1000-30)/5+80);
-    else print(89);
+    print(ans);
     return 0;
 }
