@@ -42,8 +42,13 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 int main(){
     int mod=1e9+7;
-    int a,b,c,d,cnt=0,ans=0;
-    cin >> a >> b >> c >> d;
-    cout << max(a*b,c*d) << endl;;
+    ll n,a,b,k,x,y,z,cnt=0ll,ans=0ll;
+    cin >> n >> a >>b;
+    rep(i,n){
+        cin >>x;
+        if (i>0)  ans+=min(b,(x-y)*a);
+        y=x;
+    }
+    cout << ans << endl;
     return 0;
 }
