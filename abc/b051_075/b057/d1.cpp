@@ -40,24 +40,51 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 // 何か貼るときはココから下に
 
+
 int main(){
-    ll mod=1e11+7;
-    ll n,x,cnt=0,ans=mod;
-    cin >> n;
-    for(ll i=1;i<=n;i++) {
-        if (i*i>n) break;
-        if(n%i==0ll) {
-            if (n/i>i) x=n/i;
-            else x=i;
-            cnt=0;
-            for(;;) {
-                if(x==0) break;
-                x/=10;
-                cnt+=1;
-            }
-            ans=min(ans,cnt);
+    int mod=1e9+7;
+    int n,a,b,e=0,z;
+    ll k,x=1ll,y=1ll,cnt=0ll,ans=0ll,t=0ll;
+    cin >> n >> a >> b;
+    vector<ll> v;
+    vector<vector<ll>> p(51,vector<ll>(51,0));
+    for(int i=0;i<51;i++){
+        p.at(i).at(0)=1;
+        p.at(i).at(i)=1;
+    }
+    for(int i=1;i<51;i++){
+        for(int j=1;j<=i;j++){
+            p.at(i).at(j)=p.at(i-1).at(j-1)+p.at(i-1).at(j);
         }
     }
-    print(ans);
+
+    map<ll,int> w;
+    rep(i,n) {
+        cin >> k;
+        w[k]++;
+        if(w[k]==1) v.push_back(k);
+    }
+    sort(v.begin(),v.end());
+
+    z=v.size()-1;
+    if(z==0 ||a<=w[v.back()]){
+        for(int i=a;i<=b;i++) ans+=p.at(w[v.at(z)]).at(i); 
+        printf("%.10lf\n",v.at(z)*1.0);
+        cout << ans << endl;
+        return 0;
+    }
+
+    for(int i=v.size()-1;i>=0;i--){
+        if(a>e+w[v.at(i)]){
+            cnt+=v.at(i)*w[v.at(i)];
+            e+=w[v.at(i)];
+        }else{
+            cnt+=v.at(i)*(a-e);
+            printf("%.10lf\n",(cnt*1.0)/a);
+            //cout << w[v.at(i)] << endl;
+            cout << p.at(w[v.at(i)]).at(a-e) << endl;
+            return 0;
+        }
+    }
     return 0;
 }

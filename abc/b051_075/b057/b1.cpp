@@ -41,23 +41,19 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 // 何か貼るときはココから下に
 
 int main(){
-    ll mod=1e11+7;
-    ll n,x,cnt=0,ans=mod;
-    cin >> n;
-    for(ll i=1;i<=n;i++) {
-        if (i*i>n) break;
-        if(n%i==0ll) {
-            if (n/i>i) x=n/i;
-            else x=i;
-            cnt=0;
-            for(;;) {
-                if(x==0) break;
-                x/=10;
-                cnt+=1;
-            }
-            ans=min(ans,cnt);
-        }
+    int mod=1e9+7;
+    int n,m,k,x,y,z,cnt=0,ans=0;
+    cin >> n >> m;
+    string s,t;
+    vector<pair<int,int>> a(n);
+    vector<pair<int,int>> b(m);
+    vector<pair<int,int>> c(n,{0,mod});
+    rep(i,n) cin >> a.at(i).first >> a.at(i).second;
+    rep(i,m) cin >> b.at(i).first >> b.at(i).second;
+    rep(i,n) rep(j,m) {
+        x=(abs(a.at(i).first-b.at(j).first)+abs(a.at(i).second-b.at(j).second));
+        if(x<c.at(i).second)  {c.at(i).first=j+1; c.at(i).second=x;}
     }
-    print(ans);
+    rep(i,n) cout << c.at(i).first << endl;
     return 0;
 }
