@@ -23,12 +23,10 @@ typedef long long ll;
 
 //
 int souwa(int a) {return (1+a)*a/2;}
+int lcm(int a,int b) { return a*b/__gcd(a,b); }
+//l l lcm(ll a,ll b) { return a*b/__gcd(a,b); }
 
-//int lcm(int a,int b) { return a*b/__gcd(a,b); }
-
-ll gcdll(ll a, ll b) { if(b==0ll) return a; else return gcdll(b, a%b); }
-ll lcm(ll a,ll b) { return (a/gcdll(a,b)*b); }
-
+//
 double tilt(int x1,int y1,int x2,int y2) {return (1.0*y2-1.0*y1)/(1.0*x2-1.0*x1);}
 double tri(int xa,int ya,int xb,int yb,int xc,int yc) {return (1.0*xa-1.0*xc)*(1.0*yb-1.0*yc)-(1.0*xb-1.0*xc)*(1.0*ya-1.0*yc);}
 bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end()); return t.at(0)+t.at(1)>t.at(2);};
@@ -44,25 +42,53 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 int main(){
     int mod=1e9+7;
-    int n,k,z,cnt=0,ans=0;
-    ll x,y;
+    int n,q,k,x,y,z;
+    ll cnt=0ll,ans=0ll;
     cin >> n;
-    rep(i,n) {
-        cin >> x; 
-        if(i==0){
-            y=x;
-        }else{
-            if(x%y==0){
-                y=x;
-            }else if(y%x==0){
-                y;
-            }else if(x>y){
-                y=lcm(x,y);
-            }else{
-                y=lcm(y,x);
+    map<int, vector<pair<int,int>>> w;
+    rep(i,n-1){
+        cin >> x >> y >> z;
+        w[x].push_back({y,z});
+        w[y].push_back({x,z});
+    }
+    cin >> q >> k;
+    vector<ll> mm(n+3);
+    vector<int> e={k};
+    vector<int> o;
+    rep(i,n*2){
+        if(i%2==0 && e.size()==0){
+            break;
+        }else if(i%2==0){
+            for(;;){
+                if(e.size()==0) break;
+                z=e.back();
+                e.pop_back();
+                rep(j,w[z].size()){
+                    if(mm.at(w[z].at(j).first)==0){
+                        mm.at(w[z].at(j).first)=w[z].at(j).second+mm.at(z);
+                        o.push_back(w[z].at(j).first);
+                    }
+                }
+            }
+        }else  if(i%2 && o.size()==0){
+            break;
+        }else  if(i%2){
+            for(;;){
+                if(o.size()==0) break;
+                z=o.back();
+                o.pop_back();
+                rep(j,w[z].size()){
+                    if(mm.at(w[z].at(j).first)==0){
+                        mm.at(w[z].at(j).first)=w[z].at(j).second+mm.at(z);
+                        e.push_back(w[z].at(j).first);
+                    }
+                }
             }
         }
     }
-    cout << y << endl;
+    rep(i,q){
+        cin >> x >> y;
+        cout << mm.at(x)+mm.at(y) << endl;
+    }
     return 0;
 }
