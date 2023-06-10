@@ -1,43 +1,70 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+#define rep(i,n)  for(int i=0;i<n;++i)
+#define per(i,n)  for(int i=n-1;i>=0;--i)
+#define sc1(a)  scanf("%d",&a)
+#define sc2(a,b)  scanf("%d %d",&a,&b)
+#define sc3(a,b,c)  scanf("%d %d %d",&a,&b,&c)
+#define sl1(a)  scanf("%lld",&a)
+#define sl2(a,b)  scanf("%lld %lld",&a,&b)
+#define sl3(a,b,c)  scanf("%lld %lld %lld",&a,&b,&c)
 #define PI 3.1415926535897932
-#define inf 1<<29
+#define print(a) cout << a << endl
+#define pp puts("")
 
-int n,m,r;
-int d[201][201];
-int w[9];
-int a,b,c;
-int res;
-bool used[9];
+#define Yes printf("Yes\n")
+#define No printf("No\n")
+void yneso(int a) {if(a) Yes; else No;}
 
-void dfs(int c,int las,int dist) {
-    if (c==r+1) {
-        if (res>dist) res=dist;
-        return;
-    }
+//int64_t はatcoderメリット不明のため long long
+typedef long long ll;
+//#define ll int64_t
 
-    for (int i=1;i<=r;i++) if (!used[i]) {
-        used[i]=true;
-        if (las==-1) dfs(c+1,i,0);
-        else dfs(c+1,i,dist+d[w[las]][w[i]]);
-        used[i]=false;
-    }
-}
+//
+int souwa(int a) {return (1+a)*a/2;}
+int lcm(int a,int b) { return a*b/__gcd(a,b); }
+ll gcdll(ll a, ll b) { if(b==0ll) return a; else return gcdll(b, a%b); }
+ll lcmll(ll a,ll b) { return (a/gcdll(a,b)*b); }
+ll maxll(ll a,ll b) {if(a>b){return a;}else{return b;}}
+ll minll(ll a,ll b) {if(a<b){return a;}else{return b;}}
+
+double tilt(int x1,int y1,int x2,int y2) {return (1.0*y2-1.0*y1)/(1.0*x2-1.0*x1);}
+double tri(int xa,int ya,int xb,int yb,int xc,int yc) {return (1.0*xa-1.0*xc)*(1.0*yb-1.0*yc)-(1.0*xb-1.0*xc)*(1.0*ya-1.0*yc);}
+bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end()); return t.at(0)+t.at(1)>t.at(2);};
+
+/** sort(ar.begin(),ar.end())
+ * vector<vector<int>> a(5,vector<int>)
+    int sum=accumulate(ar.begin(),ar.end(),0); 
+    do {// do内部で作られた順列に対して必要な処理を行う
+        // cout << w.at(0) << w.at(1) << w.at(2) << endl;
+    } while (next_permutation(w.begin(),w.end()));  //ex. vector <int> w= {1,2,3}; **/
+
+// 何か貼るときはココから下に
 
 int main(){
-    scanf("%d %d %d",&n,&m,&r);
-    for (int i=1;i<=n;i++) for (int j=1;j<=n;j++) if (i!=j) d[i][j]=inf;
-    for (int i=1;i<=r;i++) scanf("%d",&w[i]);
-    for (int i=1;i<=m;i++) {
-        scanf("%d %d %d",&a,&b,&c);
-        if (d[a][b]>c) d[a][b]=d[b][a]=c;
+    int n,m,r,x,y,z,cnt=0,ans=1<<29;
+    cin >> n >> m >> r;
+    vector<int> rr(r);
+    rep(i,r) cin >> rr.at(i);
+    sort(rr.begin(),rr.end());
+    vector<vector<int>> w(205,vector<int>(205,20000020));
+    rep(i,205) w.at(i).at(i)=0;
+    rep(i,m){
+        cin >> x >> y >> z;
+        w.at(x).at(y)=z;
+        w.at(y).at(x)=z;
     }
-    for (int k=1;k<=n;k++) for (int i=1;i<=n;i++) for (int j=1;j<=n;j++) {
-        if (d[i][j]>d[i][k]+d[k][j]) d[i][j]=d[i][k]+d[k][j];
+    rep(i,n+1) rep(j,n+1) rep(k,n+1) {
+        w.at(j).at(k)=min(w.at(j).at(k),w.at(j).at(i)+w.at(i).at(k));
     }
-    res=inf;
-    dfs(1,-1,0);
-    printf("%d\n",res);
+    
+    do{
+        cnt=0;
+        rep(i,r-1) cnt+=w.at(rr.at(i)).at(rr.at(i+1));
+        ans=min(ans,cnt);
+    }while (next_permutation(rr.begin(),rr.end()));
+    
+    cout << ans << endl;
     return 0;
 }
