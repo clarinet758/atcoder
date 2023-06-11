@@ -37,9 +37,6 @@ int main(){
     int n,m,x,y,cnt=0,ans=0;
     string s,t;
     cin >> x >> y;
-    //cin >> m;
-    //sort(a.begin(),a.end());
-    //scanf("%d %d",&n,&m);
 
     cout << ((x>y)?x:y) << endl;
     return 0;

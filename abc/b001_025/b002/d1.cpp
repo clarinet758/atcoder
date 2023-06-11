@@ -53,13 +53,11 @@ int main(){
             kouho.at(j) = ((i>>j)&1);
             z+=kouho.at(j)-0;
         }
-        //cout << kouho.at(4) << kouho.at(3) << kouho.at(2) << kouho.at(1) << kouho.at(0) << endl;
         
         cnt=1;
         rep(j,n) rep(k,n) {
             if (kouho.at(j) && w.at(j).at(k)<kouho.at(k)) cnt=0;
         }
-        //cout << cnt << z << endl;
         if (cnt) ans=max(ans,z);
     }
 

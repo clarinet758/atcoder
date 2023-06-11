@@ -44,9 +44,6 @@ int main(){
         if (cnt==0) cout << s.at(i);
     }
     cout << endl;
-    //cin >> m;
-    //sort(a.begin(),a.end());
-    //scanf("%d %d",&n,&m);
 
     return 0;
 }
