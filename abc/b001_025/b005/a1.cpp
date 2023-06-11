@@ -37,7 +37,6 @@ int main(){
     int n,m,x,y,cnt=0,ans=0;
     string s,t;
     cin >> x >> y;
-    //cin >> m;
 
     print(y/x);
     return 0;
