@@ -40,8 +40,6 @@ int main(){
         cin >> x;
         ans=min(x,ans);
     }
-    //sort(a.begin(),a.end());
-    //scanf("%d %d",&n,&m);
 
     print(ans);
     return 0;
