@@ -46,11 +46,7 @@ int main(){
     double x=hen(x1,y1,x2,y2);
     double y=hen(x3,y3,x2,y2);
     double z=hen(x1,y1,x3,y3);
-    //cout << x << y << z << endl;
     double p=(x+y+z)/2.0;
-    //cin >> m;
-    //sort(a.begin(),a.end());
-    //scanf("%d %d",&n,&m);
 
     printf("%.10lf\n",(pow((p*(p-x)*(p-y)*(p-z)),0.5)));
     return 0;
