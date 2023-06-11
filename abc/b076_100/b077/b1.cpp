@@ -45,32 +45,13 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 int main(){
     int mod=1e9+7;
-    ll n,k,x,y,z;
-    ll cnt=1ll,ans=0ll;
+    int n,k,x,y,z,cnt=0,ans=0;
     cin >> n;
-    vector<int> a={0};
-    vector<int> b={0};
-    vector<int> c={0};
-    rep(i,n) {cin >> z; a.push_back(z);}
-    rep(i,n) {cin >> z; b.push_back(z);}
-    rep(i,n) {cin >> z; c.push_back(z);}
-    a.push_back(mod);
-    b.push_back(mod);
-    c.push_back(mod);
-    sort(a.begin(),a.end());
-    sort(b.begin(),b.end());
-    sort(c.begin(),c.end());
-
-    rep(i,n){
-        auto p=lower_bound(a.begin(),a.end(),b.at(i+1));
-        x=p-a.begin();
-        x--;
-        auto q=upper_bound(c.begin(),c.end(),b.at(i+1));
-        y=q-c.begin();
-        y--;
-        x*=1ll,y*=1ll;
-        ans+=maxll(0ll,(n-y))*x;
+    rep(i,n+1){
+        if(i*i==n || (i+1)*(i+1)>n){
+            printf("%d\n",i*i);
+            break;
+        }
     }
-    cout << ans << endl;
     return 0;
 }
