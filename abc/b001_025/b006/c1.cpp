@@ -39,13 +39,10 @@ int main(){
     cin >> n >> m;
     if (m>n*4 || m<n*2) printf("-1 -1 -1\n");
     else if (m>=n*3) {
-        //cout << 0 << " " << m/3-(m-3*n) << " " << m-3*n << endl;
         cout << 0 << " " << n-(m-n*3) << " " << m-3*n << endl;
     } else {
         cout << 3*n-m << " " << n-(3*n-m) << " " << 0 << endl;
-        
     }
-
 
     return 0;
 }
