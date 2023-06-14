@@ -45,21 +45,9 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 int main(){
     int mod=1e9+7;
-    int h,w,n,k,x,y,z,cnt=0,ans=0;
-    cin >> h >> w;
-    vector<vector<int>> c(10,vector<int>(10,0));
-
-    rep(i,10)rep(j,10) cin >> c.at(i).at(j);
-    
-    vector<int> ww(10,mod);
-
-    rep(i,10) rep(j,10) rep(k,10) c.at(j).at(k)=min(c.at(j).at(k),c.at(j).at(i)+c.at(i).at(k));
-
-    rep(i,h*w){
-        cin >> y;
-        if (y!=-1) ans+=c.at(y).at(1);
-    }
-    cout << ans << endl;
+    int n,a,b,k,x,y,z,cnt=0,ans=0;
+    sc3(n,a,b);
+    cout << min(n*a,b) << endl;
 
     return 0;
 }

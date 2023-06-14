@@ -37,7 +37,6 @@ int main(){
     int n,m,x,y,cnt=0,ans=0;
     string s,t;
     cin >> n >> m;
-    //cin >> m;
 
     print(m-n+1);
     return 0;
