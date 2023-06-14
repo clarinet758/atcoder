@@ -32,21 +32,17 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 // 何か貼るときはココから下に
 
-int main(){
+int main(){//後で
     int mod=1000000007;
     int n,m,x,y,cnt=0,ans=0;
     string s,t;
     cin >> n;
-    map<string,int> w;
-    rep(i,n){
-        cin >> s;
-        w[s]++;
-        if(w[s]>ans){
-            ans=w[s];
-            t=s;
-        }
-    }
+    //cin >> m;
+    vector<int> a(n);
+    rep(i,n) cin >> a.at(i);
+    //sort(a.begin(),a.end());
+    //scanf("%d %d",&n,&m);
 
-    print(t);
+    print(ans);
     return 0;
 }

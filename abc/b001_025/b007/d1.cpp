@@ -2,36 +2,42 @@
 using namespace std;
 
 #define rep(i,n)  for(int i=0;i<n;++i)
+#define per(i,n)  for(int i=n-1;i>=0;--i)
+#define sc1(a)  scanf("%d",&a)
+#define sc2(a,b)  scanf("%d %d",&a,&b)
+#define sc3(a,b,c)  scanf("%d %d %d",&a,&b,&c)
+#define sl1(a)  scanf("%lld",&a)
+#define sl2(a,b)  scanf("%lld %lld",&a,&b)
+#define sl3(a,b,c)  scanf("%lld %lld %lld",&a,&b,&c)
+#define PI 3.1415926535897932
+//int64_t はatcoderメリット不明のため long long
+#define ll long long
+//#define ll int64_t
+#define print(a) cout << a << endl
 
-long long x,dp[20][2];
 
-long long cnt(char s[25],bool p) {
-    bool f=0;
-    x=0ll;
-    rep(i,20) {dp[i][0]=0; dp[i][1]=0;}
-    dp[0][0]=1ll;
-    long l=strlen(s);
-    for (long i=0;i<l;i++) {
-        x*=10;
-        int pt=s[i]-'0';
-        x+=pt;
-        if (pt==4 || pt==9) f=1;
-        rep(j,10) {
-            if (j==4 || j==9) continue;
-            if (pt==j) dp[i+1][0]+=dp[i][0];
-            if (pt>j) dp[i+1][1]+=dp[i][0];
-            if (i>0l) { dp[i+1][1]+=dp[i][1]; }
+//
+int souwa(int a) {return (1+a)*a/2;}
+int lcm(int a,int b) { return a*b/__gcd(a,b); }
+//l l lcm(ll a,ll b) { return a*b/__gcd(a,b); }
 
-        }
-    }
-    return x-dp[l][0]-dp[l][1]+1-(p==1 && f==1);
-}
+//
+bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end()); return t.at(0)+t.at(1)>t.at(2);};
 
-int main(){
-    int n,m;
-    char a[25],b[25];
-    scanf("%s %s",a,b);
-    long long ans=cnt(b,0)-cnt(a,1);
-    printf("%lld\n",ans);
+/** sort(ar.begin(),ar.end())
+    int sum=accumulate(ar.begin(),ar.end(),0); 
+    do {// do内部で作られた順列に対して必要な処理を行う
+        // cout << w.at(0) << w.at(1) << w.at(2) << endl;
+    } while (next_permutation(w.begin(),w.end()));  //ex. vector <int> w= {1,2,3}; **/
+
+// 何か貼るときはココから下に
+
+int main(){//後で
+    int mod=1000000007;
+    int n,m,x,y,cnt=0,ans=0;
+    string s,t;
+    cin >> n;
+    if (n%3==0) print("YES");
+    else print("NO");
     return 0;
 }
