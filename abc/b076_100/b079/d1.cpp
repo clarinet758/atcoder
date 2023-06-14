@@ -53,34 +53,11 @@ int main(){
     
     vector<int> ww(10,mod);
 
-    rep(i,10){
-        vector<int> e={i};
-        vector<int> o;
-        vector<int> p(10,mod);
-        p.at(i)=0;
+    rep(i,10) rep(j,10) rep(k,10) c.at(j).at(k)=min(c.at(j).at(k),c.at(j).at(i)+c.at(i).at(k));
 
-        rep(j,111){
-            for(;;){
-                if(j%2 && o.size()==0) break;
-                else if(j%2==0 && e.size()==0) break;
-                if(j%2) {x=o.back(); o.pop_back();}
-                else {x=e.back(); e.pop_back();}
-
-                rep(k,10){
-                    if(c.at(x).at(k)+p.at(x)<p.at(k)){
-                        p.at(k)=c.at(x).at(k)+p.at(x);
-                        if(j%2) e.push_back(k);
-                        else o.push_back(k);
-                    }
-                }
-            }
-
-        }
-        ww.at(i)=p.at(1);
-    }
     rep(i,h*w){
         cin >> y;
-        if (y!=-1)ans+=ww.at(y);
+        if (y!=-1) ans+=c.at(y).at(1);
     }
     cout << ans << endl;
 
