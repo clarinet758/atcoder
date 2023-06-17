@@ -53,11 +53,5 @@ int main(){
         }
     }
     puts("");
-    //cin >> m;
-    //sort(a.begin(),a.end());
-    //scanf("%d %d",&n,&m);
-    //cout << 'a'-0 << endl;
-    //cout << 'A'-0 << endl;
-    //print(ans);
     return 0;
 }

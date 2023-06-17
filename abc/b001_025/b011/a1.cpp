@@ -37,10 +37,6 @@ int main(){
     int n,m,x,y,cnt=0,ans=0;
     string s,t;
     cin >> n;
-    //cin >> m;
-    //sort(a.begin(),a.end());
-    //scanf("%d %d",&n,&m);
-
     ans=(n+1)%12;
     cout << ((ans==0)?12:ans) << endl;
 
