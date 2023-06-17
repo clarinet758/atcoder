@@ -37,6 +37,5 @@ int main(){
     int n,m,x,y,cnt=0,ans=0;
     cin >> n >> m;
     cout << min(abs(n-m),min((10+n)-m,(10+m)-n)) << endl;
-
     return 0;
 }

@@ -35,10 +35,6 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 int main(){
     string s,t;
     cin >> s;
-    //cin >> m;
-    //sort(a.begin(),a.end());
-    //scanf("%d %d",&n,&m);
-
     printf("%d\n",s.at(0) - 'A'+1);
     return 0;
 }

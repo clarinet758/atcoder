@@ -42,7 +42,6 @@ int main(){
         if ((h+i*b)>(n-i)*e) cnt=0;
         ans=min(ans,i*a+c*cnt);
     }
-
     print(ans);
     return 0;
 }
