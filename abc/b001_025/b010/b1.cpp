@@ -37,8 +37,6 @@ int main(){
     int n,m,x,y,cnt=0,ans=0;
     string s,t;
     cin >> n;
-    //cin >> m;
-    //vector<int> a(n);
     rep(i,n) {
         cin >> x;
         for(;;) {

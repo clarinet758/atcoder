@@ -43,9 +43,6 @@ int main(){
         cnt=pow(((sx-x)*(sx-x)+(sy-y)*(sy-y)),0.5)+pow(((gx-x)*(gx-x)+(gy-y)*(gy-y)),0.5);
         if (cnt<=1.0*t*v) ans=1;
     }
-    //sort(a.begin(),a.end());
-    //scanf("%d %d",&n,&m);
-
     if (ans) cout << "YES" << endl;
     else cout << "NO" << endl;
     return 0;
