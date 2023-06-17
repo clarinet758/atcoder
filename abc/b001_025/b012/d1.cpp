@@ -36,11 +36,8 @@ vector<vector<int>> w;
 void wf(int n){
     rep(i,n) rep(j,n) rep(k,n){
         w.at(j).at(k)=min(w.at(j).at(k),w.at(j).at(i)+w.at(i).at(k));
-
     }
 }
-
-
 
 int main(){
     int mod=1000000007;
@@ -55,9 +52,6 @@ int main(){
     }
     cnt=mod;
     wf(n+1);
-    //cout << w.at(1).at(1) << w.at(1).at(2) << w.at(1).at(3) << endl;
-    //cout << w.at(2).at(1) << w.at(2).at(2) << w.at(2).at(3) << endl;
-    //cout << w.at(3).at(1) << w.at(3).at(2) << w.at(3).at(3) << endl;
     rep(i,n) {
         sort(w.at(i+1).begin(),w.at(i+1).end());
         x=w.at(i+1).at(n-1);
