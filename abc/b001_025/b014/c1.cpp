@@ -37,7 +37,6 @@ int main(){
     int n,m,x,y,cnt=0,ans=0;
     string s,t;
     cin >> n;
-    //cin >> m;
     vector<int> w(1000003,0);
     rep(i,n) {
         cin >> x >> y;
@@ -48,7 +47,6 @@ int main(){
         cnt+=w.at(i);
         ans=max(ans,cnt);
     }
-
     print(ans);
     return 0;
 }

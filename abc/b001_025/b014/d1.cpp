@@ -37,7 +37,6 @@ int main(){
     int n,m,x,y,q,cnt=0,ans=0;
     string s,t;
     cin >> n;
-    //vector<vector<int>> w(n,vector<int>());
     vector<vector<int>> w(n,vector<int>());
     rep(i,n-1) {
         cin >> x >> y;
@@ -45,8 +44,6 @@ int main(){
         w.at(x).push_back(y);
         w.at(y).push_back(x);
     }
-    //cout <<w.at(0).size() << endl;
-    //cout <<w.at(1).size() << endl;
     vector<int> p(n,0);
     vector<int> h;
     cin >> q;

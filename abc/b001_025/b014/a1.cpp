@@ -37,10 +37,6 @@ int main(){
     int a,b,x,y,cnt=0,ans=0;
     string s,t;
     cin >> a >> b;
-    //cin >> m;
-    //sort(a.begin(),a.end());
-    //scanf("%d %d",&n,&m);
-
     print((b-a%b)%b);
     return 0;
 }

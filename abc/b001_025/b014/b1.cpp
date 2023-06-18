@@ -37,17 +37,10 @@ int main(){
     int n,a,m,x,y,cnt=0,ans=0;
     string s,t;
     cin >> n >> x;;
-    //cin >> m;
-    //vector<int> a(n);
     rep(i,n) {
         cin >> a;
-        //cout << (x>>i) << endl;
         if ((x>>i)&1) ans+=a;
     }
-    //rep(i,n) cin >> a.at(i);
-    //sort(a.begin(),a.end());
-    //scanf("%d %d",&n,&m);
-
     print(ans);
     return 0;
 }
