@@ -43,18 +43,33 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 // 何か貼るときはココから下に
 
+vector< bool > prime_table(int n) {
+  vector< bool > prime(n + 1, true);
+  if(n >= 0) prime[0] = false;
+  if(n >= 1) prime[1] = false;
+  for(int i = 2; i * i <= n; i++) {
+    if(!prime[i]) continue;
+    for(int j = i * i; j <= n; j += i) {
+      prime[j] = false;
+    }
+  }
+  return prime;
+}
+
 int main(){
     int mod=1e9+7;
-    int a,b,k,x,y,z,cnt=0,ans=1;
-    string s,t;
-    cin >> a >> b >> s;
-    if(s.size()!=a+b+1) ans=0;
-    else {
-        rep(i,a+b+1){
-            if(i==a && s.at(i)!='-') ans=0;
-            else if(i!=a && s.at(i)=='-') ans=0;
-        }
+    int q,k,x,y,z,cnt=0,ans=0;
+    cin >> q;
+    vector<bool> p=prime_table(100007);
+    vector<int> w(100005);
+    //rep(i,10){ if(p.at(i)==1) cout << i << endl; }
+    for(int i=2;i<100005;i++) {
+        w.at(i)=w.at(i-1);
+        if(p.at(i) && p.at((i+1)/2)) w.at(i)++;
     }
-    cout << ((ans)?"Yes":"No") << endl;
+    rep(i,q) {
+        cin >> x >> y;
+        cout << w.at(y)-w.at(x-1) << endl;
+    } 
     return 0;
 }
