@@ -45,14 +45,22 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 int main(){
     int mod=1e9+7;
-    int n,t,x,y,z,p=0,h=0,w=0,cnt=0,ans=1;
-    cin >> n;
+    int n,h,k,x,y,z,cnt=0,ans=0;
+    cin >> n >> h;
+    vector<int> a(n);
     rep(i,n) {
-        cin >> t >> x >> y;
-        z=abs(x-w)+abs(y-h);
-        if((t-p)<z || ((t-p)-z)%2) ans=0;
-        h=y,w=x,p=t;
+        cin >> x >> a.at(i);
+        cnt=max(cnt,x);
     }
-    cout << ((ans)?"Yes":"No") << endl;
+    sort(a.begin(),a.end());
+    rep(i,n) {
+        if(a.at(n-1-i)>cnt) {
+            h-=a.at(n-1-i);
+            ans++;
+        }
+        if(h<=0) break;
+    }
+    if (h>0) ans+=(h+cnt-1)/cnt;
+    cout << ans << endl;
     return 0;
 }

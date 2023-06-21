@@ -43,16 +43,35 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 // 何か貼るときはココから下に
 
-int main(){
+int main(){//後で
     int mod=1e9+7;
-    int n,t,x,y,z,p=0,h=0,w=0,cnt=0,ans=1;
-    cin >> n;
-    rep(i,n) {
-        cin >> t >> x >> y;
-        z=abs(x-w)+abs(y-h);
-        if((t-p)<z || ((t-p)-z)%2) ans=0;
-        h=y,w=x,p=t;
+    int n,m,k,x,y,z,cnt=0,ans=1;
+    cin >> n >> m;
+    vector<bool> p(n);
+    vector<bool> w(n);
+    map<int,vector<int>> u;
+    vector<vector<int>> l(m,vector<int>(3));
+    rep(i,m) {
+        int a,b,c;
+        cin >> a >> b >> c;
+        if(a<b){
+            l.at(i).at(0)=a-1;
+            l.at(i).at(1)=b-1;
+            l.at(i).at(2)=c;
+        }else{
+            l.at(i).at(0)=b-1;
+            l.at(i).at(1)=a-1;
+            l.at(i).at(2)=-c;
+        }
+        p.at(l.at(i).at(1))=1;
     }
-    cout << ((ans)?"Yes":"No") << endl;
+    rep(i,n){
+        if(p.at(i)==0) {x=i; break;}
+        if(i==n-1) {cout << "No" << endl; return 0;}
+    }
+    rep(i,m) if (l.at(i).at(0)==x) l.at(i).at(0)=0; 
+    sort(l.begin(),l.end());
+    cout << "yo" << endl;
+
     return 0;
 }
