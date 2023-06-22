@@ -43,7 +43,6 @@ int main(){
         x=t.at(0).at(a)^t.at(1).at(b)^t.at(2).at(c)^t.at(3).at(d)^t.at(4).at(e);
         if (x==0) ans=1;
     }
-
     cout << ((ans==1)?"Found":"Nothing") << endl;
     return 0;
 }
