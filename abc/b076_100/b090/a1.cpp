@@ -47,20 +47,9 @@ int main(){
     int mod=1e9+7;
     int n,k,x,y,z,cnt=0,ans=0;
     string s,t;
-    cin >> n >> s;
-    vector<int> w;
-    vector<int> p(n+1);
-    rep(i,n) {
-        if(s.at(i)=='(') w.push_back(i);
-        if(s.at(i)==')' && w.size()>0) {
-            p.at(w.back())+=1;
-            p.at(i+1)+=-1;
-            w.pop_back();
-        }
-    }
-    rep(i,n){
-        cnt+=p.at(i);
-        if(cnt==0) cout << s.at(i);
+    rep(i,3) {
+        cin >> s;
+        cout << s.at(i);
     }
     pp;
     return 0;
