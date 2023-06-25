@@ -36,8 +36,6 @@ int main(){
     int mod=1000000007;
     int d,m,x,y,cnt=0,ans=0;
     cin >> m >> d;
-    //cin >> m;
     cout << ((m%d==0)?"YES":"NO") << endl;
-
     return 0;
 }
