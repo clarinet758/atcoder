@@ -45,7 +45,6 @@ int main(){
             ans=0;
         }
     }
-    //cout << ans << endl;
     cout << ((ans)?"YES":"NO") << endl;
     return 0;
 }

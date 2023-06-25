@@ -35,9 +35,21 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 int main(){
     int mod=1000000007;
     int n,m,x,y,cnt=0,ans=0;
-    rep(i,3) {
-        cin >> x >> y;
-        ans+=x*y/10;
+    cin >> n >> m;
+    if(n>8 || m>8) {cout << -1 << endl; return 0;}
+    vector<vector<int>> a(n,vector<int>(3));
+    rep(i,n) cin >> a.at(i).at(0) >> a.at(i).at(1) >> a.at(i).at(2);
+    rep(i,1<<n){
+        vector<int> w(m);
+        x=i,cnt=0;
+        rep(j,n){
+            if(x&1){
+                cnt+=a.at(j).at(2);
+                for(int k=a.at(j).at(0);k<=a.at(j).at(1);k++) w.at(k-1)=1;
+            }
+            if(accumulate(w.begin(),w.end(),0)<m) ans=max(ans,cnt);
+            x=x>>1;
+        }
     }
     print(ans);
     return 0;
