@@ -45,33 +45,22 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 int main(){
     int mod=1e9+7;
-    int r,c,k,x,y,z,cnt=0,ans=0;
-    cin >> r >> c >> k;
-    vector<string> a(r);
-    vector<vector<int>> w(r,vector<int>(c,777));
-    rep(i,r) cin >> a.at(i);
-
-    rep(i,c)rep(j,r){
-        if(j==0){
-            w.at(0).at(i)=(a.at(0).at(i)=='o');
-            w.at(r-1).at(i)=(a.at(r-1).at(i)=='o');
-        }else{
-            if(a.at(j).at(i)=='o') w.at(j).at(i)=min(w.at(j).at(i),w.at(j-1).at(i)+1);
-            else if(a.at(j).at(i)=='x') w.at(j).at(i)=0;
-
-            if(a.at(r-1-j).at(i)=='o') w.at(r-1-j).at(i)=min(w.at(r-1-j).at(i),w.at(r-j).at(i)+1);
-            else if(a.at(r-1-j).at(i)=='x') w.at(r-1-j).at(i)=0;
-        }
+    int n,m,k,x,y,z,cnt=0,ans=0;
+    map<string,int> nn;
+    map<string,int> mm;
+    string s,t;
+    cin >> n;
+    rep(i,n){
+        cin >> s;
+        nn[s]++;
     }
-    for(int i=k-1;i<=r-k;i++){
-        for(int j=k-1;j<=c-k;j++){
-            cnt=1;
-            rep(v,k) {
-                if(w.at(i).at(j-v)<(k-v)) cnt=0;
-                if(w.at(i).at(j+v)<(k-v)) cnt=0;
-            }
-            ans+=cnt;
-        }
+    cin >> m;
+    rep(i,m){
+        cin >> s;
+        nn[s]--;
+    }
+    for(auto itr : nn) {
+        ans=max(ans,nn[itr.first]);
     }
     cout << ans << endl;
     return 0;
