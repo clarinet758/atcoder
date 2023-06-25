@@ -1,37 +1,78 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+#define rep(i,n)  for(int i=0;i<n;++i)
+#define per(i,n)  for(int i=n-1;i>=0;--i)
+#define sc1(a)  scanf("%d",&a)
+#define sc2(a,b)  scanf("%d %d",&a,&b)
+#define sc3(a,b,c)  scanf("%d %d %d",&a,&b,&c)
+#define sl1(a)  scanf("%lld",&a)
+#define sl2(a,b)  scanf("%lld %lld",&a,&b)
+#define sl3(a,b,c)  scanf("%lld %lld %lld",&a,&b,&c)
+#define PI 3.1415926535897932
+#define print(a) cout << a << endl
+#define pp puts("")
+
+#define Yes printf("Yes\n")
+#define No printf("No\n")
+void yneso(int a) {if(a) cout << Yes; else cout << No;}
+
+//int64_t はatcoderメリット不明のため long long
+typedef long long ll;
+//#define ll int64_t
+
+//
+int souwa(int a) {return (1+a)*a/2;}
+int lcm(int a,int b) { return a*b/__gcd(a,b); }
+ll gcdll(ll a, ll b) { if(b==0ll) return a; else return gcdll(b, a%b); }
+ll lcmll(ll a,ll b) { return (a/gcdll(a,b)*b); }
+ll maxll(ll a,ll b) {if(a>b){return a;}else{return b;}}
+ll minll(ll a,ll b) {if(a<b){return a;}else{return b;}}
+
+double tilt(int x1,int y1,int x2,int y2) {return (1.0*y2-1.0*y1)/(1.0*x2-1.0*x1);}
+double tri(int xa,int ya,int xb,int yb,int xc,int yc) {return (1.0*xa-1.0*xc)*(1.0*yb-1.0*yc)-(1.0*xb-1.0*xc)*(1.0*ya-1.0*yc);}
+bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end()); return t.at(0)+t.at(1)>t.at(2);};
+
+/** sort(ar.begin(),ar.end())
+ * vector<vector<int>> a(5,vector<int>)
+    int sum=accumulate(ar.begin(),ar.end(),0); 
+    do {// do内部で作られた順列に対して必要な処理を行う
+        //必ず事前にソートしておくこと、配列の中身を見ていて？辞書順に次のもの次のもの作成するのでソートしておかないと列挙が漏れる
+        // cout << w.at(0) << w.at(1) << w.at(2) << endl;
+    } while (next_permutation(w.begin(),w.end()));  //ex. vector <int> w= {1,2,3}; **/
+
+// 何か貼るときはココから下に
+
 int main(){
-    int r,c,k,ans=0;
-    scanf("%d %d %d",&r,&c,&k);
-    int b[r][c][2];
-    char s[r][c];
-    for (int i=0;i<r;i++) for (int j=0;j<c;j++) {
-        b[i][j][0]=0;
-        b[i][j][1]=0;
-    }
-    for (int i=0;i<r;i++) {
-        scanf("%s",s[i]);
-    }
-    for (int i=0;i<r;i++) for (int j=0;j<c;j++) {
-        if (i==0) {
-            if (s[i][j]=='o') b[i][j][0]=1;
-            if (s[r-i-1][j]=='o') b[r-i-1][j][1]=1;
-        } else {
-            if (s[i][j]=='o') b[i][j][0]=b[i-1][j][0]+1;
-            if (s[r-i-1][j]=='o') b[r-i-1][j][1]=b[r-i][j][1]+1;
+    int mod=1e9+7;
+    int r,c,k,x,y,z,cnt=0,ans=0;
+    cin >> r >> c >> k;
+    vector<string> a(r);
+    vector<vector<int>> w(r,vector<int>(c,777));
+    rep(i,r) cin >> a.at(i);
+
+    rep(i,c)rep(j,r){
+        if(j==0){
+            w.at(0).at(i)=(a.at(0).at(i)=='o');
+            w.at(r-1).at(i)=(a.at(r-1).at(i)=='o');
+        }else{
+            if(a.at(j).at(i)=='o') w.at(j).at(i)=min(w.at(j).at(i),w.at(j-1).at(i)+1);
+            else if(a.at(j).at(i)=='x') w.at(j).at(i)=0;
+
+            if(a.at(r-1-j).at(i)=='o') w.at(r-1-j).at(i)=min(w.at(r-1-j).at(i),w.at(r-j).at(i)+1);
+            else if(a.at(r-1-j).at(i)=='x') w.at(r-1-j).at(i)=0;
         }
     }
-    for (int i=k-1;i<r-(k-1);i++) for (int j=k-1;j<c-(k-1);j++) {
-        bool f[2]={1,1};
-        for (int p=0;p<k;p++) {
-            if (b[i][j+p][0]<k-p || b[i][j+p][1]<k-p) f[0]=0;
-            if (b[i][j-p][0]<k-p || b[i][j-p][1]<k-p) f[1]=0;
+    for(int i=k-1;i<=r-k;i++){
+        for(int j=k-1;j<=c-k;j++){
+            cnt=1;
+            rep(v,k) {
+                if(w.at(i).at(j-v)<(k-v)) cnt=0;
+                if(w.at(i).at(j+v)<(k-v)) cnt=0;
             }
-        if (f[0]==f[1] && f[0]==true) {
-            ans+=1;
+            ans+=cnt;
         }
     }
-    printf("%d\n",ans);
+    cout << ans << endl;
     return 0;
 }
