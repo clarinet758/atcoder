@@ -45,16 +45,12 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 int main(){
     int mod=1e9+7;
-    int a,b,c,x,y,z,cnt=mod,ans=mod;
-    cin >> a >> b >> c >> x >> y;
-    cnt=x*a+y*b;
-    ans=cnt;
-    for(int i=0;i<max(x,y);i++){
-        cnt+=c*2;
-        if(i<x) cnt-=a;
-        if(i<y) cnt-=b;
-        ans=min(ans,cnt);
-    }
-    print(ans);
+    int n,k,x,y,z,cnt=0,ans=0;
+    cin >> n >> x;
+    vector<int> a(n);
+    rep(i,n) cin >> a.at(i);
+    sort(a.begin(),a.end());
+    x-=accumulate(a.begin(),a.end(),0);
+    cout << n+x/a.at(0) << endl;
     return 0;
 }
