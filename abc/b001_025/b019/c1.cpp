@@ -33,12 +33,20 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 // 何か貼るときはココから下に
 
 int main(){
-    int mod=1000000007;
     int n,m,x,y,cnt=0,ans=0;
-    string s,t;
-    vector<int> a(3);
-    rep(i,3) cin >> a.at(i);
-    sort(a.begin(),a.end());
-    print(a.at(1));
+    cin >> n;
+    vector<bool> w(1000000005,0);
+    rep(i,n) {
+        cin >> x;
+        for(;;) {
+            if(x%2){
+                if(w.at(x)==0) cnt++;
+                w.at(x)=1;
+                break;
+            }
+            x/=2;
+        }
+    }
+    print(cnt);
     return 0;
 }
