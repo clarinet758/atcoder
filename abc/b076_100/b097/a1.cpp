@@ -45,8 +45,8 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 int main(){
     int mod=1e9+7;
-    int a,b,n,k,x,y,z,cnt=0,ans=0;
-    cin >> a >> b;
-    cout << max(a+b,max(a-b,a*b)) << endl;
+    int a,b,c,d,n,k,x,y,z,cnt=0,ans=0;
+    cin >> a >> b >> c >> d;
+    cout << ((abs(a-c)<=d)||(abs(a-b)<=d && abs(b-c)<=d)?"Yes":"No") << endl;
     return 0;
 }

@@ -43,10 +43,40 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 // 何か貼るときはココから下に
 
+vector< bool > prime_table(int n) {
+  vector< bool > prime(n + 1, true);
+  if(n >= 0) prime[0] = false;
+  if(n >= 1) prime[1] = false;
+  for(int i = 2; i * i <= n; i++) {
+    if(!prime[i]) continue;
+    for(int j = i * i; j <= n; j += i) {
+      prime[j] = false;
+    }
+  }
+  return prime;
+}
+vector< int > enumerate_primes(int n) {
+  if(n <= 1) return {};
+  auto d = prime_table(n);
+  vector< int > primes;
+  primes.reserve(count(begin(d), end(d), true));
+  for(int i = 0; i < d.size(); i++) {
+    if(d[i]) primes.push_back(i);
+  }
+  return primes;
+}
+
 int main(){
     int mod=1e9+7;
-    int a,b,n,k,x,y,z,cnt=0,ans=0;
-    cin >> a >> b;
-    cout << max(a+b,max(a-b,a*b)) << endl;
+    int n,k,x,y,z,cnt=0,ans=0;
+    cin >> n;
+    vector<int> p=enumerate_primes(55555);
+    vector<int> h;
+    rep(i,p.size()) {
+        if(p.at(i)%10==1) h.push_back(p.at(i));
+        if(h.size()==n) break;
+    }
+    rep(i,n-1) cout << h.at(i) << " " ;
+    cout << h.at(n-1) << endl;
     return 0;
 }

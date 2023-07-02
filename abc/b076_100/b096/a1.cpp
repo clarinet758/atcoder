@@ -47,6 +47,6 @@ int main(){
     int mod=1e9+7;
     int a,b,n,k,x,y,z,cnt=0,ans=0;
     cin >> a >> b;
-    cout << max(a+b,max(a-b,a*b)) << endl;
+    cout << ((a<=b)?a:a-1) << endl;
     return 0;
 }
