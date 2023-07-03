@@ -43,39 +43,15 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 // 何か貼るときはココから下に
 
-int main(){//計算合わず
+int main(){//後で
     int mod=1e9+7;
-    int n,k,x,y,z,cnt=0,ans=mod;
+    int n,k,x,y,z,cnt=0,ans=0;
     cin >> n;
-    vector<int> a={6};
-    vector<int> b={9};
-    for(;;){
-        if(a.back()*6>100000)break;
-        else a.push_back(a.back()*6);
-    }
-    for(;;){
-        if(b.back()*9>100000)break;
-        else b.push_back(b.back()*9);
-    }
-    x=n/6;
-    for(int i=x;i>=0;i--){
-        //print(i);
-        cnt=0;
-        cnt+=i/a.at(5);
-        cnt+=(i%a.at(5))/a.at(4);
-        cnt+=(i%a.at(4))/a.at(3);
-        cnt+=(i%a.at(3))/a.at(2);
-        cnt+=(i%a.at(2))/a.at(1);
-        cnt+=(i%a.at(1))/a.at(0);
-        y=n-(i*6);
-        cnt+=y/b.at(4);
-        cnt+=(y%b.at(4))/b.at(3);
-        cnt+=(y%b.at(3))/b.at(2);
-        cnt+=(y%b.at(2))/b.at(1);
-        cnt+=(y%b.at(1))/b.at(0);
-        cnt+=y%9;
-        ans=min(ans,cnt);
-    }
-    print(ans);
+    //cin >> m;
+    string s,t;
+    vector<int> a(n);
+    rep(i,n) cin >> a.at(i);
+
+    //print(ans);
     return 0;
 }

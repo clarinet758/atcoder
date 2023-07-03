@@ -52,8 +52,6 @@ int main(){
     //string p=d.at(0);
     //cout << p << endl;
     for(;;) {
-    //rep(i,10) {
-        //cout << r << l << endl;
         if (r-l<=1) break;
         vector<pair<int,int>> dd;
         vector<vector<int>> m(h,vector<int>(w,t+5));
@@ -97,11 +95,9 @@ int main(){
                 }
             }
         }
-        //cout << m.at(gy).at(gx) << endl;
         if (m.at(gy).at(gx)<=t) l=cnt;
         else r=cnt;
     }
-
     print(l);
     return 0;
 }
