@@ -47,35 +47,45 @@ int main(){//計算合わず
     int mod=1e9+7;
     int n,k,x,y,z,cnt=0,ans=mod;
     cin >> n;
-    vector<int> a={6};
-    vector<int> b={9};
+    vector<int> a={1,6};
+    vector<int> p1={0};
+    vector<int> p2;
+    vector<bool> w(100005);
     for(;;){
         if(a.back()*6>100000)break;
         else a.push_back(a.back()*6);
     }
+    a.push_back(9);
     for(;;){
-        if(b.back()*9>100000)break;
-        else b.push_back(b.back()*9);
+        if(a.back()*9>100000)break;
+        else a.push_back(a.back()*9);
     }
-    x=n/6;
-    for(int i=x;i>=0;i--){
-        //print(i);
-        cnt=0;
-        cnt+=i/a.at(5);
-        cnt+=(i%a.at(5))/a.at(4);
-        cnt+=(i%a.at(4))/a.at(3);
-        cnt+=(i%a.at(3))/a.at(2);
-        cnt+=(i%a.at(2))/a.at(1);
-        cnt+=(i%a.at(1))/a.at(0);
-        y=n-(i*6);
-        cnt+=y/b.at(4);
-        cnt+=(y%b.at(4))/b.at(3);
-        cnt+=(y%b.at(3))/b.at(2);
-        cnt+=(y%b.at(2))/b.at(1);
-        cnt+=(y%b.at(1))/b.at(0);
-        cnt+=y%9;
-        ans=min(ans,cnt);
+    for(;;){
+        //print(cnt);
+        if(cnt%2==0) {p2.clear();}
+        else {p1.clear();}
+        rep(i,12){
+            if(cnt%2==0){
+                rep(j,p1.size()){
+                    x=p1.at(j)+a.at(i);
+                    if(x<100003 && w.at(x)==0){
+                        w.at(x)=1;
+                        p2.push_back(x);
+                    }
+                }
+            } else {
+                rep(j,p2.size()){
+                    x=p2.at(j)+a.at(i);
+                    if(x<100003 && w.at(x)==0){
+                        w.at(x)=1;
+                        p1.push_back(x);
+                    }
+                }
+            }
+        }
+        cnt++;
+        if(w.at(n)) break;
     }
-    print(ans);
+    cout << cnt << endl;
     return 0;
 }
