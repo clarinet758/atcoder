@@ -45,11 +45,8 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 int main(){
     int mod=1e9+7;
-    int n,k,x=0,y=0,z,cnt=0,ans=0;
-    string s,t;
-    cin >> s;
-    rep(i,4) if(s.at(i)=='+') x++;
-    y=4-x;
-    cout << x-y << endl;
+    int n,k,x,y,z,l,r,cnt=0,ans=0;
+    cin >> n >> k;
+    cout << (n-1+k-2)/(k-1) << endl;
     return 0;
 }

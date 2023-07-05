@@ -45,11 +45,12 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 int main(){
     int mod=1e9+7;
-    int n,k,x=0,y=0,z,cnt=0,ans=0;
-    string s,t;
-    cin >> s;
-    rep(i,4) if(s.at(i)=='+') x++;
-    y=4-x;
-    cout << x-y << endl;
+    int n,k=1,x=0,y,z,cnt=0,ans=0;
+    cin >> n;
+    rep(i,10) {
+        x+=(n%(k*10))/k;
+        k*=10;
+    }
+    cout << ((n%x==0)?"Yes":"No") << endl;
     return 0;
 }
