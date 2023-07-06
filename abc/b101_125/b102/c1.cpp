@@ -47,9 +47,13 @@ int main(){
     int mod=1e9+7;
     int n,k,x,y,z,cnt=0,ans=0;
     cin >> n;
+    string s,t;
     vector<int> a(n);
-    rep(i,n) cin >> a.at(i);
-    sort(a.begin(),a.end());
-    cout << a.at(n-1)-a.at(0) << endl;
+    rep(i,n) {
+        cin >> a.at(i);
+        a.at(i)-=(i+1);
+    }
+
+    //print(ans);
     return 0;
 }
