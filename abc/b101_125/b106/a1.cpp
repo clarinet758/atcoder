@@ -42,48 +42,11 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
     } while (next_permutation(w.begin(),w.end()));  //ex. vector <int> w= {1,2,3}; **/
 
 // 何か貼るときはココから下に
-vector< bool > prime_table(int n) {
-  vector< bool > prime(n + 1, true);
-  if(n >= 0) prime[0] = false;
-  if(n >= 1) prime[1] = false;
-  for(int i = 2; i * i <= n; i++) {
-    if(!prime[i]) continue;
-    for(int j = i * i; j <= n; j += i) {
-      prime[j] = false;
-    }
-  }
-  return prime;
-}
-vector< int > enumerate_primes(int n) {
-  if(n <= 1) return {};
-  auto d = prime_table(n);
-  vector< int > primes;
-  primes.reserve(count(begin(d), end(d), true));
-  for(int i = 0; i < d.size(); i++) {
-    if(d[i]) primes.push_back(i);
-  }
-  return primes;
-}
 
 int main(){
     int mod=1e9+7;
-    int n,k,x,y,z,cnt=1,ans=0;
-    vector<int> p=enumerate_primes(255);
-    cin >> n;
-    for(int i=3;i<=n;i++){
-        x=i;
-        cnt=1;
-        rep(j,p.size()){
-            y=1;
-            while(x%p.at(j)==0){
-                y++;
-                x/=p.at(j);
-            }
-            cnt*=y;
-        }
-        if(cnt==8) ans++;
-        i++;
-    }
-    cout << ans << endl;
+    int a,b,n,k,x,y,z,cnt=0,ans=0;
+    cin >> a >> b;
+    cout << (a-1)*(b-1) << endl;
     return 0;
 }
