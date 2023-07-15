@@ -2,35 +2,90 @@
 using namespace std;
 
 #define rep(i,n)  for(int i=0;i<n;++i)
+#define per(i,n)  for(int i=n-1;i>=0;--i)
 #define sc1(a)  scanf("%d",&a)
+#define sc2(a,b)  scanf("%d %d",&a,&b)
+#define sc3(a,b,c)  scanf("%d %d %d",&a,&b,&c)
+#define sl1(a)  scanf("%lld",&a)
+#define sl2(a,b)  scanf("%lld %lld",&a,&b)
+#define sl3(a,b,c)  scanf("%lld %lld %lld",&a,&b,&c)
+#define PI 3.1415926535897932
+#define print(a) cout << a << endl
+#define pp puts("")
+
+#define Yes printf("Yes\n")
+#define No printf("No\n")
+void yneso(int a) {if(a) cout << Yes; else cout << No;}
+
+//int64_t はatcoderメリット不明のため long long
+typedef long long ll;
+//#define ll int64_t
+
+//
+int souwa(int a) {return (1+a)*a/2;}
+int lcm(int a,int b) { return a*b/__gcd(a,b); }
+ll gcdll(ll a, ll b) { if(b==0ll) return a; else return gcdll(b, a%b); }
+ll lcmll(ll a,ll b) { return (a/gcdll(a,b)*b); }
+ll maxll(ll a,ll b) {if(a>b){return a;}else{return b;}}
+ll minll(ll a,ll b) {if(a<b){return a;}else{return b;}}
+
+double tilt(int x1,int y1,int x2,int y2) {return (1.0*y2-1.0*y1)/(1.0*x2-1.0*x1);}
+double tri(int xa,int ya,int xb,int yb,int xc,int yc) {return (1.0*xa-1.0*xc)*(1.0*yb-1.0*yc)-(1.0*xb-1.0*xc)*(1.0*ya-1.0*yc);}
+bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end()); return t.at(0)+t.at(1)>t.at(2);};
+
+/** sort(ar.begin(),ar.end())
+ * vector<vector<int>> a(5,vector<int>)
+    int sum=accumulate(ar.begin(),ar.end(),0); 
+    do {// do内部で作られた順列に対して必要な処理を行う
+        //必ず事前にソートしておくこと、配列の中身を見ていて？辞書順に次のもの次のもの作成するのでソートしておかないと列挙が漏れる
+        // cout << w.at(0) << w.at(1) << w.at(2) << endl;
+    } while (next_permutation(w.begin(),w.end()));  //ex. vector <int> w= {1,2,3}; **/
+
+// 何か貼るときはココから下に
 
 int main(){
-    int n,m;
-    sc1(n);
-    pair<int, int> p={0,0}, q={0,0};
-    map<int ,int> a, b;
-    rep(i,n){
-        sc1(m);
-        if(i%2)  a[m]++;
-        else b[m]++;
+    int mod=1e9+7;
+    int n,k,x,y,z,cnt=0,ans=0;
+    cin >> n;
+    map<int, int> a;
+    map<int, int> b;
+    vector<pair<int,int>> l(2);
+    vector<pair<int,int>> r(2);
+    rep(i,n) {
+        cin >> x;
+        if(i%2) b[x]++;
+        else a[x]++;
     }
-    for(auto x=a.begin();x!=a.end();x++) {
-        if (x->second > a[p.first]) {
-            p.second=p.first;
-            p.first = x->first;
-        } else if (x->second > a[p.second]) {
-            p.second = x->first;
+    for(auto itr=a.begin();itr!=a.end();itr++){
+        if(itr->second>l.at(0).second) {
+            l.at(1).first=l.at(0).first;
+            l.at(1).second=l.at(0).second;
+            l.at(0).first=itr->first;
+            l.at(0).second=itr->second;
+        } else if(itr->second>l.at(1).second) {
+            l.at(1).first=itr->first;
+            l.at(1).second=itr->second;
         }
     }
-
-    for(auto x=b.begin();x!=b.end();x++) {
-        if (x->second > b[q.first]) {
-            q.second=q.first;
-            q.first = x->first;
-        } else if (x->second > b[q.second]) {
-            q.second = x->first;
+    for(auto itr=b.begin();itr!=b.end();itr++){
+        if(itr->second>r.at(0).second) {
+            r.at(1).first=r.at(0).first;
+            r.at(1).second=r.at(0).second;
+            r.at(0).first=itr->first;
+            r.at(0).second=itr->second;
+        } else if(itr->second>l.at(1).second) {
+            r.at(1).first=itr->first;
+            r.at(1).second=itr->second;
         }
     }
-    printf("%d\n",p.first!=q.first?(n/2-a[p.first])+(n/2-b[q.first]):min((n/2-a[p.second])+(n/2-b[q.first]), (n/2-a[p.first])+(n/2-b[q.second])));
+    if(l.at(0).first!=r.at(0).first) {
+        ans=(n/2-l.at(0).second)+(n/2-r.at(0).second);
+    }else{
+        ans=(n/2-l.at(0).second)+(n/2-r.at(1).second);
+        cnt=(n/2-l.at(1).second)+(n/2-r.at(0).second);
+        ans=min(ans,cnt);
+        
+    }
+    cout << ans << endl;
     return 0;
 }
