@@ -36,12 +36,9 @@ int main(){
     int mod=1000000007;
     int n,m,x,y,cnt=0,ans=0;
     string s,t;
-    //cin >> m;
     vector<int> a(3);
     rep(i,3) cin >> a.at(i);
     sort(a.begin(),a.end());
-    //scanf("%d %d",&n,&m);
     cout << ((a.at(0)==a.at(1))?a.at(2):a.at(0)) << endl;
-
     return 0;
 }

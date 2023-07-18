@@ -39,7 +39,6 @@ int main(){
     cin >> s >> t;
     ans=a*s+b*t;
     if(s+t>=k) ans-=(s+t)*c;
-
     print(ans);
     return 0;
 }

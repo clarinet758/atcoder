@@ -37,7 +37,6 @@ int main(){
     int n,m,x=0,y=0,cnt=0,ans=0;
     string s,t;
     cin >> n;
-    //cin >> m;
     vector<int> a(n);
     rep(i,n) cin >> a.at(i);
     cnt=accumulate(a.begin(),a.end(),0);
@@ -47,7 +46,6 @@ int main(){
         if(x!=0) ans++;
         x+=(m-a.at(i));
     }
-
     print(ans);
     return 0;
 }
