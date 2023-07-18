@@ -37,7 +37,6 @@ int main(){
     int n,m,x,y,cnt=0,ans=0;
     string s,t;
     cin >> n;
-
     print(n/10+n%10);
     return 0;
 }

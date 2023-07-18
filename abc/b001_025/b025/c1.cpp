@@ -1,53 +1,48 @@
 #include<bits/stdc++.h>
 using namespace std;
-// https://qiita.com/nomikura/items/1518bc8a6e04d2580b0d
-char a[5][5];
-int b[5][5], c[5][5];
 
-int calc() {
-    int score=0;
-    for (int i=0;i<2;i++) for (int j=0;j<3;j++) if (a[i][j]==a[i+1][j]) score+=b[i][j];
-    for (int i=0;i<3;i++) for (int j=0;j<2;j++) if (a[i][j]==a[i][j+1]) score+=c[i][j];
-    return score;
-}
+#define rep(i,n)  for(int i=0;i<n;++i)
+#define per(i,n)  for(int i=n-1;i>=0;--i)
+#define sc1(a)  scanf("%d",&a)
+#define sc2(a,b)  scanf("%d %d",&a,&b)
+#define sc3(a,b,c)  scanf("%d %d %d",&a,&b,&c)
+#define sl1(a)  scanf("%lld",&a)
+#define sl2(a,b)  scanf("%lld %lld",&a,&b)
+#define sl3(a,b,c)  scanf("%lld %lld %lld",&a,&b,&c)
+#define PI 3.1415926535897932
+//int64_t はatcoderメリット不明のため long long
+#define ll long long
+//#define ll int64_t
+#define print(a) cout << a << endl
 
-int dfs(int turn) {
-    if (turn==9) return calc();
-    if (turn%2==0) {
-        int m=-1;
-        for (int i=0;i<3;i++) for (int j=0;j<3;j++) {
-            if (a[i][j] !='*') continue;
-            a[i][j]='o';
-            m=max(m, dfs(turn+1));
-            a[i][j]='*';
-        }
-        return m;
-    } else {
-        int n=1e8;
-        for (int i=0;i<3;i++) for (int j=0;j<3;j++) {
-            if (a[i][j]!='*') continue;
-            a[i][j]='x';
-            n=min(n,dfs(turn +1));
-            a[i][j]='*';
-        }
-        return n;
-    }
-}
+
+//
+int souwa(int a) {return (1+a)*a/2;}
+int lcm(int a,int b) { return a*b/__gcd(a,b); }
+//l l lcm(ll a,ll b) { return a*b/__gcd(a,b); }
+
+//
+bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end()); return t.at(0)+t.at(1)>t.at(2);};
+
+/** sort(ar.begin(),ar.end())
+    int sum=accumulate(ar.begin(),ar.end(),0); 
+    do {// do内部で作られた順列に対して必要な処理を行う
+        // cout << w.at(0) << w.at(1) << w.at(2) << endl;
+    } while (next_permutation(w.begin(),w.end()));  //ex. vector <int> w= {1,2,3}; **/
+
+// 何か貼るときはココから下に
 
 int main(){
-    int cnt=0;
-    for (int i=0;i<2;i++) for (int j=0;j<3;j++) {
-        cin>>b[i][j];
-        cnt+=b[i][j];
-    }
-    for (int i=0;i<3;i++) for (int j=0;j<2;j++) {
-        cin>>c[i][j];
-        cnt+=c[i][j];
-    }
+    int mod=1000000007;
+    int n,m,x,y,cnt=0,ans=0;
+    string s,t;
+    cin >> n;
+    //cin >> m;
+    vector<int> a(n);
+    rep(i,n) cin >> a.at(i);
+    //sort(a.begin(),a.end());
+    //scanf("%d %d",&n,&m);
 
-    fill(a[0],a[5], '*');
-    int cho=dfs(0);
-    printf("%d\n",cho);
-    printf("%d\n",cnt-cho);
+    print(ans);
     return 0;
 }

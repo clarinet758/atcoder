@@ -46,7 +46,6 @@ int main(){
         cnt+=a.at(i);
         ans+=(cnt>0);
     }
-
     print(ans);
     return 0;
 }

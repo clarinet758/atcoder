@@ -37,10 +37,7 @@ int main(){
     int n,d,k,m,x,y,cnt=0,ans=0;
     cin >> n >> d >> k;
     vector<pair<int,int>> p(d,{0,0});
-
     rep(i,d)  cin >> p.at(i).first >> p.at(i).second;
-    //cout << p.at(2).first <<endl;
-    //return 0;
     rep(i,k) {
         cin >> x >> y;
         rep(j,d) {
@@ -56,11 +53,5 @@ int main(){
             }
         }
     }
-
-
-    //sort(a.begin(),a.end());
-    //scanf("%d %d",&n,&m);
-
-    //print(ans);
     return 0;
 }
