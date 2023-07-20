@@ -43,8 +43,6 @@ int main(){
     }
     cnt++;
     cnt+=(n-k)*3;
-    //print(cnt);
-    //print(1.0*cnt/(n*n*n));
     printf("%.15lf\n",1.0*cnt/(n*n*n));
     return 0;
 }

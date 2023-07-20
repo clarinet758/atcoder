@@ -37,11 +37,9 @@ int main(){
     int n,m,x,y,cnt=0,ans=0;
     string s,t;
     cin >> n;
-    //cin >> m;
     if(n<60) print("Bad");
     else if(n<90) print("Good");
     else if(n<100) print("Great");
     else print("Perfect");
-
     return 0;
 }
