@@ -42,16 +42,28 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
     } while (next_permutation(w.begin(),w.end()));  //ex. vector <int> w= {1,2,3}; **/
 
 // 何か貼るときはココから下に
+vector<ll> a={1ll},p={1ll};
+
+ll f(ll n,ll x){
+    if(n==0){
+        if(x<=0) return 0;
+        else return 1;
+    }else if(x<=1+a.at(n-1)){
+        return f(n-1,x-1);
+    }else{
+        return p.at(n-1)+1+f(n-1,x-2-a.at(n-1));
+    }
+}
 
 int main(){//後で
     int mod=1e9+7;
-    int n,k,x,y,z,cnt=0,ans=0;
-    cin >> n;
-    //cin >> m;
-    string s,t;
-    vector<int> a(n);
-    rep(i,n) cin >> a.at(i);
-
-    //print(ans);
+    ll n,k,x,y,z,cnt=0,ans=0;
+    cin >> n >> x;
+    rep(i,n) {
+        a.push_back(a.at(i)*2+3);
+        p.push_back(p.at(i)*2+1);
+    }
+    ans=f(n,x);
+    cout << ans << endl;
     return 0;
 }
