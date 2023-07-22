@@ -43,8 +43,6 @@ int main(){
         ans.push_back(a.at(i)+a.at(j)+a.at(k));
     }
     sort(ans.begin(),ans.end());
-    //scanf("%d %d",&n,&m);
-
     print(ans.at(7));
     return 0;
 }

@@ -36,12 +36,8 @@ int main(){
     int mod=1000000007;
     string s,t;
     cin >> s;
-    //cin >> m;
     vector<int> a(6,0);
     rep(i,s.size())  a.at(s.at(i)-'A')++;
-    //sort(a.begin(),a.end());
-    //scanf("%d %d",&n,&m);
     printf("%d %d %d %d %d %d\n",a.at(0),a.at(1),a.at(2),a.at(3),a.at(4),a.at(5));
-
     return 0;
 }
