@@ -2,34 +2,74 @@
 using namespace std;
 
 #define rep(i,n)  for(int i=0;i<n;++i)
+#define per(i,n)  for(int i=n-1;i>=0;--i)
+#define sc1(a)  scanf("%d",&a)
+#define sc2(a,b)  scanf("%d %d",&a,&b)
+#define sc3(a,b,c)  scanf("%d %d %d",&a,&b,&c)
+#define sl1(a)  scanf("%lld",&a)
+#define sl2(a,b)  scanf("%lld %lld",&a,&b)
+#define sl3(a,b,c)  scanf("%lld %lld %lld",&a,&b,&c)
+#define PI 3.1415926535897932
+#define print(a) cout << a << endl
+#define pp puts("")
 
-int himo[10];
-int mod=1000000007;
-int n,a,b,c,l[10],ans=mod;
+#define Yes printf("Yes\n")
+#define No printf("No\n")
+void yneso(int a) {if(a) cout << Yes; else cout << No;}
 
-void cal(int x){
-    if (x==-1) {
-        int cnt=0,chk[3]={0,0,0};
-        rep(i,n){
-            if (himo[i]<3) {
-                int w=himo[i];
-                if (chk[w]>0) cnt+=10;
-                chk[w]+=l[i];
-            }
-        }
-        if (chk[0]>0 && chk[1]>0 && chk[2]>0) ans=min(ans,cnt+abs(a-chk[0])+abs(b-chk[1])+abs(c-chk[2]));
-        return;
-    }
-    rep(i,4) {
-        himo[x]=i;
-        cal(x-1);
-    }
-}
+//int64_t はatcoderメリット不明のため long long
+typedef long long ll;
+//#define ll int64_t
+
+//
+int souwa(int a) {return (1+a)*a/2;}
+int lcm(int a,int b) { return a*b/__gcd(a,b); }
+ll gcdll(ll a, ll b) { if(b==0ll) return a; else return gcdll(b, a%b); }
+ll lcmll(ll a,ll b) { return (a/gcdll(a,b)*b); }
+ll maxll(ll a,ll b) {if(a>b){return a;}else{return b;}}
+ll minll(ll a,ll b) {if(a<b){return a;}else{return b;}}
+
+double tilt(int x1,int y1,int x2,int y2) {return (1.0*y2-1.0*y1)/(1.0*x2-1.0*x1);}
+double tri(int xa,int ya,int xb,int yb,int xc,int yc) {return (1.0*xa-1.0*xc)*(1.0*yb-1.0*yc)-(1.0*xb-1.0*xc)*(1.0*ya-1.0*yc);}
+bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end()); return t.at(0)+t.at(1)>t.at(2);};
+
+/** sort(ar.begin(),ar.end())
+ * vector<vector<int>> a(5,vector<int>)
+    int sum=accumulate(ar.begin(),ar.end(),0); 
+    do {// do内部で作られた順列に対して必要な処理を行う
+        //必ず事前にソートしておくこと、配列の中身を見ていて？辞書順に次のもの次のもの作成するのでソートしておかないと列挙が漏れる
+        // cout << w.at(0) << w.at(1) << w.at(2) << endl;
+    } while (next_permutation(w.begin(),w.end()));  //ex. vector <int> w= {1,2,3}; **/
+
+// 何か貼るときはココから下に
 
 int main(){
-    scanf("%d %d %d %d",&n,&a,&b,&c);
-    rep(i,n) scanf("%d",&l[i]);
-    cal(n);
-    printf("%d\n",ans);
+    int mod=1e9+7;
+    int n,x,y,z,cnt=0,ans=mod;
+    cin >> n >> x >> y >> z;
+    vector<int> l(n);
+    rep(i,n) cin >> l.at(i);
+    
+    rep(a,4) rep(b,4) rep(c,4) rep(d,4) rep(e,4) rep(f,4) rep(g,4) rep(h,4){
+        vector<int> w={a,b,c,d,e,f,g,h};
+        int i=0,j=0,k=0;
+        rep(p,n){
+            if(w.at(p)==0) i=1;
+            if(w.at(p)==1) j=1;
+            if(w.at(p)==2) k=1;
+        }
+        if(i!=1 || j!=1 || k!=1) continue;
+        vector<int> x1,y1,z1;
+        rep(p,n){
+            if(w.at(p)==0) x1.push_back(l.at(p));
+            if(w.at(p)==1) y1.push_back(l.at(p));
+            if(w.at(p)==2) z1.push_back(l.at(p));
+        }
+        int x2=abs(x-accumulate(x1.begin(),x1.end(),0))+(x1.size()-1)*10;
+        int y2=abs(y-accumulate(y1.begin(),y1.end(),0))+(y1.size()-1)*10;
+        int z2=abs(z-accumulate(z1.begin(),z1.end(),0))+(z1.size()-1)*10;
+        ans=min(ans,x2+y2+z2);
+    }
+    cout << ans << endl;
     return 0;
 }

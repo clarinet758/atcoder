@@ -43,28 +43,38 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 // 何か貼るときはココから下に
 
-int main(){//嘘解法
+int main(){
     int mod=1e9+7;
-    ll n,k,x,y,z,cnt=0ll,ans=0ll;
+    ll n,k,x=0ll,y,z,cnt=0ll,ans=0ll;
     cin >> n >> k;
-    vector<ll> a={1ll};
-    vector<int> c(42);
-    rep(i,41) a.push_back(a.back()*2);
-
+    vector<int> a_cnt(60);
+    vector<int> k_cnt(60);
+    vector<vector<ll>> dp(60,vector<ll>(2));
+    //2のn乗は 1<<n で即作れるので事前準備の必要なし
     rep(i,n) {
         cin >> x;
-        string p=bitset<42>(x).to_string();
-        rep(j,42) c.at(j)+=(p.at(j)-'0');
-    }
-    
-    rep(i,42){
-        if(c.at(i)<=(n/2) && cnt+a.at(41-i)<=k) {
-            cnt+=a.at(41-i);
-            ans+=a.at(41-i)*(n-c.at(i));
-        }else{
-            ans+=a.at(41-i)*c.at(i);
+        rep(j,60) {
+            a_cnt.at(j)+=(x&1);
+            x=x>>1;
         }
     }
-    cout << ans << endl;
+    x=k;
+    rep(j,60) {
+        k_cnt.at(j)=(x&1);
+        x=x>>1;
+    }
+    x=0;
+    for(int i=58;i>=0;i--){
+        ll ww=1ll<<i,aa=a_cnt.at(i),f=k_cnt.at(i);
+        x+=f;
+        if(f) dp.at(i).at(0)=dp.at(i+1).at(0)+(n-aa)*ww;
+        else  dp.at(i).at(0)=dp.at(i+1).at(0)+aa*ww;
+
+        if(f && x==1) dp.at(i).at(1)=dp.at(i+1).at(1)+aa*ww;
+        else if(f) { dp.at(i).at(1)=dp.at(i+1).at(1)+maxll(aa,(n-aa))*ww; dp.at(i).at(1)=maxll(dp.at(i).at(1),dp.at(i+1).at(0)+aa*ww);}
+        else if(f==0 && x==0) dp.at(i).at(1)=dp.at(i+1).at(1)+aa*ww;
+        else dp.at(i).at(1)=dp.at(i+1).at(1)+maxll(aa,(n-aa))*ww;
+    }
+    cout << max(dp.at(0).at(0),dp.at(0).at(1)) << endl;
     return 0;
 }
