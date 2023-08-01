@@ -64,7 +64,7 @@ int main(){//小さい方から適当にはだめっぽい。後で考える。
     rep(i,m){
         y=p.at(i).first;
         x=p.at(i).second;
-        rep(j,x){
+        rep(j,mod){
             z=q.top();
             if(z<y){
                 q.pop();
