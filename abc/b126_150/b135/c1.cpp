@@ -43,15 +43,35 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 // 何か貼るときはココから下に
 
-int main(){//後で
+int main(){
     int mod=1e9+7;
-    int n,k,x,y,z,cnt=0,ans=0;
+    int n,k,x,y,z;
+    ll cnt=0ll,ans=0ll;
     cin >> n;
     //cin >> m;
     string s,t;
-    vector<int> a(n);
-    rep(i,n) cin >> a.at(i);
-
-    //print(ans);
+    vector<int> a(n+1);
+    vector<int> b(n);
+    rep(i,n+1) cin >> a.at(i);
+    rep(i,n) cin >> b.at(i);
+    cnt=accumulate(a.begin(),a.end(),0ll);
+    rep(i,n){
+        if(a.at(i)>=b.at(i)){
+            a.at(i)-=b.at(i);
+            b.at(i)=0;
+        }else{
+            b.at(i)-=a.at(i);
+            a.at(i)=0;
+        }
+        if(a.at(i+1)>=b.at(i)){
+            a.at(i+1)-=b.at(i);
+            b.at(i)=0;
+        }else{
+            b.at(i)-=a.at(i+1);
+            a.at(i+1)=0;
+        }
+    }
+    ans=accumulate(a.begin(),a.end(),0ll);
+    cout << cnt - ans << endl;
     return 0;
 }
