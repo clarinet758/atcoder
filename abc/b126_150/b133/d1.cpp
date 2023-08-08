@@ -43,33 +43,23 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 // 何か貼るときはココから下に
 
-int main(){//最初のダムの値の決め方をもう少し考える。後で。
+int main(){
     int mod=1e9+7;
     int n,k,x,y,z,cnt=0,ans=0;
     cin >> n;
     vector<int> a(n);
-    rep(i,n) cin >> a.at(i);
-    //for(int i=(a.at(0)+a.at(1)+1)/2;i>=0;i--){
-    for(int i=(a.at(0)+a.at(1)+1)/2*2;i>=0;i--){
-        //print(i);
-        vector<int> w(n);
-        w.at(0)=i;
-        ans=1;
-        rep(j,n){
-            y=a.at(j)-w.at(j)/2;
-            w.at((j+1)%(n))=y*2;
-            //if(w.at(j)/2+w.at(j+1)/2!=a.at(j)) ans=0;
-            //if(ans==0) break;
-        }
-        //if(1){
-        if(w.at(0)==i){
-            rep(j,n-1) cout << w.at(j) << " ";
-            cout << w.at(n-1) << endl;
-            return 0;
-        }
-        i--;
+    vector<int> p(n);
+    rep(i,n)  {
+        cin >> x;
+        a.at(i)=x*2;
+        if(i%2)p.at(0)-=x;
+        else p.at(0)+=x;
     }
-
-    //print(ans);
+    rep(i,n){
+        p.at((i+1)%n)=a.at(i)-p.at(i);
+        if(i) cout << " ";
+        cout << p.at(i);
+    }
+    pp;
     return 0;
 }
