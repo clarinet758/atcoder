@@ -46,15 +46,30 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 int main(){
     int mod=1e9+7;
     int n,k,x,y,z,cnt=0,ans=0;
-    cin >> n;
-    rep(i,n) {
-        x=i+1;
-        if(x<10) ans++;
-        else if(x<100) ans;
-        else if(x<1000) ans++;
-        else if(x<10000) ans;
-        else if(x<100000) ans++;
+    string s,t;
+    cin >> s;
+    x=s.size();
+    vector<vector<int>> p(3,vector<int>(x,1));
+    rep(i,mod) {
+    //rep(i,5) {
+        rep(j,x) {
+            p.at(2).at(j)=p.at(1).at(j);
+            p.at(1).at(j)=p.at(0).at(j);
+            p.at(0).at(j)=0;
+        }
+        rep(j,x) {
+            if(s.at(j)=='L') y=-1;
+            else y=1;
+            p.at(0).at(j+y)+=p.at(1).at(j);
+        }
+        if(p.at(0)==p.at(2)){
+            rep(j,x){
+                if(j) cout << " ";
+                cout << p.at(1+(i%2)).at(j);
+            }
+            pp;
+            return 0;
+        }
     }
-    print(ans);
     return 0;
 }

@@ -47,14 +47,13 @@ int main(){
     int mod=1e9+7;
     int n,k,x,y,z,cnt=0,ans=0;
     cin >> n;
+    vector<int> h(n+1);
     rep(i,n) {
-        x=i+1;
-        if(x<10) ans++;
-        else if(x<100) ans;
-        else if(x<1000) ans++;
-        else if(x<10000) ans;
-        else if(x<100000) ans++;
+        cin >> x;
+        if (h.at(i)<x) h.at(i+1)=x-1;
+        else h.at(i+1)=x;
     }
-    print(ans);
+    rep(i,n)  if (h.at(i)>h.at(i+1)) ans=1;
+    cout << ((ans)?"No":"Yes") << endl;
     return 0;
 }
