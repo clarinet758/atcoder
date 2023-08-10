@@ -45,22 +45,13 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 int main(){
     int mod=1e9+7;
-    int n,k=0,x,y,z,cnt=0,ans=0;
-    string s,t;
-    cin >> s;
-    s+="R";
-    x=s.size();
-    vector<int> w(x-1);
-    rep(i,x){
-        if(k==0 && s.at(i)=='R') cnt++;
-        else if(k==0 && s.at(i)=='L') {w.at(i-1)+=(cnt+1)/2; w.at(i)+=cnt/2; k=1; cnt=1;}
-        else if(k==1 && s.at(i)=='L') cnt++;
-        else if(k==1 && s.at(i)=='R') {w.at(i-cnt)+=(cnt+1)/2; w.at(i-cnt-1)+=cnt/2; k=0; cnt=1;}
-
-    }
-    rep(i,x-1){
+    int n,k,x,y,z,cnt=0,ans=0;
+    cin >> k >> x;
+    vector<int> a;
+    for(int i=x-k+1;i<=x+k-1;i++) a.push_back(i);
+    for(int i=0;i<a.size();i++){
         if(i) cout << " ";
-        cout << w.at(i);
+        cout << a.at(i);
     }
     pp;
     return 0;

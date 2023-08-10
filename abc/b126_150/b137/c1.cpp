@@ -45,23 +45,26 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 int main(){
     int mod=1e9+7;
-    int n,k=0,x,y,z,cnt=0,ans=0;
-    string s,t;
-    cin >> s;
-    s+="R";
-    x=s.size();
-    vector<int> w(x-1);
-    rep(i,x){
-        if(k==0 && s.at(i)=='R') cnt++;
-        else if(k==0 && s.at(i)=='L') {w.at(i-1)+=(cnt+1)/2; w.at(i)+=cnt/2; k=1; cnt=1;}
-        else if(k==1 && s.at(i)=='L') cnt++;
-        else if(k==1 && s.at(i)=='R') {w.at(i-cnt)+=(cnt+1)/2; w.at(i-cnt-1)+=cnt/2; k=0; cnt=1;}
-
+    int n,x,y,z,cnt=0;
+    ll ans=0ll;
+    cin >> n;
+    string s,u;
+    vector<string> t;
+    map<string, int> w;
+    rep(i,n) {
+        cin >> u;
+        vector<string> k;
+        rep(j,10) k.push_back(u.substr(j,1)); 
+        sort(k.begin(),k.end());
+        string kt;
+        rep(j,10) kt+=k.at(j);
+        w[kt]++;
+        if(w[kt]==1) t.push_back(kt);
     }
-    rep(i,x-1){
-        if(i) cout << " ";
-        cout << w.at(i);
+    rep(i,t.size()){
+        x=w[t.at(i)];
+        ans+=1ll*x*(x-1)/2;
     }
-    pp;
+    cout << ans << endl;
     return 0;
 }
