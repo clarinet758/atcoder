@@ -45,31 +45,23 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 int main(){
     int mod=1e9+7;
-    int n,k,x,y,z,cnt=0,ans=0;
+    int n,k=0,x,y,z,cnt=0,ans=0;
     string s,t;
     cin >> s;
+    s+="R";
     x=s.size();
-    vector<vector<int>> p(3,vector<int>(x,1));
-    rep(i,mod) {
-    //rep(i,5) {
-        rep(j,x) {
-            p.at(2).at(j)=p.at(1).at(j);
-            p.at(1).at(j)=p.at(0).at(j);
-            p.at(0).at(j)=0;
-        }
-        rep(j,x) {
-            if(s.at(j)=='L') y=-1;
-            else y=1;
-            p.at(0).at(j+y)+=p.at(1).at(j);
-        }
-        if(p.at(0)==p.at(2)){
-            rep(j,x){
-                if(j) cout << " ";
-                cout << p.at(1+(i%2)).at(j);
-            }
-            pp;
-            return 0;
-        }
+    vector<int> w(x-1);
+    rep(i,x){
+        if(k==0 && s.at(i)=='R') cnt++;
+        else if(k==0 && s.at(i)=='L') {w.at(i-1)+=(cnt+1)/2; w.at(i)+=cnt/2; k=1; cnt=1;}
+        else if(k==1 && s.at(i)=='L') cnt++;
+        else if(k==1 && s.at(i)=='R') {w.at(i-cnt)+=(cnt+1)/2; w.at(i-cnt-1)+=cnt/2; k=0; cnt=1;}
+
     }
+    rep(i,x-1){
+        if(i) cout << " ";
+        cout << w.at(i);
+    }
+    pp;
     return 0;
 }
