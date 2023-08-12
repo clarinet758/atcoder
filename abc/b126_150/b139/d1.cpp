@@ -22,7 +22,7 @@ typedef long long ll;
 //#define ll int64_t
 
 //
-int souwa(int a) {return (1+a)*a/2;}
+ll souwa(ll a) {return (1ll+a)*a/2ll;}
 int lcm(int a,int b) { return a*b/__gcd(a,b); }
 ll gcdll(ll a, ll b) { if(b==0ll) return a; else return gcdll(b, a%b); }
 ll lcmll(ll a,ll b) { return (a/gcdll(a,b)*b); }
@@ -43,15 +43,12 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 // 何か貼るときはココから下に
 
-int main(){//後でgg
+int main(){
     int mod=1e9+7;
-    int n,k,x,y,z,cnt=0,ans=0;
+    int n,k,x,y,z,cnt=0;
+    ll ans=0ll;
     cin >> n;
-    //cin >> m;
-    string s,t;
-    vector<int> a(n);
-    rep(i,n) cin >> a.at(i);
-
-    //print(ans);
+    ans=souwa(1ll*(n-1ll));
+    cout << ans << endl;
     return 0;
 }
