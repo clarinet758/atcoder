@@ -15,7 +15,7 @@ using namespace std;
 
 #define Yes printf("Yes\n")
 #define No printf("No\n")
-void yneso(int a) {if(a) cout << Yes; else cout << No;}
+//void yneso(int a) {if(a) cout << Yes; else cout << No;}
 
 //int64_t はatcoderメリット不明のため long long
 typedef long long ll;
@@ -45,16 +45,17 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 int main(){
     int mod=1e9+7;
-    int a,b,k,x,y,z,cnt=0,ans=0;
-    cin >> a >> b;
-    vector<int> t={1};
-    for(;;){
-        x=accumulate(t.begin(),t.end(),0);
-        if(x>=b) break;
-        t.at(t.size()-1)--;
-        t.push_back(a);
-        ans++;
+    int n,k,x,y,z,cnt=0,ans=0;
+    cin >> n;
+    vector<int> h(n);
+    rep(i,n) cin >> h.at(i);
+    h.push_back(mod);
+    x=0;
+    rep(i,n+1){
+        if(x>=h.at(i)) {cnt++; ans=max(ans,cnt);}
+        else {ans=max(ans,cnt); cnt=0;}
+        x=h.at(i);
     }
-    print(ans);
+    cout << ans << endl;
     return 0;
 }

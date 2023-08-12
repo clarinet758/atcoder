@@ -45,16 +45,10 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 int main(){
     int mod=1e9+7;
-    int a,b,k,x,y,z,cnt=0,ans=0;
-    cin >> a >> b;
-    vector<int> t={1};
-    for(;;){
-        x=accumulate(t.begin(),t.end(),0);
-        if(x>=b) break;
-        t.at(t.size()-1)--;
-        t.push_back(a);
-        ans++;
-    }
+    int n,k,x,y,z,cnt=0,ans=0;
+    string s,t;
+    cin >> s >> t;
+    rep(i,3) ans+=(s.at(i)==t.at(i));
     print(ans);
     return 0;
 }
