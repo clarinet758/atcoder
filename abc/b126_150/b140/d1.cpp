@@ -10,24 +10,65 @@ using namespace std;
 #define sl2(a,b)  scanf("%lld %lld",&a,&b)
 #define sl3(a,b,c)  scanf("%lld %lld %lld",&a,&b,&c)
 #define PI 3.1415926535897932
+#define print(a) cout << a << endl
+#define pp puts("")
 
+#define Yes printf("Yes\n")
+#define No printf("No\n")
+void yneso(int a) {if(a) cout << Yes; else cout << No;}
+
+//int64_t はatcoderメリット不明のため long long
+typedef long long ll;
+//#define ll int64_t
+
+//
 int souwa(int a) {return (1+a)*a/2;}
 int lcm(int a,int b) { return a*b/__gcd(a,b); }
-//long long lcm(ll a,ll b) { return a*b/__gcd(a,b); }
+ll gcdll(ll a, ll b) { if(b==0ll) return a; else return gcdll(b, a%b); }
+ll lcmll(ll a,ll b) { return (a/gcdll(a,b)*b); }
+ll maxll(ll a,ll b) {if(a>b){return a;}else{return b;}}
+ll minll(ll a,ll b) {if(a<b){return a;}else{return b;}}
 
-/**
- * sort(ar.begin(),ar.end())
- * int sum=accumulate(ar.begin(),ar.end(),0);
- **/
+double tilt(int x1,int y1,int x2,int y2) {return (1.0*y2-1.0*y1)/(1.0*x2-1.0*x1);}
+double tri(int xa,int ya,int xb,int yb,int xc,int yc) {return (1.0*xa-1.0*xc)*(1.0*yb-1.0*yc)-(1.0*xb-1.0*xc)*(1.0*ya-1.0*yc);}
+bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end()); return t.at(0)+t.at(1)>t.at(2);};
 
+/** sort(ar.begin(),ar.end())
+ * vector<vector<int>> a(5,vector<int>)
+    int sum=accumulate(ar.begin(),ar.end(),0); 
+    do {// do内部で作られた順列に対して必要な処理を行う
+        //必ず事前にソートしておくこと、配列の中身を見ていて？辞書順に次のもの次のもの作成するのでソートしておかないと列挙が漏れる
+        // cout << w.at(0) << w.at(1) << w.at(2) << endl;
+    } while (next_permutation(w.begin(),w.end()));  //ex. vector <int> w= {1,2,3}; **/
 
-int main(){
-    int mod=1000000007;
-    int n,m,ans;
-    //scanf("%d %d",&n,&m);
-    n=5;
-    per (i,n) {
-        printf("%d\n",i);
+// 何か貼るときはココから下に
+
+int main(){//後で
+    int mod=1e9+7;
+    int n,k,x=-1,y,z,cnt=0,ans=0;
+    string s,t;
+    cin >> n >> k >> s;
+    vector<int> a(n);
+    vector<int> b(n);
+    rep(i,n)  {
+        a.at(i)=(s.at(i)==s.at(0));
+        b.at(i)=a.at(i);
     }
+
+    rep(i,n){
+        if(i && b.at(i)==0 && b.at(i-1)==1) k--;
+        if(k>=0) a.at(i)=1;
+        else break;
+    }
+    a.push_back(3);
+    b.push_back(3);
+    rep(i,n+1){
+        if(i && a.at(i)!=a.at(i-1)) {
+            ans+=cnt-1;
+            cnt=0;
+        }
+        cnt++;
+    }
+    cout << ans << endl;
     return 0;
 }
