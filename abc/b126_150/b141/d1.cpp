@@ -45,12 +45,24 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 int main(){
     int mod=1e9+7;
-    int n,k,x,y,z,cnt=0,ans=0;
-    string s,t;
-    cin >> s;
-    if(s.at(0)=='S') cout << "Cloudy";
-    if(s.at(0)=='C') cout << "Rainy";
-    if(s.at(0)=='R') cout << "Sunny";
-    pp;
+    int n,m,k,y,z,cnt=0;
+    ll x,ans=0ll;
+    cin >> n >> m;
+    priority_queue<int, vector<int>, less<int>> q;
+    rep(i,n) {
+        cin >> x;
+        q.push(x);
+    }
+    rep(i,m){
+        y=q.top();
+        q.pop();
+        y/=2;
+        q.push(y);
+    }
+    rep(i,n) {
+        ans+=1ll*q.top();
+        q.pop();
+    }
+    print(ans);
     return 0;
 }
