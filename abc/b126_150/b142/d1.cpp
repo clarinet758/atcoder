@@ -43,10 +43,82 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 // 何か貼るときはココから下に
 
-int main(){
-    int a,b,x,y,z,cnt=0,ans=0;
+vector< bool > prime_table(int n) {
+  vector< bool > prime(n + 1, true);
+  if(n >= 0) prime[0] = false;
+  if(n >= 1) prime[1] = false;
+  for(int i = 2; i * i <= n; i++) {
+    if(!prime[i]) continue;
+    for(int j = i * i; j <= n; j += i) {
+      prime[j] = false;
+    }
+  }
+  return prime;
+}
+vector< int > enumerate_primes(int n) {
+  if(n <= 1) return {};
+  auto d = prime_table(n);
+  vector< int > primes;
+  primes.reserve(count(begin(d), end(d), true));
+  for(int i = 0; i < d.size(); i++) {
+    if(d[i]) primes.push_back(i);
+  }
+  return primes;
+}
+
+int main(){//後で
+    int mod=1e9+7;
+    int x=0;
+    ll a,b,n,k,y,z,cnt=0ll,ans=0ll;
+    map<int,int> aa;
+    map<int,int> bb;
+    map<int,int> cc;
+    vector<int> dd;
+    vector<int> ee;
     cin >> a >> b;
-    ans=max(0,a-(2*b));
+    for(ll i=1ll;i<a;i++){
+        if(a%i==0){
+            aa[i]=1;
+            aa[a/i]=1;
+            dd.push_back(i);
+            dd.push_back(a/i);
+        }
+        if(i*i>=a) break;
+    }
+
+    vector<int> p=enumerate_primes(1e6+5);
+    while(a>1ll){
+        while(a%p.at(x)==0){
+            aa[p.at(x)]++;
+            if(aa[p.at(x)]==1) dd.push_back(p.at(x));
+            a/=p.at(x);
+        }
+        x++;
+    }
+
+    x=0;
+    while(b>1ll){
+        while(b%p.at(x)==0){
+            bb[p.at(x)]++;
+            if(bb[p.at(x)]==1 && aa[p.at(x)]==0) dd.push_back(p.at(x));
+            b/=p.at(x);
+        }
+        x++;
+    }
+
+    rep(i,dd.size()){
+        cnt+=min(aa[dd.at(i)],bb[dd.at(i)]);
+        cc[dd.at(i)]=min(aa[dd.at(i)],bb[dd.at(i)]);
+        if(cc[dd.at(i)]>0) ee.push_back(dd.at(i));
+    }
+    k=1ll;
+    rep(i,ee.size()) k*=(cc[ee.at(i)]+1);
+    print(k);
+    //cout << cc[2] << " " << cc[3] << endl;
+    rep(i,ee.size()){
+        //cout << cc[ee.at(i)] << " " << (k/cc[ee.at(i)]) << endl;
+        //ans+=cc[ee.at(i)]*(k/cc[ee.at(i)]);
+    }
     cout << ans << endl;
     return 0;
 }
