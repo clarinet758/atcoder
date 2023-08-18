@@ -43,15 +43,15 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 // 何か貼るときはココから下に
 
-int main(){
+int main(){//後で
     int mod=1e9+7;
     int n,k,x,y,z,cnt=0,ans=0;
-    string s,t;
-    cin >> n >> s;
-    t=s.substr(0,n/2);
-    s=s.substr(n/2,n/2);
-    if(n%2==0 && s==t) cout << "Yes";
-    else cout << "No";
-    pp;
+    cin >> x >> y;
+    vector<vector<int>> w(2,vector<int>(1000005,0));
+    w.at(0).at(0)=1;
+
+    
+
+    //print(ans);
     return 0;
 }
