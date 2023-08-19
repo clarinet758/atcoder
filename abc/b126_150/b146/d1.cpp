@@ -46,13 +46,12 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 int main(){
     int mod=1e9+7;
     int n,k,x,y,z,cnt=0,ans=0;
+    cin >> n;
+    //cin >> m;
     string s,t;
-    cin >> n >> s;
-    rep(i,s.size()) {
-        x=s.at(i)+n;
-        if(x>90) x-=26;
-        printf("%c",x);
-    }
-    pp;
+    vector<int> a(n);
+    rep(i,n) cin >> a.at(i);
+
+    //print(ans);
     return 0;
 }
