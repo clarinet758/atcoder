@@ -9,42 +9,74 @@ using namespace std;
 #define sl1(a)  scanf("%lld",&a)
 #define sl2(a,b)  scanf("%lld %lld",&a,&b)
 #define sl3(a,b,c)  scanf("%lld %lld %lld",&a,&b,&c)
+#define PI 3.1415926535897932
+#define print(a) cout << a << endl
+#define pp puts("")
 
+#define Yes printf("Yes\n")
+#define No printf("No\n")
+void yneso(int a) {if(a) cout << Yes; else cout << No;}
 
-vector <int> bitm(int bit,int n) {
-    vector <int> s;
-    rep(i,n) {
-        if (bit & (1<<i)) s.push_back(0);
-        else s.push_back(1);
-    }
-    return s;
-}
+//int64_t はatcoderメリット不明のため long long
+typedef long long ll;
+//#define ll int64_t
+
+//
+int souwa(int a) {return (1+a)*a/2;}
+int lcm(int a,int b) { return a*b/__gcd(a,b); }
+ll gcdll(ll a, ll b) { if(b==0ll) return a; else return gcdll(b, a%b); }
+ll lcmll(ll a,ll b) { return (a/gcdll(a,b)*b); }
+ll maxll(ll a,ll b) {if(a>b){return a;}else{return b;}}
+ll minll(ll a,ll b) {if(a<b){return a;}else{return b;}}
+
+double tilt(int x1,int y1,int x2,int y2) {return (1.0*y2-1.0*y1)/(1.0*x2-1.0*x1);}
+double tri(int xa,int ya,int xb,int yb,int xc,int yc) {return (1.0*xa-1.0*xc)*(1.0*yb-1.0*yc)-(1.0*xb-1.0*xc)*(1.0*ya-1.0*yc);}
+bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end()); return t.at(0)+t.at(1)>t.at(2);};
+
+/** sort(ar.begin(),ar.end())
+ * vector<vector<int>> a(5,vector<int>)
+    int sum=accumulate(ar.begin(),ar.end(),0); 
+    do {// do内部で作られた順列に対して必要な処理を行う
+        //必ず事前にソートしておくこと、配列の中身を見ていて？辞書順に次のもの次のもの作成するのでソートしておかないと列挙が漏れる
+        // cout << w.at(0) << w.at(1) << w.at(2) << endl;
+    } while (next_permutation(w.begin(),w.end()));  //ex. vector <int> w= {1,2,3}; **/
+
+// 何か貼るときはココから下に
 
 int main(){
-    int n,m,ans=0;
-    sc1(n);
-    int w[17][17];
-    rep(i,17) rep(j,17) w[i][j]=3;
-    rep(i,n) {
-        int a;
-        sc1(a);
-        rep(j,a) {
-            int x,y;
-            sc2(x,y);
-            w[i][x-1]=y;
+    int mod=1e9+7;
+    int n,a,f,x,y,z,cnt=0,ans=0;
+    cin >> n;
+    string s,t;
+    vector<vector<pair<int,int>>> aa(15,vector<pair<int,int>>(15,{-1,-1}));
+    rep(i,n){
+        cin >> a;
+        rep(j,a){
+            cin >> x >> y;
+            aa.at(i).at(j).first=x-1;
+            aa.at(i).at(j).second=y;
         }
     }
-
-    for (int i=0;i<32678;i++) {
-        vector <int> d=bitm(i,15);
-        int cnt=0,f=1;
-        rep(j,n) cnt+=(d.at(j)==1);
-        rep(j,n) rep(k,n) {
-            if (d.at(j)==1 && w[j][k]==1 && d.at(k)==0) f=0;
-            if (d.at(j)==1 && w[j][k]==0 && d.at(k)==1) f=0;
+    rep(i,1<<n){
+        //print(i);
+        x=i;
+        vector<int> h(n);
+        cnt=0;
+        rep(j,n){
+            h.at(j)=x&1;
+            cnt+=(x&1);
+            x=x/2;
         }
-        if (f) ans=max(ans,cnt);
+        f=1;
+        rep(j,n){
+            if(h.at(j)==0) continue;
+            rep(k,n){
+                if(aa.at(j).at(k).first==-1) continue;
+                else if(h.at(aa.at(j).at(k).first)!=aa.at(j).at(k).second) f=0;
+            }
+        }
+        if(f) ans=max(ans,cnt);
     }
-    printf("%d\n",ans);
+    print(ans);
     return 0;
 }
