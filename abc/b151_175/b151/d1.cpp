@@ -45,21 +45,34 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 int main(){
     int mod=1e9+7;
-    int n,m,k,x,y,z,cnt=0,ans=0;
-    cin >> n >> m;
-    vector<int> ac;
-    //map<string,pair<int,int>> w;
-    map<int,pair<int,int>> w;
-    //cin >> m;
+    int h,w,hw,z,cnt=0,ans=0;
+    cin >> h >> w;
     string s,t;
-    rep(i,m) {
-        cin >> x >> s;
-        if(s=="WA" && w[x].first==0) w[x].second++;
-        if(s=="AC" && w[x].first==0) {w[x].first=1; ac.push_back(x);}
+    vector<string> a(h);
+    //vector<vector<int>> p(h*w,vector<int>(h*w,mod));
+    vector<vector<int>> p(h*w,vector<int>(h*w,777));
+    hw=h*w;
+    rep(i,hw) p.at(i).at(i)=0;
+    rep(i,h) cin >> a.at(i);
+    rep(i,h){
+        rep(j,w){
+            if(a.at(i).at(j)=='#') continue;
+            if(i+1<=h-1 && a.at(i+1).at(j)=='.')  {p.at(i*h+j+h).at(i*h+j)=1;p.at(i*h+j).at(i*h+h+j)=1;}
+            if(j+1<=w-1 && a.at(i).at(j+1)=='.')  {p.at(i*h+j+1).at(i*h+j)=1;p.at(i*h+j).at(i*h+j+1)=1;}
+        }
     }
-    rep(i,ac.size()) {
-        ans+=w[ac.at(i)].second;
+    for(int i=0;i<hw;i++){
+        for(int j=0;j<hw;j++){
+            for(int k=0;k<hw;k++){
+                p.at(j).at(k)=min(p.at(j).at(k),p.at(j).at(i)+p.at(i).at(k));
+                p.at(k).at(j)=min(p.at(k).at(j),p.at(j).at(i)+p.at(i).at(k));
+            }
+        }
     }
-    cout << ac.size() << " " << ans << endl;
+    rep(i,hw)rep(j,hw){
+        if(p.at(i).at(j)<777) ans=max(ans,p.at(i).at(j));
+    }
+
+    print(ans); 
     return 0;
 }
