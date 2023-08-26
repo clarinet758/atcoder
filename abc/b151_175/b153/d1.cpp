@@ -45,13 +45,13 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 int main(){
     int mod=1e9+7;
-    int n,k,x,y,z,cnt=0;
-    ll ans=0ll;
-    cin >> n >> k;
-    vector<ll> a(n);
-    rep(i,n) cin >> a.at(i);
-    sort(a.begin(),a.end());
-    rep(i,n-k) ans+=a.at(i);
+    ll h,k=1ll,x,y,z,cnt=0,ans=0ll;
+    cin >> h;
+    while(h>0){
+        ans+=k;
+        k*=2ll;
+        h/=2;
+    }
     cout << ans << endl;
     return 0;
 }
