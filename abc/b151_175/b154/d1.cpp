@@ -45,14 +45,18 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 int main(){
     int mod=1e9+7;
-    int n,k,x,y,z,cnt=0,ans=1;
-    cin >> n;
-    map<int,int> w;
+    int n,k,x,y,z;
+    double cnt=0.0,ans=0.0;
+
+    cin >> n >> k;
+    vector<int> a(n);
     rep(i,n) {
         cin >> x;
-        w[x]++;
-        if(w[x]>1) ans=0;
+        a.at(i)=x;
+        cnt+=(x+1.0)/2.0;
+        if(i>=k) cnt-=(a.at(i-k)+1.0)/2.0;
+        if(cnt>ans) ans=cnt;
     }
-    cout << ((ans)?"YES":"NO") << endl;
+    printf("%.10lf\n",ans);
     return 0;
 }
