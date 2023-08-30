@@ -43,32 +43,25 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 // 何か貼るときはココから下に
 
-int main(){
+int main(){//後で
     int mod=1e9+7;
-    int n=0,k=0,l=0,x=0,y=0,z=0,cnt=0,ans=0;
-    //cin >> m;
-    string s,t;
-    vector<vector<int>> a(3,vector<int>(3));
-    vector<vector<int>> p(3,vector<int>(3));
-    rep(i,3)rep(j,3) cin >> a.at(i).at(j);
-    cin >> n;
-    rep(i,n){
-        cin >> l;
-        rep(i,3)rep(j,3){
-            if(l==a.at(i).at(j)) p.at(i).at(j)=1;
-        }
+    int n,m,k,x,y,z,cnt=0,ans=0;
+    cin >> n >> m >> k;
+    vector<int> a(n+3,-1);
+    rep(i,m) {
+        cin >> x >> y;
+        a.at(x-1)--;
+        a.at(y-1)--;
     }
-    rep(i,3){
-        k+=p.at(i).at(i);
-        x+=p.at(i).at(0);
-        y+=p.at(i).at(1);
-        z+=p.at(i).at(2);
+    rep(i,k) {
+        cin >> x >> y;
+        a.at(x-1)--;
+        a.at(y-1)--;
     }
-    if(k==3 || x==3 || y==3 || z==3) ans=1;
-    if(accumulate(p.at(0).begin(),p.at(0).end(),0)==3) ans=1;
-    if(accumulate(p.at(1).begin(),p.at(1).end(),0)==3) ans=1;
-    if(accumulate(p.at(2).begin(),p.at(2).end(),0)==3) ans=1;
-    if(p.at(0).at(2)+p.at(1).at(1)+p.at(2).at(0)==3) ans=1;
-    cout << ((ans)?"Yes":"No") << endl;
+    rep(i,n) {
+        if(i) cout << " ";
+        cout << n+a.at(i);
+    }
+    pp;
     return 0;
 }
