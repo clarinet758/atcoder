@@ -43,11 +43,29 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 // 何か貼るときはココから下に
 
-int main(){
+int main(){//TLE
     int mod=1e9+7;
-    ll n,a,b,k,x,y,z,cnt=0,ans;
-    cin >> n >> a >> b;
-    ans=(n/(a+b)*a)+min((n%(a+b)),a);
-    cout << ans << endl;
+    int n,q,f=0,k,x,y,z,cnt=0,ans=0;
+    string s,t;
+    cin >> s >> q;
+    rep(i,q) {
+        cin >> x;
+        if(x==1) f=(f+1)%2;
+        else{
+            cin >> y >> t;
+            if(f==0 && y==1) s=t+s;
+            else if(f==1 && y==1) s=s+t;
+            else if(f==0 && y==2) s=s+t;
+            else s=t+s;
+        }
+    }
+    if(f==0) cout << s;
+    else{
+        z=s.size();
+        for(int i=z-1;i>=0;i--){
+            cout << s.at(i);
+        }
+    }
+    pp;
     return 0;
 }
