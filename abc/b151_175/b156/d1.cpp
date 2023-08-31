@@ -47,14 +47,11 @@ int main(){
     int mod=1e9+7;
     int n,k,x,y,z,cnt=0,ans=0;
     cin >> n;
+    //cin >> m;
+    string s,t;
     vector<int> a(n);
     rep(i,n) cin >> a.at(i);
-    k=accumulate(a.begin(),a.end(),0);
-    k/=n;
-    rep(i,n){
-        cnt+=abs(a.at(i)-k)*abs(a.at(i)-k);
-        ans+=abs(a.at(i)-k-1)*abs(a.at(i)-k-1);
-    }
-    cout << min(ans,cnt) << endl;
+
+    //print(ans);
     return 0;
 }
