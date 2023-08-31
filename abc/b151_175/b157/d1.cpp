@@ -43,24 +43,59 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 // 何か貼るときはココから下に
 
+struct UnionFind {
+    vector<int> data;
+    UnionFind(int size) : data(size, -1) {}
+    bool unite(int x, int y) {
+        x=root(x), y=root(y);
+        if (x!=y) {
+            if (data[y]<data[x]) {
+                swap(x, y);
+            }
+            data[x]+=data[y], data[y]=x;
+        }
+        return x!=y;
+    }
+
+    bool find(int x, int y) {
+        return root(x)==root(y);
+    }
+
+    int root(int x) {
+        return data[x]<0 ? x : data[x]=root(data[x]);
+    }
+
+    int size(int x) {
+        return -data[root(x)];
+    }
+};
+
+
 int main(){//後で
     int mod=1e9+7;
     int n,m,k,x,y,z,cnt=0,ans=0;
     cin >> n >> m >> k;
-    vector<int> a(n+3,-1);
+    UnionFind uf(n);
+    vector<int> a(n);
     rep(i,m) {
         cin >> x >> y;
-        a.at(x-1)--;
-        a.at(y-1)--;
+        uf.unite(x-1,y-1);
+        a.at(x-1)++;
+        a.at(y-1)++;
     }
+    vector<int> res(n);
+    rep(i,n) res.at(i)=uf.size(i)-a.at(i)-1; 
+
     rep(i,k) {
         cin >> x >> y;
-        a.at(x-1)--;
-        a.at(y-1)--;
+        if (uf.find(x-1,y-1)) {
+            res.at(x-1)--;
+            res.at(y-1)--;
+        }
     }
     rep(i,n) {
         if(i) cout << " ";
-        cout << n+a.at(i);
+        cout << res.at(i);
     }
     pp;
     return 0;
