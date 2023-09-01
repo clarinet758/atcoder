@@ -44,8 +44,20 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 // 何か貼るときはココから下に
 
 int main(){
-    double l;
-    cin >> l;
-    printf("%.10lf\n",(l/3.0)*(l/3.0)*(l/3.0));
+    int mod=1e9+7;
+    ll n,k,x,y,z,cnt=0ll,ans=0ll;
+    cin >> n;
+    map<int,int> w;
+    vector<int> a(n);
+    rep(i,n) {
+        cin >> a.at(i);
+        w[a.at(i)]++;
+    }
+    for(auto itr=w.begin();itr!=w.end();++itr){
+        cnt+=1ll*(itr->second)*((itr->second)-1)/2;
+    }
+    rep(i,n){
+        cout << cnt-(w[a.at(i)]*(w[a.at(i)]-1)/2)+((w[a.at(i)]-1)*(w[a.at(i)]-2)/2) << endl;;
+    }
     return 0;
 }
