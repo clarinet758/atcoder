@@ -2,51 +2,77 @@
 using namespace std;
 
 #define rep(i,n)  for(int i=0;i<n;++i)
+#define per(i,n)  for(int i=n-1;i>=0;--i)
 #define sc1(a)  scanf("%d",&a)
 #define sc2(a,b)  scanf("%d %d",&a,&b)
 #define sc3(a,b,c)  scanf("%d %d %d",&a,&b,&c)
+#define sl1(a)  scanf("%lld",&a)
+#define sl2(a,b)  scanf("%lld %lld",&a,&b)
+#define sl3(a,b,c)  scanf("%lld %lld %lld",&a,&b,&c)
+#define PI 3.1415926535897932
+#define print(a) cout << a << endl
+#define pp puts("")
+
+#define Yes printf("Yes\n")
+#define No printf("No\n")
+void yneso(int a) {if(a) cout << Yes; else cout << No;}
+
+//int64_t はatcoderメリット不明のため long long
+typedef long long ll;
+//#define ll int64_t
+
+//
+int souwa(int a) {return (1+a)*a/2;}
+int lcm(int a,int b) { return a*b/__gcd(a,b); }
+ll gcdll(ll a, ll b) { if(b==0ll) return a; else return gcdll(b, a%b); }
+ll lcmll(ll a,ll b) { return (a/gcdll(a,b)*b); }
+ll maxll(ll a,ll b) {if(a>b){return a;}else{return b;}}
+ll minll(ll a,ll b) {if(a<b){return a;}else{return b;}}
+
+double tilt(int x1,int y1,int x2,int y2) {return (1.0*y2-1.0*y1)/(1.0*x2-1.0*x1);}
+double tri(int xa,int ya,int xb,int yb,int xc,int yc) {return (1.0*xa-1.0*xc)*(1.0*yb-1.0*yc)-(1.0*xb-1.0*xc)*(1.0*ya-1.0*yc);}
+bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end()); return t.at(0)+t.at(1)>t.at(2);};
+
+/** sort(ar.begin(),ar.end())
+ * vector<vector<int>> a(5,vector<int>)
+    int sum=accumulate(ar.begin(),ar.end(),0); 
+    do {// do内部で作られた順列に対して必要な処理を行う
+        //必ず事前にソートしておくこと、配列の中身を見ていて？辞書順に次のもの次のもの作成するのでソートしておかないと列挙が漏れる
+        // cout << w.at(0) << w.at(1) << w.at(2) << endl;
+    } while (next_permutation(w.begin(),w.end()));  //ex. vector <int> w= {1,2,3}; **/
+
+// 何か貼るときはココから下に
 
 int main(){
-    int n,m,q;
-    long long ans=0ll;
-    sc3(n,m,q);
-    vector <vector<int>> w(q,vector <int> (4));
-    vector <int> dd(10);
-    rep(i,q) cin >> w.at(i).at(0) >> w.at(i).at(1) >> w.at(i).at(2) >> w.at(i).at(3);
-    for (int a=1;a<11;a++) {
-        dd.at(0)=a;
-        for (int b=a;b<11;b++) {
-            dd.at(1)=b;
-            for (int c=b;c<11;c++) {
-                dd.at(2)=c;
-                for (int d=c;d<11;d++) {
-                    dd.at(3)=d;
-                    for (int e=d;e<11;e++) {
-                        dd.at(4)=e;
-                        for (int f=e;f<11;f++) {
-                            dd.at(5)=f;
-                            for (int g=f;g<11;g++) {
-                                dd.at(6)=g;
-                                for (int h=g;h<11;h++) {
-                                    dd.at(7)=h;
-                                    for (int i=h;i<11;i++) {
-                                        dd.at(8)=i;
-                                        for (int j=i;j<11;j++) {
-                                            dd.at(9)=j;
-                                            long long tmp=0ll;
-                                            rep(x,q) if (dd.at(w.at(x).at(1)-1) - dd.at(w.at(x).at(0)-1) == w.at(x).at(2) && dd.at(w.at(x).at(1)-1)<=m) tmp+=w.at(x).at(3);
-                                            ans=max(ans,tmp);
-                                            
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+    int mod=1e9+7;
+    int n,m,q,k,x,y,z,cnt=0,ans=0;
+    cin >> n >> m >> q;
+    vector<vector<int>> a(q,vector<int>(4));
+    vector<int> p(10,1);
+    rep(i,q) {
+        cin >> a.at(i).at(0) >> a.at(i).at(1) >> a.at(i).at(2) >> a.at(i).at(3);
+    }
+
+    for(;;){
+
+        for(int i=9;i>=0;i--){
+            if(p.at(i)<m) {
+                p.at(i)++;
+                break;
             }
         }
+
+        for(int j=1;j<10;j++) p.at(j)=max(p.at(j-1),p.at(j)); 
+        rep(i,10) cout << p.at(i);
+        pp;
+
+        cnt=0;
+        rep(i,q){
+            if(p.at(a.at(i).at(1)-1)-p.at(a.at(i).at(0)-1)==a.at(i).at(2)) cnt+=a.at(i).at(3);
+        }
+        ans=max(ans,cnt);
+        if(p.at(0)==m) break;
     }
-    printf("%lld\n",ans);
+    print(ans);
     return 0;
 }
