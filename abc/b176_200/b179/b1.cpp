@@ -46,9 +46,13 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 int main(){
     int mod=1e9+7;
     int n,k,x,y,z,cnt=0,ans=0;
-    string s,t;
-    cin >> s;
-    if(s.at(s.size()-1)=='s') cout << s << "es" << endl;
-    else cout << s << "s" << endl;
+    cin >> n;
+    rep(i,n) {
+        cin >> x >> y;
+        if(x==y)cnt++;
+        else cnt=0;
+        ans=max(ans,cnt);
+    }
+    cout << ((ans>2)?"Yes":"No") << endl;
     return 0;
 }
