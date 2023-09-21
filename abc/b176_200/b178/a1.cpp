@@ -46,9 +46,7 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 int main(){
     int mod=1e9+7;
     int n,k,x,y,z,cnt=0,ans=0;
-    string s,t;
-    cin >> s;
-    if(s.at(s.size()-1)=='s') cout << s << "es" << endl;
-    else cout << s << "s" << endl;
+    cin >> n;
+    printf("%d\n",(n==0));
     return 0;
 }

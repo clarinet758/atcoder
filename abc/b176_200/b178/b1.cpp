@@ -45,10 +45,9 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 int main(){
     int mod=1e9+7;
-    int n,k,x,y,z,cnt=0,ans=0;
-    string s,t;
-    cin >> s;
-    if(s.at(s.size()-1)=='s') cout << s << "es" << endl;
-    else cout << s << "s" << endl;
+    ll a,b,c,d,n,k,x,y,z,cnt=0,ans=0ll;
+    cin >> a >> b >> c >> d;
+    ans=maxll(maxll(a*c,a*d),maxll(b*c,b*d));
+    cout << ans << endl;
     return 0;
 }
