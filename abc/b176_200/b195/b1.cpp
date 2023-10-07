@@ -49,13 +49,8 @@ int main(){
     string s="UNSATISFIABLE";
     cin >> a >> b >> w;
     w*=1000;
-    if(a==b && w%a==0){
-        cout << w/a << " " << w/a << endl;
-        return 0;
-    } else if(a==b){
-        cout << s << endl;
-        return 0;
-    }
+    if(a==b && w%a==0){ cout << w/a << " " << w/a << endl; return 0; }
+    else if(a==b){ cout << s << endl; return 0; }
     x=w/a;
     cnt=w%a;
     if((cnt+(b-a)-1)/(b-a)>x) x=mod;

@@ -44,7 +44,6 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 // 何か貼るときはココから下に
 
 int main(){
-    int mod=1e9+7;
     int m,h,k,x,y,z,cnt=0,ans=0;
     cin >> m >> h;
     cout << ((h%m==0)?"Yes":"No") << endl;
