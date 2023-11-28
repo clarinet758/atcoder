@@ -43,20 +43,24 @@ bool sankaku(int a,int b,int c) {vector <int> t={a,b,c};sort(t.begin(),t.end());
 
 // 何か貼るときはココから下に
 
-int main(){
-    ll mod=(1e9+7)*1ll;
-    ll n,w,x,y,ans=0;
-    cin >> n >> w;
-    vector<vector<ll>> dp(n+1,vector<ll>(100005,100ll*mod)); //dp[i][j]=k  i番目までの品物を選択候補にしたときに、価値jを実現する最小の重さがk
-    dp[0][0]=0; //0状態で価値0を実現するのは重さ0
+int main(){//WA
+    int n,ans=1;
+    cin >> n;
+    string s,t;
+    map<string,int> w;
+    vector<pair<string,string>> p(n);
     rep(i,n) {
-        cin >> x >> y;
-        for(int j=0;j<100005;j++){
-            if(j-y>=0) dp[i+1][j]=minll(dp[i+1][j],dp[i][j-y]+x); //dp[i+1][j]を実現する重さを、dp[i][j-y]+x(1つ手前のi番目で価値j-yを実現している重さに今回の重さxを足した値と比較する)
-            dp[i+1][j]=minll(dp[i+1][j],dp[i][j]);
-        }
+        cin >> s >> t;
+        p[i].first=s;
+        p[i].second=t;
+        w[s]++;
+        w[t]++;
     }
-    rep(i,100005) if(dp[n][i]<=w) ans=i;
-    cout << ans << endl;
+    rep(i,n){
+        s=p[i].first;
+        t=p[i].second;
+        if(w[s]>1 && w[t]>1) ans=0;
+    }
+    cout << ((ans)?"Yes":"No") << endl;
     return 0;
 }
