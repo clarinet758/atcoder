@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+//20260419
 int main() {
   int A, B;
   string op;
@@ -8,18 +8,15 @@ int main() {
 
   if (op == "+") {
     cout << A + B << endl;
-  }
-  // ここにプログラムを追記
-  else if (op == "-") {
+  } else if (op == "-") {
     cout << A - B << endl;
   }
   else if (op == "*") {
     cout << A * B << endl;
   }
-  else if (B!=0 && op == "/") {
+  else if (op == "/"  && B != 0) {
     cout << A / B << endl;
-  }
-  else  {
+  }  else {
     cout << "error" << endl;
   }
 }

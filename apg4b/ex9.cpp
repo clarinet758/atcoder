@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+//20260419
 int main() {
   int x, a, b;
   cin >> x >> a >> b;
@@ -10,7 +10,10 @@ int main() {
   cout << x << endl;
 
   // ここにプログラムを追記
-  cout << x * (a+b) << endl;
-  cout << (x * (a+b)) * (x * (a+b)) << endl;
-  cout << (x * (a+b)) * (x * (a+b)) - 1 << endl;
+  x *= (a+b);
+  cout << x << endl;
+  x *= x;
+  cout << x << endl;
+  x--;
+  cout << x << endl;
 }
