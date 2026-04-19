@@ -1,11 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
-//20260419
+
 int main() {
   int p;
-  int price;
   cin >> p;
 
+  int price;
   // パターン1
   if (p == 1) {
     cin >> price;
