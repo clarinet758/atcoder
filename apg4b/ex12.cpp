@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+//20260420
 int main() {
   string S;
   cin >> S;
@@ -8,10 +8,10 @@ int main() {
   // ここにプログラムを追記
   int l = S.size();
   int ans = 1;
-  for(int i=0;i<l;i++) {
-    if (S.at(i)=='+') {
+  for (int i=0;i<l;i++){
+    if(S.at(i)=='+'){
       ans++;
-    } else if(S.at(i)=='-') {
+    } else if(S.at(i)=='-'){
       ans--;
     }
   }
