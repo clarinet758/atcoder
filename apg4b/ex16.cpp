@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+//20260421
 int main() {
   vector<int> data(5);
   for (int i = 0; i < 5; i++) {
@@ -9,9 +9,8 @@ int main() {
 
   // dataの中で隣り合う等しい要素が存在するなら"YES"を出力し、そうでなければ"NO"を出力する
   // ここにプログラムを追記
-  bool ans = 0;
-  for (int i = 0; i < 4; i++) if (ans == 0) ans = data.at(i) == data.at(i+1);
-
-  cout << ((ans==1) ? "YES":"NO") << endl;
-  
+  int ans=0;
+  for(int i=0;i<4;i++) if(data.at(i)==data.at(i+1)) ans=1;
+  if(ans) cout << "YES" << endl;
+  else cout << "NO" << endl;
 }
