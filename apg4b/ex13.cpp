@@ -1,15 +1,17 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+//20260420
 int main() {
   int N;
   cin >> N;
-  vector<int> w(N,0);
-  int t=0;
-  for (int i=0;i<N;i++) {
-    cin >> w.at(i);
-    t+=w.at(i);
+  int a=0;
+  vector<int> v(N);
+  for(int i=0;i<N;i++){
+    cin >> v.at(i);
+    a+=v.at(i);
   }
 
-  for (int i=0;i<N;i++) cout << abs(t/N-w.at(i)) << endl;
+  for(int i=0;i<N;i++){
+    cout << abs(a/N-v.at(i)) << endl;
+  }
 }

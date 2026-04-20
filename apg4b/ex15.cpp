@@ -1,14 +1,14 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+//20260420
 // 1人のテストの点数を表す配列から合計点を計算して返す関数
 // 引数 scores: scores.at(i)にi番目のテストの点数が入っている
 // 返り値: 1人のテストの合計点
 int sum(vector<int> scores) {
   // ここにプログラムを追記
-  int k = 0,l=scores.size();
-  for (int i=0;i<l;i++) k+=scores.at(i);
-  return k;
+  int a=0,l=scores.size();
+  for (int i=0;i<l;i++) a+=scores.at(i);
+  return a;
 }
 
 // 3人の合計点からプレゼントの予算を計算して出力する関数
@@ -18,7 +18,7 @@ int sum(vector<int> scores) {
 // 返り値: なし
 void output(int sum_a, int sum_b, int sum_c) {
   // ここにプログラムを追記
-  cout << sum_a * sum_b * sum_c << endl;
+  cout << sum_a*sum_b*sum_c << endl;
 }
 
 // -------------------
