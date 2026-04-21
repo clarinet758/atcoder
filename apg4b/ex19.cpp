@@ -1,18 +1,17 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+//20260422
 // 参照渡しを用いて、呼び出し側の変数の値を変更する
-void saiten(/* 呼び出し側に対応するように引数を書く */vector<vector<int>> &w,int &t,int &f) {
+void saiten(/* 呼び出し側に対応するように引数を書く */vector <vector<int>> &A,int &correct_count,int &wrong_count) {
   // 呼び出し側のAの各マスを正しい値に修正する
   // Aのうち、正しい値の書かれたマスの個数を correct_count に入れる
   // Aのうち、誤った値の書かれたマスの個数を wrong_count に入れる
-
   // ここにプログラムを追記
-  for (int i = 0;i < 9;i++){
-    for (int j = 0;j < 9;j++){
-      t+=w.at(i).at(j)==(i+1)*(j+1);
-      f+=w.at(i).at(j)!=(i+1)*(j+1);
-      w.at(i).at(j)=(i+1)*(j+1);
+  for (int i=1;i<10;i++){
+    for (int j=1;j<10;j++){
+      if(A.at(i-1).at(j-1) == i*j) correct_count++;
+      else  wrong_count++;
+      A.at(i-1).at(j-1) = i*j;
     }
   }
 }
