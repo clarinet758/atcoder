@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+//20260430
 int f0(int N) {
   return 1;
 }
@@ -68,12 +68,12 @@ int main() {
   int a0 = -1, a1 = -1, a2 = -1, a3 = -1, a4 = -1, a5 = -1;
 
   // 計算量が最も大きいもの1つだけコメントアウトする
-  a0 = f0(N);
-  a1 = f1(N, M);
-  a2 = f2(N);
-  a3 = f3(N);
-//  a4 = f4(N);
-  a5 = f5(N, M);
+  a0 = f0(N);//1
+  a1 = f1(N, M);//N+M
+  a2 = f2(N);//logN
+  a3 = f3(N);//9
+  //a4 = f4(N);//N*N
+  a5 = f5(N, M);//N*M
 
   cout << "f0: " << a0 << endl;
   cout << "f1: " << a1 << endl;
