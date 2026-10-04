@@ -3,7 +3,7 @@ using namespace std;
 
 int main() {
   // ここにプログラムを追記
-  int a,b;
+  int a, b;
   cin >> a >> b;
-  cout << a+b << endl;
+  cout << a + b << endl;
 }
