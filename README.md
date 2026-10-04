@@ -12,3 +12,11 @@ https://atcoder.jp/contests/dwacon2018-prelims/tasks/dwacon2018_prelims_a
 20200824 conf??  
 20200919 master -> main
 20260914 himico
+20261005 auto-format
+
+
+#用意した
+yyでクリップボードにコピー
+
+#これから
+ショートカットでビルド
